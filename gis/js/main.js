@@ -83,7 +83,7 @@ function ShowPopup(HTMLcontent,point){
            false);
        popup.opacity = 0.9;
        popup.autoSize = true;
-       popup.setBackgroundColor("#bcd2bb");
+       popup.setBackgroundColor("#CBDDF3");
        map.addPopup(popup, true);
 };
 
@@ -102,17 +102,10 @@ function NodeOnClick(e)
 		return;
 	};
 	point = new OpenLayers.LonLat(e.feature.geometry.getCentroid().x, e.feature.geometry.getCentroid().y);
-       Ext.Ajax.request({
-                url: '?r=node/nodeshow&id='+nt,
+	var t="#"+nt+" "+Nodes[nt].properties.street + ", "+Nodes[nt].properties.house +" <hr>";
 
+	ShowPopup(t,point);
 
-                success: function(response, opts) {
-        		ShowPopup(response,point);        
-		},
-                failure: function(response, opts) {
-                        console.log('server-side failure with status code ' + response.status);
-                }
-        }); 
 }; 
    
 function GetMarkerLine(id){

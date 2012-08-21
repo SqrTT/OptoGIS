@@ -32,7 +32,17 @@ class NodeController extends Controller
 
 	public function actionGetnode($id){
 		$node = Point::model()->find('pt_id=:postID', array(':postID'=>$id));
-		
+		$lines = Line::model()->findAll('frm_pt_id=:ID OR to_pt_id=:ID', array(':ID'=>$id));	
+		$con = array();
+		foreach($lines as $line){
+			$nd = null;//$line->frm_pt_id==$id ? $line->to_pt_id : $line->frm_to_id;	
+			if($line->frm_pt_id==$id){
+				$nd=$line->to_pt_id;
+			}else{
+				$nd=$line->frm_pt_id;
+			};
+			$con[] = array("line"=>$line->line_id, "node"=> $nd,	"lenght"=> $line->lenght);
+		};	
 		echo CJSON::encode( array ( "geometry" => array(
 				"Type" => "Point",
 				"coordinates" => array($node->coord_n,$node->coord_e),
@@ -43,12 +53,10 @@ class NodeController extends Controller
 				"house" => $node->house,
 				"room" => $node->room,
 				"comment" => $node->comment,
-				"id" => $node->pt_id,			
-    ),	
+				"id" => $node->pt_id,
+				"connected" => $con,			
+    			     ),	
 		));
 	}
-     public function actionNodeShow($id){
-	 echo "#$id <hr>eq";
-	} 
 
 }

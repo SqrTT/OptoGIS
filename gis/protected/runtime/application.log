@@ -1004,3 +1004,135 @@ Stack trace:
 REQUEST_URI=/gis/index.php?r=node/nodeshow&id=110&_dc=1345497851071
 HTTP_REFERER=http://web/gis/index.php
 ---
+2012/08/22 00:13:22 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to='110' LIMIT 1' at line 1. The SQL statement executed was: SELECT * FROM `lines` `t` WHERE frm_pt_id=:ID OR to=:ID LIMIT 1.
+in /var/www/gis/gis/protected/controllers/NodeController.php (35)
+in /var/www/gis/gis/index.php (13)
+2012/08/22 00:13:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to='110' LIMIT 1' at line 1. The SQL statement executed was: SELECT * FROM `lines` `t` WHERE frm_pt_id=:ID OR to=:ID LIMIT 1' in /var/www/gis/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/gis/framework/db/CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /var/www/gis/framework/db/ar/CActiveRecord.php(1287): CDbCommand->queryRow()
+#2 /var/www/gis/framework/db/ar/CActiveRecord.php(1392): CActiveRecord->query(Object(CDbCriteria))
+#3 /var/www/gis/gis/protected/controllers/NodeController.php(35): CActiveRecord->find('frm_pt_id=:ID O...', Array)
+#4 [internal function]: NodeController->actionGetnode('110')
+#5 /var/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(NodeController), Array)
+#6 /var/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(NodeController), Object(ReflectionMethod), Array)
+#7 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#8 /var/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#9 /var/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('getnode')
+#11 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('node/getnode')
+#12 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#13 /var/www/gis/gis/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/gis/index.php?r=node/getnode&id=110&_dc=1345583601962
+HTTP_REFERER=http://web/gis/index.php
+---
+2012/08/22 00:31:50 [error] [php] Trying to get property of non-object (/var/www/gis/gis/protected/controllers/NodeController.php:38)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): NodeController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): NodeController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): NodeController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=node/getnode&id=114&_dc=1345584710410
+in /var/www/gis/gis/protected/controllers/NodeController.php (38)
+in /var/www/gis/gis/index.php (13)
+2012/08/22 00:32:42 [error] [php] Trying to get property of non-object (/var/www/gis/gis/protected/controllers/NodeController.php:38)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): NodeController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): NodeController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): NodeController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=node/getnode&id=115&_dc=1345584762476
+in /var/www/gis/gis/protected/controllers/NodeController.php (38)
+in /var/www/gis/gis/index.php (13)
+2012/08/22 00:37:40 [error] [php] Trying to get property of non-object (/var/www/gis/gis/protected/controllers/NodeController.php:38)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): NodeController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): NodeController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): NodeController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=node/getnode&id=146&_dc=1345585059756
+in /var/www/gis/gis/protected/controllers/NodeController.php (38)
+in /var/www/gis/gis/index.php (13)
+2012/08/22 00:40:41 [error] [php] Trying to get property of non-object (/var/www/gis/gis/protected/controllers/NodeController.php:39)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): NodeController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): NodeController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): NodeController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=node/getnode&id=156&_dc=1345585240930
+in /var/www/gis/gis/protected/controllers/NodeController.php (39)
+in /var/www/gis/gis/index.php (13)
+2012/08/22 00:40:58 [error] [php] Trying to get property of non-object (/var/www/gis/gis/protected/controllers/NodeController.php:39)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): NodeController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): NodeController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): NodeController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=node/getnode&id=152&_dc=1345585257554
+in /var/www/gis/gis/protected/controllers/NodeController.php (39)
+in /var/www/gis/gis/index.php (13)
+2012/08/22 00:41:23 [error] [php] Trying to get property of non-object (/var/www/gis/gis/protected/controllers/NodeController.php:39)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): NodeController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): NodeController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): NodeController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=node/getnode&id=110&_dc=1345585282990
+in /var/www/gis/gis/protected/controllers/NodeController.php (39)
+in /var/www/gis/gis/index.php (13)
+2012/08/22 00:45:05 [error] [php] Trying to get property of non-object (/var/www/gis/gis/protected/controllers/NodeController.php:39)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): NodeController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): NodeController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): NodeController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=node/getnode&id=128&_dc=1345585505331
+in /var/www/gis/gis/protected/controllers/NodeController.php (39)
+in /var/www/gis/gis/index.php (13)
+2012/08/22 00:47:25 [error] [exception.CException] exception 'CException' with message 'Property "Line.id" is not defined.' in /var/www/gis/framework/base/CComponent.php:131
+Stack trace:
+#0 /var/www/gis/framework/db/ar/CActiveRecord.php(144): CComponent->__get('id')
+#1 /var/www/gis/gis/protected/controllers/NodeController.php(44): CActiveRecord->__get('id')
+#2 [internal function]: NodeController->actionGetnode('146')
+#3 /var/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(NodeController), Array)
+#4 /var/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(NodeController), Object(ReflectionMethod), Array)
+#5 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#6 /var/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#7 /var/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('getnode')
+#9 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('node/getnode')
+#10 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#11 /var/www/gis/gis/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/gis/index.php?r=node/getnode&id=146&_dc=1345585644600
+HTTP_REFERER=http://web/gis/index.php
+---
