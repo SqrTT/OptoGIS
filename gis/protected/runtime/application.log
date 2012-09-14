@@ -1136,3 +1136,104 @@ Stack trace:
 REQUEST_URI=/gis/index.php?r=node/getnode&id=146&_dc=1345585644600
 HTTP_REFERER=http://web/gis/index.php
 ---
+2012/09/14 22:33:01 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /var/www/gis/framework/web/CController.php:337
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(310): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#2 /var/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('geo')
+#4 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/geo')
+#5 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/gis/gis/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/gis/?r=user/geo
+---
+2012/09/14 22:37:15 [error] [php] Undefined variable: row (/var/www/gis/gis/protected/controllers/UserController.php:21)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): UserController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): UserController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): UserController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/?r=user/geo&addr=1
+in /var/www/gis/gis/protected/controllers/UserController.php (21)
+in /var/www/gis/gis/index.php (13)
+2012/09/14 23:17:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getusers".' in /var/www/gis/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(271): CController->missingAction('getusers')
+#1 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('getusers')
+#2 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getusers')
+#3 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/gis/gis/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/gis/?r=user/getusers
+---
+2012/09/14 23:51:31 [error] [php] Undefined offset: 0 (/var/www/gis/gis/protected/controllers/UserController.php:45)
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(287): UserController->runAction()
+#1 /var/www/gis/framework/web/CController.php(266): UserController->runActionWithFilters()
+#2 /var/www/gis/framework/web/CWebApplication.php(276): UserController->run()
+#3 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#4 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/?r=user/getusers
+in /var/www/gis/gis/protected/controllers/UserController.php (45)
+in /var/www/gis/gis/index.php (13)
+2012/09/14 23:53:40 [error] [php] Undefined index: u.uid (/var/www/gis/gis/protected/controllers/UserController.php:45)
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(287): UserController->runAction()
+#1 /var/www/gis/framework/web/CController.php(266): UserController->runActionWithFilters()
+#2 /var/www/gis/framework/web/CWebApplication.php(276): UserController->run()
+#3 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#4 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/?r=user/getusers
+in /var/www/gis/gis/protected/controllers/UserController.php (45)
+in /var/www/gis/gis/index.php (13)
+2012/09/14 23:54:03 [error] [php] Use of undefined constant u - assumed 'u' (/var/www/gis/gis/protected/controllers/UserController.php:45)
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(287): UserController->runAction()
+#1 /var/www/gis/framework/web/CController.php(266): UserController->runActionWithFilters()
+#2 /var/www/gis/framework/web/CWebApplication.php(276): UserController->run()
+#3 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#4 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/?r=user/getusers
+in /var/www/gis/gis/protected/controllers/UserController.php (45)
+in /var/www/gis/gis/index.php (13)
+2012/09/14 23:54:38 [error] [php] Undefined offset: 0 (/var/www/gis/gis/protected/controllers/UserController.php:45)
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(287): UserController->runAction()
+#1 /var/www/gis/framework/web/CController.php(266): UserController->runActionWithFilters()
+#2 /var/www/gis/framework/web/CWebApplication.php(276): UserController->run()
+#3 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#4 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/?r=user/getusers
+in /var/www/gis/gis/protected/controllers/UserController.php (45)
+in /var/www/gis/gis/index.php (13)
+2012/09/14 23:55:23 [error] [php] Trying to get property of non-object (/var/www/gis/gis/protected/controllers/UserController.php:45)
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(287): UserController->runAction()
+#1 /var/www/gis/framework/web/CController.php(266): UserController->runActionWithFilters()
+#2 /var/www/gis/framework/web/CWebApplication.php(276): UserController->run()
+#3 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#4 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/?r=user/getusers
+in /var/www/gis/gis/protected/controllers/UserController.php (45)
+in /var/www/gis/gis/index.php (13)
+2012/09/14 23:56:44 [error] [php] Undefined index: u.uid (/var/www/gis/gis/protected/controllers/UserController.php:45)
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(287): UserController->runAction()
+#1 /var/www/gis/framework/web/CController.php(266): UserController->runActionWithFilters()
+#2 /var/www/gis/framework/web/CWebApplication.php(276): UserController->run()
+#3 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#4 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/?r=user/getusers
+in /var/www/gis/gis/protected/controllers/UserController.php (45)
+in /var/www/gis/gis/index.php (13)
