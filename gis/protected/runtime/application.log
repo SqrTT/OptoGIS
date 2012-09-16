@@ -1237,3 +1237,291 @@ Stack trace:
 REQUEST_URI=/gis/?r=user/getusers
 in /var/www/gis/gis/protected/controllers/UserController.php (45)
 in /var/www/gis/gis/index.php (13)
+2012/09/16 14:54:39 [error] [php] PDO::__construct(): [2002] Connection timed out (trying to connect via tcp://abills.prokk.net:3306) (/var/www/gis/framework/db/CDbConnection.php:422)
+Stack trace:
+#0 /var/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /var/www/gis/framework/base/CComponent.php(153): CDbConnection->setActive()
+#2 /var/www/gis/gis/protected/controllers/UserController.php(42): CDbConnection->__set()
+#3 /var/www/gis/framework/web/actions/CInlineAction.php(50): UserController->actionGetUsers()
+#4 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#5 /var/www/gis/framework/web/CController.php(287): UserController->runAction()
+#6 /var/www/gis/framework/web/CController.php(266): UserController->runActionWithFilters()
+#7 /var/www/gis/framework/web/CWebApplication.php(276): UserController->run()
+#8 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#9 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#10 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/?r=user/getusers
+in /var/www/gis/gis/protected/controllers/UserController.php (42)
+in /var/www/gis/gis/index.php (13)
+2012/09/16 14:59:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getnodes".' in /var/www/gis/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(271): CController->missingAction('getnodes')
+#1 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('getnodes')
+#2 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('node/getnodes')
+#3 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/gis/gis/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/gis/?r=node/getnodes
+---
+2012/09/16 14:59:32 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /var/www/gis/framework/web/CController.php:337
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(310): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#2 /var/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('getnode')
+#4 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('node/getnode')
+#5 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/gis/gis/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/gis/?r=node/getnode
+---
+2012/09/16 15:04:17 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /var/www/gis/framework/web/CController.php:337
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(310): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#2 /var/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('getnode')
+#4 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('node/getnode/0')
+#5 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/gis/gis/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/gis/?r=node/getnode/0
+---
+2012/09/16 15:10:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "Layer".' in /var/www/gis/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(271): CController->missingAction('Layer')
+#1 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('Layer')
+#2 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/Layer')
+#3 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/gis/gis/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/gis/?r=site/Layer
+---
+2012/09/16 15:11:10 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /var/www/gis/framework/web/CController.php:337
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(310): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#2 /var/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('Layers')
+#4 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/Layers')
+#5 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/gis/gis/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/gis/?r=site/Layers
+---
+2012/09/16 16:16:03 [error] [exception.CException] exception 'CException' with message 'Object configuration must be an array containing a "class" element.' in /var/www/gis/framework/YiiBase.php:195
+Stack trace:
+#0 /var/www/gis/framework/base/CModule.php(387): YiiBase::createComponent(Array)
+#1 /var/www/gis/framework/base/CModule.php(104): CModule->getComponent('abills')
+#2 /var/www/gis/gis/protected/controllers/SiteController.php(70): CModule->__get('abills')
+#3 [internal function]: SiteController->actionLayers('0', 'root')
+#4 /var/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#5 /var/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#6 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#7 /var/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#8 /var/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('Layers')
+#10 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/Layers')
+#11 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#12 /var/www/gis/gis/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/gis/?r=site/Layers&node=0&id=root
+---
+2012/09/16 16:16:39 [error] [php] Undefined variable: Yii (/var/www/gis/gis/protected/controllers/SiteController.php:70)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): SiteController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): SiteController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/?r=site/Layers&node=0&id=root
+in /var/www/gis/gis/protected/controllers/SiteController.php (70)
+in /var/www/gis/gis/index.php (13)
+2012/09/16 16:29:06 [error] [exception.CException] exception 'CException' with message 'Property "CWebApplication.abills" is not defined.' in /var/www/gis/framework/base/CComponent.php:131
+Stack trace:
+#0 /var/www/gis/framework/base/CModule.php(106): CComponent->__get('abills')
+#1 /var/www/gis/gis/protected/controllers/SiteController.php(70): CModule->__get('abills')
+#2 [internal function]: SiteController->actionLayers('0', 'root')
+#3 /var/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#4 /var/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#5 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#6 /var/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#7 /var/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('Layers')
+#9 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/Layers')
+#10 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#11 /var/www/gis/gis/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/gis/?r=site/Layers&node=0&id=root
+---
+2012/09/16 16:30:00 [error] [php] Trying to get property of non-object (/var/www/gis/gis/protected/controllers/SiteController.php:70)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): SiteController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): SiteController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/?r=site/Layers&node=0&id=root
+in /var/www/gis/gis/protected/controllers/SiteController.php (70)
+in /var/www/gis/gis/index.php (13)
+2012/09/16 16:55:29 [error] [php] Undefined index: username (/var/www/gis/gis/protected/controllers/UserController.php:42)
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(287): UserController->runAction()
+#1 /var/www/gis/framework/web/CController.php(266): UserController->runActionWithFilters()
+#2 /var/www/gis/framework/web/CWebApplication.php(276): UserController->run()
+#3 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#4 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/?r=user/getusers
+in /var/www/gis/gis/protected/controllers/UserController.php (42)
+in /var/www/gis/gis/index.php (13)
+2012/09/16 17:12:59 [error] [php] Use of undefined constant e - assumed 'e' (/var/www/gis/gis/protected/controllers/SiteController.php:103)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): SiteController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): SiteController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/?r=site/Layers&node=0&id=root
+in /var/www/gis/gis/protected/controllers/SiteController.php (103)
+in /var/www/gis/gis/index.php (13)
+2012/09/16 17:21:54 [error] [php] Undefined offset: 0 (/var/www/gis/gis/protected/controllers/SiteController.php:107)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): SiteController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): SiteController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347805314132&node=usr-0&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=usr-0
+in /var/www/gis/gis/protected/controllers/SiteController.php (107)
+in /var/www/gis/gis/index.php (13)
+2012/09/16 17:23:34 [error] [php] Undefined offset: 0 (/var/www/gis/gis/protected/controllers/SiteController.php:107)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): SiteController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): SiteController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347805414345&node=usr-0&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=usr-0
+in /var/www/gis/gis/protected/controllers/SiteController.php (107)
+in /var/www/gis/gis/index.php (13)
+2012/09/16 17:24:18 [error] [php] Undefined offset: 0 (/var/www/gis/gis/protected/controllers/SiteController.php:107)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#2 /var/www/gis/framework/web/CController.php(287): SiteController->runAction()
+#3 /var/www/gis/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#4 /var/www/gis/framework/web/CWebApplication.php(276): SiteController->run()
+#5 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#6 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#7 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347805414345&node=usr-0&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=usr-0
+in /var/www/gis/gis/protected/controllers/SiteController.php (107)
+in /var/www/gis/gis/index.php (13)
+2012/09/16 18:43:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getuser".' in /var/www/gis/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(271): CController->missingAction('getuser')
+#1 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#2 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#3 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/gis/gis/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/gis/index.php?r=user/getuser&id=3897&_dc=1347810233696
+HTTP_REFERER=http://web/gis/index.php
+---
+2012/09/16 19:19:29 [error] [exception.CException] exception 'CException' with message 'UserController and its behaviors do not have a method or closure named "find_coord".' in /var/www/gis/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gis/gis/protected/controllers/UserController.php(49): CComponent->__call('find_coord', Array)
+#1 /var/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('994')
+#2 /var/www/gis/framework/web/actions/CInlineAction.php(50): UserController->actionGetUser()
+#3 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#4 /var/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#5 /var/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#7 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#8 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#9 /var/www/gis/gis/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/gis/index.php?r=user/getuser&id=3897&_dc=1347810233696
+---
+2012/09/16 19:26:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getusers".' in /var/www/gis/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/gis/framework/web/CController.php(271): CController->missingAction('getusers')
+#1 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('getusers')
+#2 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getusers')
+#3 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/gis/gis/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/gis/?r=user/getusers
+---
+2012/09/16 20:03:29 [error] [php] Missing argument 2 for UserController::find_coord(), called in /var/www/gis/gis/protected/controllers/UserController.php on line 49 and defined (/var/www/gis/gis/protected/controllers/UserController.php:69)
+Stack trace:
+#0 /var/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs()
+#1 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#2 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#3 /var/www/gis/framework/web/CController.php(287): UserController->runAction()
+#4 /var/www/gis/framework/web/CController.php(266): UserController->runActionWithFilters()
+#5 /var/www/gis/framework/web/CWebApplication.php(276): UserController->run()
+#6 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#7 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#8 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=user/getuser&id=3897&_dc=1347810233696
+in /var/www/gis/gis/protected/controllers/UserController.php (69)
+in /var/www/gis/gis/protected/controllers/UserController.php (49)
+in /var/www/gis/gis/index.php (13)
+2012/09/16 20:19:44 [error] [php] include(UseCoord.php): failed to open stream: No such file or directory (/var/www/gis/framework/YiiBase.php:418)
+Stack trace:
+#0 /var/www/gis/gis/protected/controllers/UserController.php(73): spl_autoload_call()
+#1 /var/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord()
+#2 unknown(0): UserController->actionGetUser()
+#3 /var/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs()
+#4 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#5 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#6 /var/www/gis/framework/web/CController.php(287): UserController->runAction()
+#7 /var/www/gis/framework/web/CController.php(266): UserController->runActionWithFilters()
+#8 /var/www/gis/framework/web/CWebApplication.php(276): UserController->run()
+#9 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#10 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#11 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=user/getuser&id=3897&_dc=1347810233696
+in /var/www/gis/gis/protected/controllers/UserController.php (73)
+in /var/www/gis/gis/protected/controllers/UserController.php (49)
+in /var/www/gis/gis/index.php (13)
+2012/09/16 20:39:34 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2. The SQL statement executed was: INSERT INTO `usr_coord` (`id` ,`uid` ,`x` ,`y`)
+					VALUES (NULL , 902, 48.445123, 22.705835.
+in /var/www/gis/gis/protected/controllers/UserController.php (75)
+in /var/www/gis/gis/protected/controllers/UserController.php (49)
+in /var/www/gis/gis/index.php (13)
+2012/09/16 20:39:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2. The SQL statement executed was: INSERT INTO `usr_coord` (`id` ,`uid` ,`x` ,`y`)
+					VALUES (NULL , 902, 48.445123, 22.705835' in /var/www/gis/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /var/www/gis/gis/protected/controllers/UserController.php(75): CDbCommand->execute()
+#1 /var/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('902', 'Ukraine,???????...')
+#2 [internal function]: UserController->actionGetUser('3897')
+#3 /var/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#4 /var/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#5 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#6 /var/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#7 /var/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#9 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#10 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#11 /var/www/gis/gis/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/gis/index.php?r=user/getuser&id=3897&_dc=1347810233696
+---

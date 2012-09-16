@@ -1,5 +1,6 @@
 var Nodes = new Array();
 var Lines = new Array();
+var Users = new Array();
 var map = null;
 var popup = null;
 var marker_icon = null;
@@ -19,11 +20,27 @@ var markersLine = null;
                  //   graphicZIndex: 2
                 })
             });
+            var myUser = new OpenLayers.StyleMap({
+                "default": new OpenLayers.Style({
+                    pointRadius: "3", // sized according to type attribute
+                    fillColor: "#ff0000",
+                    strokeColor: "#000000",
+                    strokeWidth: 2,
+                  //  graphicZIndex: 1
+                }),
+                "select": new OpenLayers.Style({
+                    fillColor: "#66ccff",
+                    strokeColor: "#3399ff",
+                 //   graphicZIndex: 2
+                })
+            });
 
 var markersNode = null;
+var markersUser = null;
 var styles = new Array();
 var selectNodes = null;
 var selectLines = null;
+var selectUsers = null;
 
 
 
@@ -71,6 +88,31 @@ function GetMarkerNode(id){
 
 };
 
+function GetMarkerUser(id){
+	Ext.Ajax.request({
+    		url: '?r=user/getuser&id='+id,
+    		success: function(response, opts) {
+        		var obj = Ext.decode(response.responseText);
+        		Users[id]=obj;
+		
+			var point0 = new OpenLayers.Geometry.Point(parseFloat(obj.geometry.coordinates[1]),
+									 parseFloat(obj.geometry.coordinates[0]));
+ 			point0.transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
+			
+			var marker = 	new OpenLayers.Feature.Vector(point0)
+		
+			obj.marker=marker;
+			markersUser.addFeatures(marker);
+//			console.log(obj);
+    		},
+    		failure: function(response, opts) {
+        		console.log('server-side failure with status code ' + response.status);
+    		}
+	});
+
+
+};
+
 
 function ShowPopup(HTMLcontent,point){
 
@@ -107,6 +149,27 @@ function NodeOnClick(e)
 	ShowPopup(t,point);
 
 }; 
+
+function UserOnClick(e)
+{
+        var nt= null;
+        for( i in Users){
+                if(Users[i].marker.id == e.feature.id){
+                        nt=i;
+                };
+        };
+        if(nt==null){
+                console.log("Cant find object");
+                return;
+        };
+        point = new OpenLayers.LonLat(e.feature.geometry.getCentroid().x, e.feature.geometry.getCentroid().y);
+        var t="#"+nt+" "+Users[nt].properties.street + ", "+Users[nt].properties.house+"/"+Users[nt].properties.room +" <hr><b>" +Users[nt].properties.subject +
+		"</b><br/>"+ Users[nt].properties.message +"</br>"+Users[nt].properties.phone+"<br/><i><b>(UID "+Users[nt].properties.id+") "+Users[nt].properties.fio+"</i>";
+
+        ShowPopup(t,point);
+
+};
+
    
 function GetMarkerLine(id){
 		Ext.Ajax.request({
@@ -150,7 +213,9 @@ function trans(x,y){
 function clickObj(record){
 	var rpoint=/point-(\d+)/;
 	var lpoint=/line-(\d+)/;
+	var upoint=/us-(\d+)/;
 	var arr=rpoint.exec(record.data.id)
+	var arr3=upoint.exec(record.data.id)	
 	var arr2=lpoint.exec(record.data.id)	
 	if( arr2 != null ){
 		if(!record.data.checked){// check
@@ -166,9 +231,16 @@ function clickObj(record){
 			markersNode.removeFeatures(Nodes[arr[1]].marker)
                         delete Nodes[arr[1]];
                 };
+	}else if(arr3 !=null){
+		if(!record.data.checked){
+			GetMarkerUser(arr3[1]);
+		}else{
+			markersUser.removeFeatures(Users[arr3[1]].marker)
+		};
+	
 	}else{	
 		
-		alert("Wrong object!");
+		alert("Wrong object!"+record.data.id);
 	};
  	if(record.data.checked!=null)record.data.checked=!record.data.checked;
 };
@@ -331,20 +403,21 @@ markersLine.events.on( {
                 styleMap: myStyles,
                 rendererOptions: {zIndexing: true}
             } );
-
 	map.addLayer(markersNode);
-       selectNodes = new OpenLayers.Control.SelectFeature([markersNode,markersLine]);
+
+        markersUser =  new OpenLayers.Layer.Vector( "User",{
+                styleMap: myUser,
+                rendererOptions: {zIndexing: true}
+            } );
+	map.addLayer(markersUser);
+
+
+       selectNodes = new OpenLayers.Control.SelectFeature([markersNode,markersLine,markersUser]);
        map.addControl(selectNodes);
        selectNodes.activate();
 
-markersNode.events.on( {
- "featureselected": NodeOnClick  ,
- "featureunselected": function (e) {
-           //setTimeout('if(map.popups.length - 1>-1){map.removePopup(map.popups[map.popups.length - 1]);}', 300);
-        }
-});
-
-
+markersNode.events.on({"featureselected": NodeOnClick,});
+markersUser.events.on({"featureselected": UserOnClick});
         
 	
 	map.addControl(new OpenLayers.Control.ScaleLine());

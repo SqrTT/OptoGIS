@@ -6,6 +6,7 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
+	
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'SqrT GIS',
 
@@ -61,7 +62,7 @@ return array(
 			'charset' => 'utf8',
 		),
 		
-		'errorHandler'=>array(
+	    'errorHandler'=>array(
 			// use 'site/error' action to display errors
             'errorAction'=>'site/error',
         ),
@@ -74,10 +75,10 @@ return array(
 				),
 				// uncomment the following to show log messages on web pages
 				
-				//array(
-				//	'class'=>'CWebLogRoute',
-				//),
-				
+		//array(
+		//	'class'=>'CWebLogRoute',
+		//),
+			
 			),
 		),
 	),
@@ -87,5 +88,13 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		'abills'=>array(
+                    'on' => true,
+                    'connectionString' => 'mysql:host=195.16.77.2;dbname=abills',                                                                         
+                    'username' => 'tolik',
+                    'password' => 'some_pass',
+                    'charset' => 'utf8', 
+                                        
+        ), 
 	),
 );
