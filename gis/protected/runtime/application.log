@@ -1525,3 +1525,2002 @@ Stack trace:
 #12 {main}
 REQUEST_URI=/gis/index.php?r=user/getuser&id=3897&_dc=1347810233696
 ---
+2012/09/17 11:44:07 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: could not find driver' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(TypeLines))
+#7 /usr/local/www/gis/gis/protected/models/TypeLines.php(20): CActiveRecord::model('TypeLines')
+#8 /usr/local/www/gis/gis/protected/controllers/LineController.php(24): TypeLines::model()
+#9 /usr/local/www/gis/framework/web/actions/CInlineAction.php(50): LineController->actionGettypes()
+#10 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#12 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('gettypes')
+#14 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('line/gettypes')
+#15 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#16 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/gis/?r=line/gettypes&_dc=1347871457170
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:44:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: could not find driver' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(TypeLines))
+#7 /usr/local/www/gis/gis/protected/models/TypeLines.php(20): CActiveRecord::model('TypeLines')
+#8 /usr/local/www/gis/gis/protected/controllers/SiteController.php(61): TypeLines::model()
+#9 [internal function]: SiteController->actionLayers('lines', 'lines')
+#10 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#11 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#12 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#13 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#14 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('layers')
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/layers')
+#17 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#18 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347871468944&node=lines&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=lines
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:44:20 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: could not find driver' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(TypePoints))
+#7 /usr/local/www/gis/gis/protected/models/TypePoints.php(20): CActiveRecord::model('TypePoints')
+#8 /usr/local/www/gis/gis/protected/controllers/SiteController.php(56): TypePoints::model()
+#9 [internal function]: SiteController->actionLayers('points', 'points')
+#10 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#11 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#12 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#13 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#14 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('layers')
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/layers')
+#17 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#18 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347871470281&node=points&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=points
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:44:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: could not find driver' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/base/CComponent.php(153): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/gis/protected/controllers/SiteController.php(102): CComponent->__set('active', true)
+#3 [internal function]: SiteController->actionLayers('usr-0', 'usr-0')
+#4 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#5 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#6 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#7 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#8 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('layers')
+#10 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/layers')
+#11 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#12 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347871472746&node=usr-0&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=usr-0
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:44:29 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: could not find driver' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/base/CComponent.php(153): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/gis/protected/controllers/SiteController.php(102): CComponent->__set('active', true)
+#3 [internal function]: SiteController->actionLayers('usr-0', 'usr-0')
+#4 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#5 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#6 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#7 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#8 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('layers')
+#10 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/layers')
+#11 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#12 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347871479041&node=usr-0&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=usr-0
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:44:45 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: could not find driver' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/base/CComponent.php(153): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/gis/protected/controllers/SiteController.php(102): CComponent->__set('active', true)
+#3 [internal function]: SiteController->actionLayers('usr-0', 'usr-0')
+#4 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#5 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#6 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#7 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#8 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('layers')
+#10 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/layers')
+#11 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#12 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347871495088&node=usr-0&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=usr-0
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:44:58 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: could not find driver' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/base/CComponent.php(153): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/gis/protected/controllers/SiteController.php(102): CComponent->__set('active', true)
+#3 [internal function]: SiteController->actionLayers('usr-0', 'usr-0')
+#4 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#5 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#6 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#7 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#8 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('layers')
+#10 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/layers')
+#11 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#12 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347871495088&node=usr-0&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=usr-0
+---
+2012/09/17 11:51:16 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(TypeLines))
+#7 /usr/local/www/gis/gis/protected/models/TypeLines.php(20): CActiveRecord::model('TypeLines')
+#8 /usr/local/www/gis/gis/protected/controllers/LineController.php(24): TypeLines::model()
+#9 /usr/local/www/gis/framework/web/actions/CInlineAction.php(50): LineController->actionGettypes()
+#10 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#12 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('gettypes')
+#14 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('line/gettypes')
+#15 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#16 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/gis/?r=line/gettypes&_dc=1347871886118
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('994', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3071')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3071&_dc=1347871892850
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4958', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3390')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3390&_dc=1347871892857
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4236', 'Ukraine,, ?????...')
+#10 [internal function]: UserController->actionGetUser('3506')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3506&_dc=1347871892864
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('1755', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3518')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3518&_dc=1347871892869
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('680', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3773')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3773&_dc=1347871892874
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4815', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3774')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3774&_dc=1347871892880
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3902', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3778')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3778&_dc=1347871892885
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3315', 'Ukraine,??????....')
+#10 [internal function]: UserController->actionGetUser('3821')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3821&_dc=1347871892890
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4998', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3838')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3838&_dc=1347871892895
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3718', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3850')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3850&_dc=1347871892901
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3146', 'Ukraine,, ?????...')
+#10 [internal function]: UserController->actionGetUser('3852')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3852&_dc=1347871892906
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('902', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3897')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3897&_dc=1347871892911
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('2394', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3912')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3912&_dc=1347871892918
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3022', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3913')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3913&_dc=1347871892924
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('2897', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3916')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3916&_dc=1347871892929
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4179', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3917')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3917&_dc=1347871892934
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4571', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3920')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3920&_dc=1347871892942
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3041', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3921')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3921&_dc=1347871892953
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4699', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3922')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3922&_dc=1347871892958
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4963', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3924')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3924&_dc=1347871892963
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('315', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3925')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3925&_dc=1347871892968
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('2379', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3927')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3927&_dc=1347871892974
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('1740', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3928')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3928&_dc=1347871892979
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4202', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3930')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3930&_dc=1347871892989
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3660', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3929')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3929&_dc=1347871892984
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('2257', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3931')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3931&_dc=1347871892994
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3317', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3933')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3933&_dc=1347871892999
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3760', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3934')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3934&_dc=1347871893004
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 11:51:52 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3760', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3934')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3934&_dc=1347871893004
+---
+2012/09/17 12:17:39 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(TypeLines))
+#7 /usr/local/www/gis/gis/protected/models/TypeLines.php(20): CActiveRecord::model('TypeLines')
+#8 /usr/local/www/gis/gis/protected/controllers/LineController.php(24): TypeLines::model()
+#9 /usr/local/www/gis/framework/web/actions/CInlineAction.php(50): LineController->actionGettypes()
+#10 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#12 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('gettypes')
+#14 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('line/gettypes')
+#15 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#16 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/gis/?r=line/gettypes&_dc=1347873468923
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:18:27 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(TypeLines))
+#7 /usr/local/www/gis/gis/protected/models/TypeLines.php(20): CActiveRecord::model('TypeLines')
+#8 /usr/local/www/gis/gis/protected/controllers/LineController.php(24): TypeLines::model()
+#9 /usr/local/www/gis/framework/web/actions/CInlineAction.php(50): LineController->actionGettypes()
+#10 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#12 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('gettypes')
+#14 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('line/gettypes')
+#15 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#16 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/gis/?r=line/gettypes&_dc=1347873517531
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('994', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3071')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3071&_dc=1347873587349
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4958', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3390')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3390&_dc=1347873587349
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4236', 'Ukraine,, ?????...')
+#10 [internal function]: UserController->actionGetUser('3506')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3506&_dc=1347873587350
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('680', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3773')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3773&_dc=1347873587350
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('1755', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3518')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3518&_dc=1347873587350
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4815', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3774')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3774&_dc=1347873587351
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3902', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3778')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3778&_dc=1347873587351
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3315', 'Ukraine,??????....')
+#10 [internal function]: UserController->actionGetUser('3821')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3821&_dc=1347873587351
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4998', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3838')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3838&_dc=1347873587352
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3718', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3850')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3850&_dc=1347873587352
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3146', 'Ukraine,, ?????...')
+#10 [internal function]: UserController->actionGetUser('3852')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3852&_dc=1347873587353
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('902', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3897')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3897&_dc=1347873587353
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('2394', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3912')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3912&_dc=1347873587354
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('2414', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3911')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3911&_dc=1347873587354
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3022', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3913')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3913&_dc=1347873587354
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('2897', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3916')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3916&_dc=1347873587355
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4179', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3917')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3917&_dc=1347873587355
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4571', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3920')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3920&_dc=1347873587355
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4699', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3922')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3922&_dc=1347873587357
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4963', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3924')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3924&_dc=1347873587358
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3041', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3921')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3921&_dc=1347873587356
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('2379', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3927')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3927&_dc=1347873587359
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('315', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3925')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3925&_dc=1347873587358
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('1740', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3928')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3928&_dc=1347873587359
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4202', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3930')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3930&_dc=1347873587360
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3660', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3929')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3929&_dc=1347873587359
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('2257', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3931')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3931&_dc=1347873587360
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3317', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3933')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3933&_dc=1347873587361
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3760', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3934')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3934&_dc=1347873587361
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3409', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3935')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3935&_dc=1347873587362
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3763', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3936')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3936&_dc=1347873587362
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('2414', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3937')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3937&_dc=1347873587363
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(UsrCoord))
+#7 /usr/local/www/gis/gis/protected/models/UsrCoord.php(21): CActiveRecord::model('UsrCoord')
+#8 /usr/local/www/gis/gis/protected/controllers/UserController.php(71): UsrCoord::model()
+#9 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('1564', 'Ukraine,???????...')
+#10 [internal function]: UserController->actionGetUser('3938')
+#11 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#12 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#13 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#14 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#15 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#17 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#18 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=3938&_dc=1347873587363
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:53 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(TypePoints))
+#7 /usr/local/www/gis/gis/protected/models/TypePoints.php(20): CActiveRecord::model('TypePoints')
+#8 /usr/local/www/gis/gis/protected/controllers/SiteController.php(56): TypePoints::model()
+#9 [internal function]: SiteController->actionLayers('points', 'points')
+#10 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#11 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#12 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#13 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#14 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('layers')
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/layers')
+#17 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#18 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347873602981&node=points&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=points
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:19:55 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(TypeLines))
+#7 /usr/local/www/gis/gis/protected/models/TypeLines.php(20): CActiveRecord::model('TypeLines')
+#8 /usr/local/www/gis/gis/protected/controllers/SiteController.php(61): TypeLines::model()
+#9 [internal function]: SiteController->actionLayers('lines', 'lines')
+#10 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#11 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#12 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#13 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#14 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('layers')
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/layers')
+#17 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#18 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347873605004&node=lines&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=lines
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:35:31 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'opto'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(TypeLines))
+#7 /usr/local/www/gis/gis/protected/models/TypeLines.php(20): CActiveRecord::model('TypeLines')
+#8 /usr/local/www/gis/gis/protected/controllers/LineController.php(24): TypeLines::model()
+#9 /usr/local/www/gis/framework/web/actions/CInlineAction.php(50): LineController->actionGettypes()
+#10 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#12 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('gettypes')
+#14 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('line/gettypes')
+#15 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#16 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/gis/?r=line/gettypes&_dc=1347874541377
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:35:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'opto'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(TypeLines))
+#7 /usr/local/www/gis/gis/protected/models/TypeLines.php(20): CActiveRecord::model('TypeLines')
+#8 /usr/local/www/gis/gis/protected/controllers/SiteController.php(61): TypeLines::model()
+#9 [internal function]: SiteController->actionLayers('lines', 'lines')
+#10 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#11 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#12 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#13 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#14 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('layers')
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/layers')
+#17 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#18 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347874544112&node=lines&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=lines
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:35:45 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'opto'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(TypePoints))
+#7 /usr/local/www/gis/gis/protected/models/TypePoints.php(20): CActiveRecord::model('TypePoints')
+#8 /usr/local/www/gis/gis/protected/controllers/SiteController.php(56): TypePoints::model()
+#9 [internal function]: SiteController->actionLayers('points', 'points')
+#10 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#11 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#12 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#13 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#14 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('layers')
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/layers')
+#17 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#18 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347874555734&node=points&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=points
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
+2012/09/17 12:35:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'opto'@'localhost' (using password: YES)' in /usr/local/www/gis/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /usr/local/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /usr/local/www/gis/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /usr/local/www/gis/framework/base/CModule.php(388): CDbConnection->init()
+#3 /usr/local/www/gis/framework/base/CApplication.php(431): CModule->getComponent('db')
+#4 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(615): CApplication->getDb()
+#5 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 /usr/local/www/gis/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(TypePoints))
+#7 /usr/local/www/gis/gis/protected/models/TypePoints.php(20): CActiveRecord::model('TypePoints')
+#8 /usr/local/www/gis/gis/protected/controllers/SiteController.php(56): TypePoints::model()
+#9 [internal function]: SiteController->actionLayers('points', 'points')
+#10 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#11 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#12 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#13 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#14 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('layers')
+#16 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('site/layers')
+#17 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#18 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1347874555734&node=points&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=points
+---
+2012/10/15 09:51:53 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '3597' for key 'uid'. The SQL statement executed was: INSERT INTO `usr_coord` (`id` ,`uid` ,`x` ,`y`)
+					VALUES (NULL , 3597, 48.456591, 22.717208).
+in /usr/local/www/gis/gis/protected/controllers/UserController.php (76)
+in /usr/local/www/gis/gis/protected/controllers/UserController.php (49)
+in /usr/local/www/gis/gis/index.php (13)
+2012/10/15 09:51:53 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '3597' for key 'uid'. The SQL statement executed was: INSERT INTO `usr_coord` (`id` ,`uid` ,`x` ,`y`)
+					VALUES (NULL , 3597, 48.456591, 22.717208)' in /usr/local/www/gis/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /usr/local/www/gis/gis/protected/controllers/UserController.php(76): CDbCommand->execute()
+#1 /usr/local/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('3597', 'Ukraine,???????...')
+#2 [internal function]: UserController->actionGetUser('9798')
+#3 /usr/local/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#4 /usr/local/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#5 /usr/local/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#6 /usr/local/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#7 /usr/local/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /usr/local/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#9 /usr/local/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#10 /usr/local/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#11 /usr/local/www/gis/gis/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/gis/?r=user/getuser&id=9798&_dc=1350283926698
+HTTP_REFERER=http://195.16.77.2:88/gis/
+---
