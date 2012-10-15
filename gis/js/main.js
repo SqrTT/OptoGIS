@@ -117,7 +117,7 @@ function GetMarkerUser(id){
 function ShowPopup(HTMLcontent,point){
 
       
-         var popup = new OpenLayers.Popup.AnchoredBubble("SDVegetationInfo",
+          popup = new OpenLayers.Popup.AnchoredBubble("SDVegetationInfo",
            point,
            new OpenLayers.Size(100, 100),
            HTMLcontent,
@@ -129,6 +129,11 @@ function ShowPopup(HTMLcontent,point){
        map.addPopup(popup, true);
 };
 
+
+function HidePopup(){
+	map.removePopup(popup);
+
+};
 
 
 function NodeOnClick(e)
@@ -163,7 +168,7 @@ function UserOnClick(e)
                 return;
         };
         point = new OpenLayers.LonLat(e.feature.geometry.getCentroid().x, e.feature.geometry.getCentroid().y);
-        var t="#"+nt+" "+Users[nt].properties.street + ", "+Users[nt].properties.house+"/"+Users[nt].properties.room 
+        var t="(<a href=\"#\" onclick='HidePopup();'>X</a>) [E]  #"+nt+" "+Users[nt].properties.street + ", "+Users[nt].properties.house+"/"+Users[nt].properties.room 
 		+" <hr><b>" +Users[nt].properties.subject +
 		"</b><br/>"+ Users[nt].properties.message +"</br>"+Users[nt].properties.phone+
 		"<br/><i><b>(<a target=_blank href=http://abills.prokk.net:9442/admin/index.cgi?UID="+Users[nt].properties.id+">UID "+Users[nt].properties.id+"</a>) "
@@ -372,7 +377,7 @@ function main(){
 
 
 
-     map.addLayer([mapnik]);//добавление слоя
+     map.addLayer(mapnik);//добавление слоя
 
 
 

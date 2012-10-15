@@ -1561,3 +1561,51 @@ Stack trace:
 REQUEST_URI=/gis/index.php?r=site/layers&_dc=1350330336216&node=usr-0&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=usr-0
 in /var/www/gis/gis/protected/controllers/SiteController.php (102)
 in /var/www/gis/gis/index.php (13)
+2012/10/15 23:45:45 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '4889' for key 'uid'. The SQL statement executed was: INSERT INTO `usr_coord` (`id` ,`uid` ,`x` ,`y`)
+					VALUES (NULL , 4889, 48.418347, 22.643366).
+in /var/www/gis/gis/protected/controllers/UserController.php (76)
+in /var/www/gis/gis/protected/controllers/UserController.php (49)
+in /var/www/gis/gis/index.php (13)
+2012/10/15 23:45:45 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '4889' for key 'uid'. The SQL statement executed was: INSERT INTO `usr_coord` (`id` ,`uid` ,`x` ,`y`)
+					VALUES (NULL , 4889, 48.418347, 22.643366)' in /var/www/gis/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /var/www/gis/gis/protected/controllers/UserController.php(76): CDbCommand->execute()
+#1 /var/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4889', 'Ukraine,???????...')
+#2 [internal function]: UserController->actionGetUser('3128')
+#3 /var/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#4 /var/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#5 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#6 /var/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#7 /var/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#9 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#10 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#11 /var/www/gis/gis/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/gis/index.php?r=user/getuser&id=3128&_dc=1350333941746
+HTTP_REFERER=http://web/gis/index.php
+---
+2012/10/15 23:45:46 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '4899' for key 'uid'. The SQL statement executed was: INSERT INTO `usr_coord` (`id` ,`uid` ,`x` ,`y`)
+					VALUES (NULL , 4899, 48.418347, 22.643366).
+in /var/www/gis/gis/protected/controllers/UserController.php (76)
+in /var/www/gis/gis/protected/controllers/UserController.php (49)
+in /var/www/gis/gis/index.php (13)
+2012/10/15 23:45:46 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '4899' for key 'uid'. The SQL statement executed was: INSERT INTO `usr_coord` (`id` ,`uid` ,`x` ,`y`)
+					VALUES (NULL , 4899, 48.418347, 22.643366)' in /var/www/gis/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /var/www/gis/gis/protected/controllers/UserController.php(76): CDbCommand->execute()
+#1 /var/www/gis/gis/protected/controllers/UserController.php(49): UserController->find_coord('4899', 'Ukraine,???????...')
+#2 [internal function]: UserController->actionGetUser('3174')
+#3 /var/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#4 /var/www/gis/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#5 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#6 /var/www/gis/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#7 /var/www/gis/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/gis/framework/web/CWebApplication.php(276): CController->run('getuser')
+#9 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController('user/getuser')
+#10 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#11 /var/www/gis/gis/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/gis/index.php?r=user/getuser&id=3174&_dc=1350333941782
+HTTP_REFERER=http://web/gis/index.php
+---

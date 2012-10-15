@@ -43,7 +43,7 @@ class UserController extends Controller
 			Yii::app()->params['abills']['password']);
 		$connection->charset=Yii::app()->params['abills']['charset'];
 		$connection->active=true;
-		$command=$connection->createCommand("SELECT u.uid, u.fio, u.city,u.address_street,u.address_build, u.address_flat, m.subject, m.message,u.phone FROM users_pi u, msgs_messages m WHERE m.chapter=7 and m.state=0 and u.uid = m.uid and m.id=$id");
+		$command=$connection->createCommand("SELECT u.uid, u.fio, u.city,u.address_street,u.address_build, u.address_flat, m.subject, m.message,u.phone FROM users_pi u, msgs_messages m WHERE  u.uid = m.uid and m.id=$id");
 		$dataReader=$command->query();
 		foreach($dataReader as $row) { 
 			$coord = $this->find_coord($row['uid'],"Ukraine,".$row['city'].", ".$row['address_street'].", ".$row['address_build']);	
