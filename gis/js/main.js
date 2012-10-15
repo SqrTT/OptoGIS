@@ -163,8 +163,11 @@ function UserOnClick(e)
                 return;
         };
         point = new OpenLayers.LonLat(e.feature.geometry.getCentroid().x, e.feature.geometry.getCentroid().y);
-        var t="#"+nt+" "+Users[nt].properties.street + ", "+Users[nt].properties.house+"/"+Users[nt].properties.room +" <hr><b>" +Users[nt].properties.subject +
-		"</b><br/>"+ Users[nt].properties.message +"</br>"+Users[nt].properties.phone+"<br/><i><b>(UID "+Users[nt].properties.id+") "+Users[nt].properties.fio+"</i>";
+        var t="#"+nt+" "+Users[nt].properties.street + ", "+Users[nt].properties.house+"/"+Users[nt].properties.room 
+		+" <hr><b>" +Users[nt].properties.subject +
+		"</b><br/>"+ Users[nt].properties.message +"</br>"+Users[nt].properties.phone+
+		"<br/><i><b>(<a target=_blank href=http://abills.prokk.net:9442/admin/index.cgi?UID="+Users[nt].properties.id+">UID "+Users[nt].properties.id+"</a>) "
+		+Users[nt].properties.fio+"</i>";
 
         ShowPopup(t,point);
 
@@ -366,7 +369,13 @@ function main(){
 
     map = new OpenLayers.Map("main-map");//инициализация карты
     var mapnik = new OpenLayers.Layer.OSM();//создание слоя карты
-    map.addLayer(mapnik);//добавление слоя
+
+
+
+     map.addLayer([mapnik]);//добавление слоя
+
+
+
     map.setCenter(trans(22.717222,48.445278), 13 );
     
 	map.addControl(new OpenLayers.Control.LayerSwitcher());

@@ -1525,3 +1525,39 @@ Stack trace:
 #12 {main}
 REQUEST_URI=/gis/index.php?r=user/getuser&id=3897&_dc=1347810233696
 ---
+2012/10/11 23:50:52 [error] [php] PDO::__construct(): [2002] No route to host (trying to connect via tcp://195.16.77.2:3306) (/var/www/gis/framework/db/CDbConnection.php:422)
+Stack trace:
+#0 /var/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /var/www/gis/framework/base/CComponent.php(153): CDbConnection->setActive()
+#2 /var/www/gis/gis/protected/controllers/SiteController.php(102): CDbConnection->__set()
+#3 unknown(0): SiteController->actionLayers()
+#4 /var/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs()
+#5 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#6 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#7 /var/www/gis/framework/web/CController.php(287): SiteController->runAction()
+#8 /var/www/gis/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#9 /var/www/gis/framework/web/CWebApplication.php(276): SiteController->run()
+#10 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#11 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#12 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1349988644130&node=usr-0&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=usr-0
+in /var/www/gis/gis/protected/controllers/SiteController.php (102)
+in /var/www/gis/gis/index.php (13)
+2012/10/15 22:45:56 [error] [php] PDO::__construct(): [2002] Connection timed out (trying to connect via tcp://195.16.77.2:3306) (/var/www/gis/framework/db/CDbConnection.php:422)
+Stack trace:
+#0 /var/www/gis/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /var/www/gis/framework/base/CComponent.php(153): CDbConnection->setActive()
+#2 /var/www/gis/gis/protected/controllers/SiteController.php(102): CDbConnection->__set()
+#3 unknown(0): SiteController->actionLayers()
+#4 /var/www/gis/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs()
+#5 /var/www/gis/framework/web/actions/CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#6 /var/www/gis/framework/web/CController.php(309): CInlineAction->runWithParams()
+#7 /var/www/gis/framework/web/CController.php(287): SiteController->runAction()
+#8 /var/www/gis/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#9 /var/www/gis/framework/web/CWebApplication.php(276): SiteController->run()
+#10 /var/www/gis/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#11 /var/www/gis/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#12 /var/www/gis/gis/index.php(13): CWebApplication->run()
+REQUEST_URI=/gis/index.php?r=site/layers&_dc=1350330336216&node=usr-0&sort=%5B%7B%22property%22%3A%22leaf%22%2C%22direction%22%3A%22ASC%22%7D%2C%7B%22property%22%3A%22text%22%2C%22direction%22%3A%22ASC%22%7D%5D&id=usr-0
+in /var/www/gis/gis/protected/controllers/SiteController.php (102)
+in /var/www/gis/gis/index.php (13)
