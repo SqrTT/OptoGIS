@@ -374,12 +374,37 @@ function main(){
 
     map = new OpenLayers.Map("main-map");//инициализация карты
     var mapnik = new OpenLayers.Layer.OSM();//создание слоя карты
+    map.addLayer(mapnik);
+
+    var gphy = new OpenLayers.Layer.Google(
+	"Google Physical",
+    		{type: google.maps.MapTypeId.TERRAIN}
+        	// used to be {type: G_PHYSICAL_MAP}
+            );
+    map.addLayer(gphy);
+
+    var gsat = new OpenLayers.Layer.Google(
+	"Google Satellite",
+        {type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22}
+            // used to be {type: G_SATELLITE_MAP, numZoomLevels: 22}
+            );
+    map.addLayer(gsat);
 
 
-
-     map.addLayer(mapnik);//добавление слоя
-
-
+    var gmap = new OpenLayers.Layer.Google(
+	"Google Streets", // the default
+        {numZoomLevels: 20}
+            // default type, no change needed here
+            );
+    map.addLayer(gmap);
+    
+    var ghyb = new OpenLayers.Layer.Google(
+        "Google Hybrid",
+            {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
+                // used to be {type: G_HYBRID_MAP, numZoomLevels: 20}
+                );
+    map.addLayer(ghyb);
+    
 
     map.setCenter(trans(22.717222,48.445278), 13 );
     
