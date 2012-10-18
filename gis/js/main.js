@@ -1,6 +1,7 @@
 var Nodes = new Array();
 var Lines = new Array();
 var Users = new Array();
+var Modify = new Array();
 var map = null;
 var popup = null;
 var marker_icon = null;
@@ -37,11 +38,12 @@ var markersLine = null;
 
 var markersNode = null;
 var markersUser = null;
+var modData = 	new Array();
 var styles = new Array();
 var selectNodes = null;
 var selectLines = null;
 var selectUsers = null;
-
+var modify	= null;
 
 
 function init_styles(){
@@ -114,6 +116,96 @@ function GetMarkerUser(id){
 };
 
 
+
+
+Ext.ux.NotificationMgr = {
+    positions: []
+};
+    
+Ext.define('Ext.ux.Notification', {
+    extend: 'Ext.Window',
+   
+    initComponent: function(){
+        Ext.apply(this, {
+            iconCls: this.iconCls || 'x-icon-information',
+            cls: 'x-notification',
+            width: 200,
+            autoHeight: true,
+            plain: true,
+            border:false,
+            draggable: false,
+            shadow:true,
+            bodyStyle: 'text-align:center'
+        });
+        if(this.autoDestroy) {
+            this.task = new Ext.util.DelayedTask(this.hide, this);
+        } else {
+            this.closable = true;
+        }
+        Ext.ux.Notification.superclass.initComponent.apply(this);
+    },
+    setMessage: function(msg){
+        this.body.update(msg);
+    },
+    setTitle: function(title, iconCls){
+        Ext.ux.Notification.superclass.setTitle.call(this, title, iconCls||this.iconCls);
+    },
+    onDestroy: function(){
+        Ext.ux.NotificationMgr.positions.splice(this.pos);
+        Ext.ux.Notification.superclass.onDestroy.call(this);   
+    },
+    cancelHiding: function(){
+        this.addClass('fixed');
+        if(this.autoDestroy) {
+            this.task.cancel();
+        }
+    },
+    afterShow: function(){
+        
+        Ext.ux.Notification.superclass.afterShow.call(this);
+        Ext.fly(this.body.dom).on('click', this.cancelHiding, this);
+        if(this.autoDestroy) {
+            this.task.delay(this.hideDelay || 3000);
+       }
+    },
+    
+    beforeShow:function(){
+        this.el.hide();
+    },
+    
+    onShow: function(){
+        var me = this;
+        
+        this.pos = 0;
+        while(Ext.ux.NotificationMgr.positions.indexOf(this.pos)>-1)
+            this.pos++;
+        Ext.ux.NotificationMgr.positions.push(this.pos);
+        
+        this.el.alignTo(document, "br-br", [ -20, -20-((this.getSize().height+10)*this.pos) ]);
+        this.el.slideIn('b', {
+            duration: 500,
+            listeners:{
+                afteranimate:{
+                    fn: function() {
+                          me.el.show();
+                    }
+                }
+            }
+        });
+        
+        
+    },
+    onHide: function(){
+        this.el.disableShadow();
+        this.el.ghost("b", {duration: 500,remove: true});
+         Ext.ux.NotificationMgr.positions.splice(this.pos);
+    },
+    focus: Ext.emptyFn
+});
+
+
+
+
 function ShowPopup(HTMLcontent,point){
 
       
@@ -129,6 +221,13 @@ function ShowPopup(HTMLcontent,point){
        map.addPopup(popup, true);
 };
 
+function ShowTip(one,two){
+	new Ext.ux.Notification({
+    title: one,
+    html: two,
+}).show(document); 
+
+};
 
 function HidePopup(){
 	map.removePopup(popup);
@@ -155,6 +254,16 @@ function NodeOnClick(e)
 
 }; 
 
+function EditUser(id){
+	modData[id]=Users[id].marker;
+	markersUser.removeFeatures(Users[id].marker);
+	Modify.addFeatures(modData[id]);
+	HidePopup(); 
+	
+	selectNodes.deactivate();	
+	modify.activate();
+};
+
 function UserOnClick(e)
 {
         var nt= null;
@@ -168,7 +277,7 @@ function UserOnClick(e)
                 return;
         };
         point = new OpenLayers.LonLat(e.feature.geometry.getCentroid().x, e.feature.geometry.getCentroid().y);
-        var t="(<a href=\"#\" onclick='HidePopup();'>X</a>) [E]  #"+nt+" "+Users[nt].properties.street + ", "+Users[nt].properties.house+"/"+Users[nt].properties.room 
+        var t="(<a href=\"#\" onclick='HidePopup();'>X</a>) <a href=# onclick='EditUser("+nt+")'> [E]</a>  #"+nt+" "+Users[nt].properties.street + ", "+Users[nt].properties.house+"/"+Users[nt].properties.room 
 		+" <hr><b>" +Users[nt].properties.subject +
 		"</b><br/>"+ Users[nt].properties.message +"</br>"+Users[nt].properties.phone+
 		"<br/><i><b>(<a target=_blank href=http://abills.prokk.net:9442/admin/index.cgi?UID="+Users[nt].properties.id+">UID "+Users[nt].properties.id+"</a>) "
@@ -359,15 +468,26 @@ function main(){
                     xtype: 'tabpanel',
                     items: [{
                         title: 'map',
-                        html: '<div id="main-map"</div>'
-                    }, {
+                        html: '<div id="btn-menu"></div><div id="main-map"</div>'
+                    }
+		    , {
                         title: 'Another Tab',
                         html: 'Hello world 2'
                     }],
 		}],
 	     });
 
-    
+   Ext.create('Ext.Container', {
+    renderTo:"btn-menu",
+    items   : [
+        {
+            xtype: 'button',
+            text : 'Done',
+	    handler: function(){ShowTip("!","Done")},
+        },{ xtype: 'button', text: "Add Node"},
+	//{ xtype: "textfield", name: "search", fieldLabel: "Search"}	
+    ]
+   });	 
 
 
 	//open layers
@@ -451,6 +571,9 @@ markersLine.events.on( {
 	map.addLayer(markersUser);
 
 
+	Modify = new OpenLayers.Layer.Vector("Modify", { styleMap: myUser, rendererOptions:{zIndexing: true}});
+	map.addLayer(Modify);	
+
        selectNodes = new OpenLayers.Control.SelectFeature([markersNode,markersLine,markersUser]);
        map.addControl(selectNodes);
        selectNodes.activate();
@@ -461,5 +584,9 @@ markersUser.events.on({"featureselected": UserOnClick});
 	
 	map.addControl(new OpenLayers.Control.ScaleLine());
 	map.addControl(new OpenLayers.Control.MousePosition());
+
+	modify = new OpenLayers.Control.ModifyFeature(Modify);
+	map.addControl(modify);
+	modify.mode = OpenLayers.Control.ModifyFeature.DRAG; 
 
  };

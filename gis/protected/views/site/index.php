@@ -4,7 +4,15 @@
 	<script src="/gis/js/open/OpenLayers.js" type="text/javascript"></script>   
  <!-- Ext -->
     <link rel="stylesheet" type="text/css" href="/gis/css/ext-all.css" />
-
+        <style>
+        /* round corners of layer switcher, and make it transparent */
+        .olControlLayerSwitcher .layersDiv {
+            border-radius: 10px 0 0 10px;
+            opacity: 0.75;
+            filter: alpha(opacity=75);
+	    
+        }
+        </style>
     <style type="text/css">
         html, body {
             font: normal 12px verdana;
