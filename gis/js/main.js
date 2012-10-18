@@ -252,16 +252,32 @@ function NodeOnClick(e)
 
 	ShowPopup(t,point);
 
+};
+
+var update = 0;
+
+function onClickDone(){
+	if(update==1){
+		ShowTip("Update user","Done");
+	};
+
+	Ext.getCmp('done-bt').disable();
+	
 }; 
 
 function EditUser(id){
 	modData[id]=Users[id].marker;
+	ShowTip("Mode","Edit user "+id+"<br/>"+Users[id].properties.fio);
+
 	markersUser.removeFeatures(Users[id].marker);
 	Modify.addFeatures(modData[id]);
 	HidePopup(); 
 	
 	selectNodes.deactivate();	
 	modify.activate();
+	Ext.getCmp('done-bt').enable();
+
+	update=1;
 };
 
 function UserOnClick(e)
@@ -483,7 +499,9 @@ function main(){
         {
             xtype: 'button',
             text : 'Done',
-	    handler: function(){ShowTip("!","Done")},
+	    disabled: true,
+	    id: "done-bt",
+	    handler: function(){onClickDone()},
         },{ xtype: 'button', text: "Add Node"},
 	//{ xtype: "textfield", name: "search", fieldLabel: "Search"}	
     ]
@@ -578,8 +596,8 @@ markersLine.events.on( {
        map.addControl(selectNodes);
        selectNodes.activate();
 
-markersNode.events.on({"featureselected": NodeOnClick,});
-markersUser.events.on({"featureselected": UserOnClick});
+	markersNode.events.on({"featureselected": NodeOnClick,});
+	markersUser.events.on({"featureselected": UserOnClick});
         
 	
 	map.addControl(new OpenLayers.Control.ScaleLine());
@@ -588,5 +606,20 @@ markersUser.events.on({"featureselected": UserOnClick});
 	modify = new OpenLayers.Control.ModifyFeature(Modify);
 	map.addControl(modify);
 	modify.mode = OpenLayers.Control.ModifyFeature.DRAG; 
+            if (console && console.log && false) {
+                function report(event) {
+                    console.log(event.type, event.feature ? event.feature.id : event.components);
+                }
+                Modify.events.on({
+                    "beforefeaturemodified": report,
+                    "featuremodified": report,
+                    "afterfeaturemodified": report,
+                    "vertexmodified": report,
+                    "sketchmodified": report,
+                    "sketchstarted": report,
+                    "sketchcomplete": report
+                });
+            }
+
 
  };
