@@ -36,6 +36,26 @@ class UserController extends Controller
 		return $tmp;
 
 	}
+
+	public function actionSetCoord($msid){
+        	$post = file_get_contents("php://input");
+		$data = CJSON::decode($post, true);
+		
+	        $connection=new CDbConnection(
+                Yii::app()->params['abills']['connectionString'],
+                Yii::app()->params['abills']['username'],
+                Yii::app()->params['abills']['password']);
+                $connection->charset=Yii::app()->params['abills']['charset'];
+                $connection->active=true;
+                $command=$connection->createCommand("SELECT u.uid, u.fio, u.city,u.address_street,u.address_build, u.address_flat, m.subject, m.message,u.phone FROM users_pi u, msgs_messages m WHERE  u.uid = m.uid and m.id=$msid");
+		$dataReader=$command->query();
+		foreach($dataReader as $row){
+                        $command = Yii::app()->db->createCommand("UPDATE `usr_coord` SET `x`='".$data[y]."' ,`y`='".$data[x]."' WHERE uid=".$row['uid']);
+                        $command->execute();
+			echo "Done. Updated user: ".$row['fio'];
+		};
+	}
+
 	public function actionGetUser($id){
 		$connection=new CDbConnection(
 			Yii::app()->params['abills']['connectionString'],

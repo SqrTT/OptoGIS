@@ -21,7 +21,7 @@ var markersLine = null;
                  //   graphicZIndex: 2
                 })
             });
-            var myUser = new OpenLayers.StyleMap({
+             var myUser = new OpenLayers.StyleMap({
                 "default": new OpenLayers.Style({
                     pointRadius: "3", // sized according to type attribute
                     fillColor: "#ff0000",
@@ -35,6 +35,24 @@ var markersLine = null;
                  //   graphicZIndex: 2
                 })
             });
+
+           var myModify = new OpenLayers.StyleMap({
+                "default": new OpenLayers.Style({
+                    pointRadius: "5", // sized according to type attribute
+                    fillColor: "#ff00ff",
+                    strokeColor: "#000000",
+                    strokeWidth: 2,
+                  //  graphicZIndex: 1
+                }),
+                "select": new OpenLayers.Style({
+                    fillColor: "#6600ff",
+                    strokeColor: "#000000",
+                 //   graphicZIndex: 2
+                })
+            });
+
+
+
 
 var markersNode = null;
 var markersUser = null;
@@ -183,7 +201,7 @@ Ext.define('Ext.ux.Notification', {
         
         this.el.alignTo(document, "br-br", [ -20, -20-((this.getSize().height+10)*this.pos) ]);
         this.el.slideIn('b', {
-            duration: 500,
+            duration: 100,
             listeners:{
                 afteranimate:{
                     fn: function() {
@@ -255,20 +273,40 @@ function NodeOnClick(e)
 };
 
 var update = 0;
-
+var point = Array();
 function onClickDone(){
 	if(update==1){
-		ShowTip("Update user","Done");
-	};
+		for(var key in modData){
+			Modify.removeFeatures(modData[key]);	
+			markersUser.addFeatures(modData[key]);
+                        var point0 = new OpenLayers.Geometry.Point(parseFloat(modData[key].geometry.x),
+                                                                         parseFloat( modData[key].geometry.y));
+                        point0.transform(new OpenLayers.Projection("EPSG:900913"), new OpenLayers.Projection("EPSG:4326"));
+			point0.id=key;	
+			Ext.Ajax.request({
+   				url: '?r=user/setcoord&msid='+key,
+   				success: function(response, opts){
+					ShowTip("Update user",response.responseText);
+				},
+   				failure: function(response, opts){
+					ShowTip("Update user","FAIL!!! "+response.status);
+				},
+   				params: JSON.stringify( point0 ) 
 
+			});	
+		};
+	};
+	
+        selectNodes.activate();
+        modify.deactivate();	
+	modData = Array();
 	Ext.getCmp('done-bt').disable();
 	
 }; 
 
 function EditUser(id){
 	modData[id]=Users[id].marker;
-	ShowTip("Mode","Edit user "+id+"<br/>"+Users[id].properties.fio);
-
+	ShowTip("Edit user",id+"<br/>"+Users[id].properties.fio);
 	markersUser.removeFeatures(Users[id].marker);
 	Modify.addFeatures(modData[id]);
 	HidePopup(); 
@@ -589,7 +627,7 @@ markersLine.events.on( {
 	map.addLayer(markersUser);
 
 
-	Modify = new OpenLayers.Layer.Vector("Modify", { styleMap: myUser, rendererOptions:{zIndexing: true}});
+	Modify = new OpenLayers.Layer.Vector("Modify", { styleMap: myModify, rendererOptions:{zIndexing: true}});
 	map.addLayer(Modify);	
 
        selectNodes = new OpenLayers.Control.SelectFeature([markersNode,markersLine,markersUser]);
