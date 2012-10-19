@@ -37,20 +37,25 @@ class UserController extends Controller
 
 	}
 
-	public function actionSetCoord($msid){
+	public function actionSetCoord(){
         	$post = file_get_contents("php://input");
 		$data = CJSON::decode($post, true);
-		
+		if((int)($data['id'])==0){
+			echo "Wrong parametrs";
+			return;	
+		};
+		$data['y']=(float)$data['y'];
+		$data['x']=(float)$data['x'];	
 	        $connection=new CDbConnection(
                 Yii::app()->params['abills']['connectionString'],
                 Yii::app()->params['abills']['username'],
                 Yii::app()->params['abills']['password']);
                 $connection->charset=Yii::app()->params['abills']['charset'];
                 $connection->active=true;
-                $command=$connection->createCommand("SELECT u.uid, u.fio, u.city,u.address_street,u.address_build, u.address_flat, m.subject, m.message,u.phone FROM users_pi u, msgs_messages m WHERE  u.uid = m.uid and m.id=$msid");
+                $command=$connection->createCommand("SELECT u.uid, u.fio, u.city,u.address_street,u.address_build, u.address_flat, m.subject, m.message,u.phone FROM users_pi u, msgs_messages m WHERE  u.uid = m.uid and m.id=".$data['id']);
 		$dataReader=$command->query();
 		foreach($dataReader as $row){
-                        $command = Yii::app()->db->createCommand("UPDATE `usr_coord` SET `x`='".$data[y]."' ,`y`='".$data[x]."' WHERE uid=".$row['uid']);
+                        $command = Yii::app()->db->createCommand("UPDATE `usr_coord` SET `x`='".$data['y']."' ,`y`='".$data['x']."' WHERE uid=".$row['uid']);
                         $command->execute();
 			echo "Done. Updated user: ".$row['fio'];
 		};

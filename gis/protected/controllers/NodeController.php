@@ -17,6 +17,20 @@ class NodeController extends Controller
 	{
 	}
 
+    	public function actionSetCoord(){
+                $post = file_get_contents("php://input");
+                $data = CJSON::decode($post, true);
+                if((int)($data['id'])==0){
+                        echo "Wrong parametrs";
+                        return;
+                };
+                $data['y']=(float)$data['y'];
+                $data['x']=(float)$data['x'];
+                        $command = Yii::app()->db->createCommand("UPDATE `point` SET `coord_n`='".$data['y']."' ,`coord_e`='".$data['x']."' WHERE pt_id=".$data['id']);
+                        $command->execute();
+                        echo "Done. Update node: ".$data['id'];
+		
+	}
 
 	public function actionGettypes(){
 		

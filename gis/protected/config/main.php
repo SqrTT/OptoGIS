@@ -57,7 +57,7 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=optogis',
 			'emulatePrepare' => true,
-			'username' => 'opto',
+			'username' => 'root',
 			'password' => 'newpwd',
 			'charset' => 'utf8',
 		),

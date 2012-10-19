@@ -266,7 +266,7 @@ function NodeOnClick(e)
 		return;
 	};
 	point = new OpenLayers.LonLat(e.feature.geometry.getCentroid().x, e.feature.geometry.getCentroid().y);
-	var t="#"+nt+" "+Nodes[nt].properties.street + ", "+Nodes[nt].properties.house +" <hr>";
+	var t="<a href=\"#\" onclick='HidePopup();'>(X)</a> <a href=# onclick='EditNode("+nt+")'>[E]</a>  #"+nt+" "+Nodes[nt].properties.street + ", "+Nodes[nt].properties.house +" <hr>";
 
 	ShowPopup(t,point);
 
@@ -284,7 +284,7 @@ function onClickDone(){
                         point0.transform(new OpenLayers.Projection("EPSG:900913"), new OpenLayers.Projection("EPSG:4326"));
 			point0.id=key;	
 			Ext.Ajax.request({
-   				url: '?r=user/setcoord&msid='+key,
+   				url: '?r=user/setcoord',
    				success: function(response, opts){
 					ShowTip("Update user",response.responseText);
 				},
@@ -296,6 +296,28 @@ function onClickDone(){
 			});	
 		};
 	};
+        if(update==2){
+                for(var key in modData){
+                        Modify.removeFeatures(modData[key]);
+                        markersNode.addFeatures(modData[key]);
+                        var point0 = new OpenLayers.Geometry.Point(parseFloat(modData[key].geometry.x),
+                                                                         parseFloat( modData[key].geometry.y));
+                        point0.transform(new OpenLayers.Projection("EPSG:900913"), new OpenLayers.Projection("EPSG:4326"));
+                        point0.id=key;
+                        Ext.Ajax.request({
+                                url: '?r=node/setcoord',
+                                success: function(response, opts){
+                                        ShowTip("Update user",response.responseText);
+                                },
+                                failure: function(response, opts){
+                                        ShowTip("Update user","FAIL!!! "+response.status);
+                                },
+                                params: JSON.stringify( point0 )
+
+                        });
+                };
+        };
+
 	
         selectNodes.activate();
         modify.deactivate();	
@@ -310,13 +332,24 @@ function EditUser(id){
 	markersUser.removeFeatures(Users[id].marker);
 	Modify.addFeatures(modData[id]);
 	HidePopup(); 
-	
 	selectNodes.deactivate();	
 	modify.activate();
 	Ext.getCmp('done-bt').enable();
-
 	update=1;
 };
+
+function EditNode(id){
+        modData[id]=Nodes[id].marker;
+        ShowTip("Edit user",id);
+        markersNode.removeFeatures(Nodes[id].marker);
+        Modify.addFeatures(modData[id]);
+        HidePopup();
+        selectNodes.deactivate();
+        modify.activate();
+        Ext.getCmp('done-bt').enable();
+        update=2;
+}; 
+
 
 function UserOnClick(e)
 {
