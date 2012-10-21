@@ -119,7 +119,7 @@ function GetMarkerUser(id){
 									 parseFloat(obj.geometry.coordinates[0]));
  			point0.transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
 			
-			var marker = 	new OpenLayers.Feature.Vector(point0)
+			var marker = 	new OpenLayers.Feature.Vector(point0);
 		
 			obj.marker=marker;
 			markersUser.addFeatures(marker);
@@ -133,6 +133,38 @@ function GetMarkerUser(id){
 
 };
 
+
+  
+function GetMarkerLine(id){
+		Ext.Ajax.request({
+    		url: '?r=line/getline&id='+id,
+    		success: function(response, opts) {
+        		var obj = Ext.decode(response.responseText);
+        		Lines[id]=obj;
+			
+			var points = new Array();
+			for(ln in obj.geometry.coordinates){
+				var one = obj.geometry.coordinates[ln];
+				points.push(new OpenLayers.Geometry.Point(one[1],one[0]).transform(
+            					new OpenLayers.Projection("EPSG:4326"), // переобразование в WGS 1984
+            					new OpenLayers.Projection("EPSG:900913") // переобразование проекции
+    			));
+
+			};	
+			var line = new OpenLayers.Geometry.LineString(points);
+			var lineFeature = new OpenLayers.Feature.Vector(line, null, styles[obj.properties.TypeLine]);
+			markersLine.addFeatures([lineFeature]);
+
+			obj.line=lineFeature;
+
+			console.log(obj);
+    		},
+    		failure: function(response, opts) {
+        		console.log('server-side failure with status code ' + response.status);
+    		}
+	});
+
+};
 
 
 
@@ -239,6 +271,11 @@ function ShowPopup(HTMLcontent,point){
        map.addPopup(popup, true);
 };
 
+function HidePopup(){
+	map.removePopup(popup);
+};
+
+
 function ShowTip(one,two){
 	new Ext.ux.Notification({
     title: one,
@@ -247,11 +284,25 @@ function ShowTip(one,two){
 
 };
 
-function HidePopup(){
-	map.removePopup(popup);
+function LineOnClick(e){
+        var nt= null;
+        for( i in Lines){
+                if(Lines[i].line.id == e.feature.id){
+                        nt=i;
+                };
+        };
+        if(nt==null){
+                console.log("Cant find object");
+                return;
+        };
 
+       console.log(e)
+       	text =  "<a href=\"#\" onclick='HidePopup();'>(X)</a>  #"+nt+" "+styles[Lines[nt].properties.TypeLine].text+" - "+Lines[nt].properties.lenght+"m<hr/>";
+	text += "<a href=\"#\" onclick='GetMarkerNode("+Lines[nt].properties.Nodes[0].id+");'>"+Lines[nt].properties.Nodes[0].name+"</a><br/>";
+	text += "<a href=\"#\" onclick='GetMarkerNode("+Lines[nt].properties.Nodes[1].id+");'>"+Lines[nt].properties.Nodes[1].name+"</a><br/>";
+
+	ShowPopup(text,map.getLonLatFromPixel((map.getControlsByClass("OpenLayers.Control.MousePosition")[0]).lastXy));
 };
-
 
 function NodeOnClick(e)
 {    
@@ -267,9 +318,23 @@ function NodeOnClick(e)
 	};
 	point = new OpenLayers.LonLat(e.feature.geometry.getCentroid().x, e.feature.geometry.getCentroid().y);
 	var t="<a href=\"#\" onclick='HidePopup();'>(X)</a> <a href=# onclick='EditNode("+nt+")'>[E]</a>  #"+nt+" "+Nodes[nt].properties.street + ", "+Nodes[nt].properties.house +" <hr>";
-
+	var sum=0;
+	for(var c in Nodes[nt].properties.connected){
+		sum++;
+		t +="<a href=# onclick='GetMarkerLine("+Nodes[nt].properties.connected[c].line+");'>"+
+		 Nodes[nt].properties.connected[c].node_name+" - "+Nodes[nt].properties.connected[c].lenght+"m "+
+			styles[Nodes[nt].properties.connected[c].TypeLine].text+"</a><br/>";
+	};	
+	t+="<a href=# onclick='ShowAllLines("+nt+");'>Show all("+sum+")</a><hr/>"+Nodes[nt].properties.comment;
 	ShowPopup(t,point);
 
+};
+
+
+function ShowAllLines(nt){
+        for(var c in Nodes[nt].properties.connected){
+                GetMarkerLine(Nodes[nt].properties.connected[c].line); 
+        };
 };
 
 var update = 0;
@@ -340,7 +405,7 @@ function EditUser(id){
 
 function EditNode(id){
         modData[id]=Nodes[id].marker;
-        ShowTip("Edit user",id);
+        ShowTip("Edit node",id);
         markersNode.removeFeatures(Nodes[id].marker);
         Modify.addFeatures(modData[id]);
         HidePopup();
@@ -374,39 +439,7 @@ function UserOnClick(e)
 
 };
 
-   
-function GetMarkerLine(id){
-		Ext.Ajax.request({
-    		url: '?r=line/getline&id='+id,
-    		success: function(response, opts) {
-        		var obj = Ext.decode(response.responseText);
-        		Lines[id]=obj;
-			
-			var points = new Array();
-			for(ln in obj.geometry.coordinates){
-				var one = obj.geometry.coordinates[ln];
-				points.push(new OpenLayers.Geometry.Point(one[1],one[0]).transform(
-            					new OpenLayers.Projection("EPSG:4326"), // переобразование в WGS 1984
-            					new OpenLayers.Projection("EPSG:900913") // переобразование проекции
-    			));
-
-			};	
-			var line = new OpenLayers.Geometry.LineString(points);
-			var lineFeature = new OpenLayers.Feature.Vector(line, null, styles[obj.properties.TypeLine]);
-			markersLine.addFeatures([lineFeature]);
-
-			obj.line=lineFeature;
-
-			console.log(obj);
-    		},
-    		failure: function(response, opts) {
-        		console.log('server-side failure with status code ' + response.status);
-    		}
-	});
-
-};
-
-function trans(x,y){
+ function trans(x,y){
     return new OpenLayers.LonLat(x,y).transform(
             new OpenLayers.Projection("EPSG:4326"), // переобразование в WGS 1984
             new OpenLayers.Projection("EPSG:900913") // переобразование проекции
@@ -622,30 +655,6 @@ function main(){
 	markersLine=new OpenLayers.Layer.Vector( "Line");	
 
 	map.addLayer(markersLine);
-markersLine.events.on( {
- "featureselected": function (e) {
-       var HTMLcontent;
-       var point;
-        console.log(this)
-       HTMLcontent = '1234table style="width: 100%;" tr td ~Xн~Dо~@ма~Fи~O об об~Jек~Bе td tr table ';
-       point = new OpenLayers.LonLat(e.feature.geometry.getCentroid().x, e.feature.geometry.getCentroid().y);
-       var popup = new OpenLayers.Popup.AnchoredBubble("SDVegetationInfo",
-           point,
-           new OpenLayers.Size(100, 100),
-           HTMLcontent,
-           null,
-           false);
-       popup.opacity = 0.9;
-       popup.autoSize = true;
-       popup.setBackgroundColor("#bcd2bb");
-       map.addPopup(popup, true);
-
-        }
-      , "featureunselected": function (e) {
-           //setTimeout('if(map.popups.length - 1>-1){map.removePopup(map.popups[map.popups.length - 1]);}', 1000);
-        }
-});
-
 
 	markersNode =  new OpenLayers.Layer.Vector( "Node",{
                 styleMap: myStyles,
@@ -667,9 +676,9 @@ markersLine.events.on( {
        map.addControl(selectNodes);
        selectNodes.activate();
 
-	markersNode.events.on({"featureselected": NodeOnClick,});
+	markersNode.events.on({"featureselected": NodeOnClick});
 	markersUser.events.on({"featureselected": UserOnClick});
-        
+	markersLine.events.on({"featureselected": LineOnClick});       
 	
 	map.addControl(new OpenLayers.Control.ScaleLine());
 	map.addControl(new OpenLayers.Control.MousePosition());

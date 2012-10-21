@@ -10,7 +10,7 @@
             border-radius: 10px 0 0 10px;
             opacity: 0.75;
             filter: alpha(opacity=75);
-	    
+	    background-color: #CBDDF3; 
         }
         </style>
     <style type="text/css">

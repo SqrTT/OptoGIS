@@ -55,7 +55,10 @@ class NodeController extends Controller
 			}else{
 				$nd=$line->frm_pt_id;
 			};
-			$con[] = array("line"=>$line->line_id, "node"=> $nd,	"lenght"=> $line->lenght);
+			$node2 = Point::model()->find('pt_id=:postID', array(':postID'=>$nd));
+			$con[] = array("line"=>$line->line_id, "node"=> $nd,"node_name"=>"#".$nd." ".$node2->city.", "
+						.$node2->street.", ".$node2->house."/".$node2->room,
+						"lenght"=> $line->lenght, "TypeLine"=>$line->type_line_id);
 		};	
 		echo CJSON::encode( array ( "geometry" => array(
 				"Type" => "Point",

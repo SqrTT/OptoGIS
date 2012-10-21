@@ -53,7 +53,8 @@ class LineController extends Controller
 			    	"id"=> $line->line_id,
 				"lenght" => $line->lenght,
 				"TypeLine" => $line->type_line_id,
-				"Nodes" => array( $node1->pt_id , $node2->pt_id ),
+				"Nodes" => array("0" => array( "id" =>$node1->pt_id,"name"=>"#".$node1->pt_id." ".$node1->city.", ".$node1->street.", ".$node1->house."/".$node1->room),
+						 "1" => array("id"=> $node2->pt_id,"name"=>"#".$node2->pt_id." ".$node2->city.", ".$node2->street.", ".$node2->house."/".$node2->room) ),
     				),	
 		));
 	}
