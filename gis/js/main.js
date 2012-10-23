@@ -6,7 +6,7 @@ var map = null;
 var popup = null;
 var marker_icon = null;
 var markersLine = null; 
-
+var accordion = null;
             var myStyles = new OpenLayers.StyleMap({
                 "default": new OpenLayers.Style({
                     pointRadius: "3", // sized according to type attribute
@@ -83,7 +83,8 @@ function init_styles(){
 init_styles();
 
 
-function GetMarkerNode(id){
+function ShowMarkerNode(id){
+	if(Nodes[id]!=null)return;
 	Ext.Ajax.request({
     		url: '?r=node/getnode&id='+id,
     		success: function(response, opts) {
@@ -98,14 +99,25 @@ function GetMarkerNode(id){
 		
 			obj.marker=marker;
 			markersNode.addFeatures(marker);
-//			console.log(obj);
     		},
     		failure: function(response, opts) {
         		console.log('server-side failure with status code ' + response.status);
     		}
 	});
+};
 
+function HideMarkerNode(id){
+      	if(Nodes[id]==null)return;
+	markersNode.removeFeatures(Nodes[id].marker)
+      	delete Nodes[id];	
+};
 
+function SwitchMarkerNode(id){
+	if(Nodes[id]!=null){
+		HideMarkerNode(id);
+	}else{
+		ShowMarkerNode(id);
+	};
 };
 
 function GetMarkerUser(id){
@@ -135,7 +147,8 @@ function GetMarkerUser(id){
 
 
   
-function GetMarkerLine(id){
+function ShowMarkerLine(id){
+		if(Lines[id]!=null)return;
 		Ext.Ajax.request({
     		url: '?r=line/getline&id='+id,
     		success: function(response, opts) {
@@ -166,7 +179,19 @@ function GetMarkerLine(id){
 
 };
 
+function HideMarkerLine(id){
+	if(Lines[id]==null)return;
+       markersLine.removeFeatures(Lines[id].line);
+       delete Lines[id];
+};
 
+function SwitchMarkerLine(id){
+	if(Lines[id]==null){
+		ShowMarkerLine(id);
+	}else{
+		HideMarkerLine(id);
+	};
+};
 
 Ext.ux.NotificationMgr = {
     positions: []
@@ -257,8 +282,6 @@ Ext.define('Ext.ux.Notification', {
 
 
 function ShowPopup(HTMLcontent,point){
-
-      
           popup = new OpenLayers.Popup.AnchoredBubble("SDVegetationInfo",
            point,
            new OpenLayers.Size(100, 100),
@@ -296,10 +319,9 @@ function LineOnClick(e){
                 return;
         };
 
-       console.log(e)
        	text =  "<a href=\"#\" onclick='HidePopup();'>(X)</a>  #"+nt+" "+styles[Lines[nt].properties.TypeLine].text+" - "+Lines[nt].properties.lenght+"m<hr/>";
-	text += "<a href=\"#\" onclick='GetMarkerNode("+Lines[nt].properties.Nodes[0].id+");'>"+Lines[nt].properties.Nodes[0].name+"</a><br/>";
-	text += "<a href=\"#\" onclick='GetMarkerNode("+Lines[nt].properties.Nodes[1].id+");'>"+Lines[nt].properties.Nodes[1].name+"</a><br/>";
+	text += "<a href=\"#\" onclick='SwitchMarkerNode("+Lines[nt].properties.Nodes[0].id+");'>"+Lines[nt].properties.Nodes[0].name+"</a><br/>";
+	text += "<a href=\"#\" onclick='SwitchMarkerNode("+Lines[nt].properties.Nodes[1].id+");'>"+Lines[nt].properties.Nodes[1].name+"</a><br/>";
 
 	ShowPopup(text,map.getLonLatFromPixel((map.getControlsByClass("OpenLayers.Control.MousePosition")[0]).lastXy));
 };
@@ -321,7 +343,7 @@ function NodeOnClick(e)
 	var sum=0;
 	for(var c in Nodes[nt].properties.connected){
 		sum++;
-		t +="<a href=# onclick='GetMarkerLine("+Nodes[nt].properties.connected[c].line+");'>"+
+		t +="<a href=# onclick='SwitchMarkerLine("+Nodes[nt].properties.connected[c].line+");'>"+
 		 Nodes[nt].properties.connected[c].node_name+" - "+Nodes[nt].properties.connected[c].lenght+"m "+
 			styles[Nodes[nt].properties.connected[c].TypeLine].text+"</a><br/>";
 	};	
@@ -333,7 +355,7 @@ function NodeOnClick(e)
 
 function ShowAllLines(nt){
         for(var c in Nodes[nt].properties.connected){
-                GetMarkerLine(Nodes[nt].properties.connected[c].line); 
+                SwitchMarkerLine(Nodes[nt].properties.connected[c].line); 
         };
 };
 
@@ -416,6 +438,10 @@ function EditNode(id){
 }; 
 
 
+function onClickAddNode(){
+	accordion.getLayout().setActiveItem('panelObj');	
+};
+
 function UserOnClick(e)
 {
         var nt= null;
@@ -456,17 +482,15 @@ function clickObj(record){
 	var arr2=lpoint.exec(record.data.id)	
 	if( arr2 != null ){
 		if(!record.data.checked){// check
-			GetMarkerLine(arr2[1]); 
+			ShowMarkerLine(arr2[1]); 
 		}else{ //uncheck
-			markersLine.removeFeatures(Lines[arr2[1]].line);
-			delete Lines[arr2[1]];
+			HideMarkerLine(arr2[1]);
 		};
 	}else if (arr != null){
 		if(!record.data.checked){// check
-                        GetMarkerNode(arr[1]);
+                        ShowMarkerNode(arr[1]);
                 }else{ //uncheck
-			markersNode.removeFeatures(Nodes[arr[1]].marker)
-                        delete Nodes[arr[1]];
+			HideMarkerNode(id);
                 };
 	}else if(arr3 !=null){
 		if(!record.data.checked){
@@ -527,7 +551,6 @@ function main(){
 	    proxy: {
 	    root: {id: 'src', text: 'Main'},	
             type: 'ajax',
-            //the store will get the content from the .json file
             url: '/gis/index.php?r=site/layers'
         },
         sorters: [{
@@ -540,27 +563,17 @@ function main(){
 
 	});
 
-    con_menu = Ext.create('Ext.menu.Menu', {
-    items: [{
-        text: 'Show',
-	handler: clickShow,
-	iconCls: 'edit',
-    },{
-        text: 'Edit'
-    },{
-        text: 'Some do'
-    }]
-});
 
             var item2 = Ext.create('Ext.Panel', {
-                title: 'Settings',
+                title: 'Object',
                 html: '&lt;empty panel&gt;',
-                cls:'empty'
+                cls:'empty',
+		id: 'panelObj',
             });
 
 
-            var accordion = Ext.create('Ext.Panel', {
-                title: 'Menu',
+            accordion = Ext.create('Ext.Panel', {
+                title: 'OptoGIS',
                 collapsible: true,
                 region:'west',
                 margins:'5 0 5 5',
@@ -568,10 +581,9 @@ function main(){
                 width: 250,
                 layout:'accordion',
                 items: [
-			{xtype: 'treepanel',title: 'Layers', store: store, expanded: false,rootVisible: false,
+			{xtype: 'treepanel',title: 'Tree', store: store, expanded: false,rootVisible: false,
 			listeners: {
 			    itemclick: { fn: clickListener },
-			    itemcontextmenu: { fn: clickAct }
 			    }
 			},
 			 item2
@@ -605,9 +617,8 @@ function main(){
             text : 'Done',
 	    disabled: true,
 	    id: "done-bt",
-	    handler: function(){onClickDone()},
-        },{ xtype: 'button', text: "Add Node"},
-	//{ xtype: "textfield", name: "search", fieldLabel: "Search"}	
+	    handler: onClickDone,
+        },{ xtype: 'button', text: "Add Node", handler: onClickAddNode},
     ]
    });	 
 
