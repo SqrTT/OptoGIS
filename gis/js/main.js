@@ -7,6 +7,7 @@ var popup = null;
 var marker_icon = null;
 var markersLine = null; 
 var accordion = null;
+var OGIS = new Array();
             var myStyles = new OpenLayers.StyleMap({
                 "default": new OpenLayers.Style({
                     pointRadius: "3", // sized according to type attribute
@@ -391,6 +392,7 @@ function onClickDone(){
                                                                          parseFloat( modData[key].geometry.y));
                         point0.transform(new OpenLayers.Projection("EPSG:900913"), new OpenLayers.Projection("EPSG:4326"));
                         point0.id=key;
+			ShowMenuTree();
                         Ext.Ajax.request({
                                 url: '?r=node/setcoord',
                                 success: function(response, opts){
@@ -435,11 +437,22 @@ function EditNode(id){
         modify.activate();
         Ext.getCmp('done-bt').enable();
         update=2;
+	ShowMenuObject();
 }; 
 
 
 function onClickAddNode(){
-	accordion.getLayout().setActiveItem('panelObj');	
+	//accordion.items.items[1].expand();
+	var cmp = accordion.getLayout().getLayoutItems();
+	console.log(cmp);
+};
+
+function ShowMenuObject(){
+	accordion.items.map['panelObj'].expand();	
+};
+
+function ShowMenuTree(){
+	accordion.items.map['panelTree'].expand();
 };
 
 function UserOnClick(e)
@@ -536,9 +549,6 @@ function clickAct(athis, record,  item,  index,  e, obj ){
 }
 
 
-function clickShow(item){
-	alert(item.parentMenu.amrec.data.text);
-};
 
 var con_menu = null;
 
@@ -566,9 +576,17 @@ function main(){
 
             var item2 = Ext.create('Ext.Panel', {
                 title: 'Object',
-                html: '&lt;empty panel&gt;',
                 cls:'empty',
 		id: 'panelObj',
+		items   : [
+        	{
+            		xtype: 'button',
+            		text : 'Done',
+            		disabled: true,
+            		id: "done-bt",
+            		handler: onClickDone,
+        		},{ xtype: 'button', text: "Add Node", handler: onClickAddNode},
+    		]		
             });
 
 
@@ -581,7 +599,7 @@ function main(){
                 width: 250,
                 layout:'accordion',
                 items: [
-			{xtype: 'treepanel',title: 'Tree', store: store, expanded: false,rootVisible: false,
+			{xtype: 'treepanel',title: 'Tree',id: 'panelTree', store: store, expanded: false,rootVisible: false,
 			listeners: {
 			    itemclick: { fn: clickListener },
 			    }
@@ -608,20 +626,6 @@ function main(){
                     }],
 		}],
 	     });
-
-   Ext.create('Ext.Container', {
-    renderTo:"btn-menu",
-    items   : [
-        {
-            xtype: 'button',
-            text : 'Done',
-	    disabled: true,
-	    id: "done-bt",
-	    handler: onClickDone,
-        },{ xtype: 'button', text: "Add Node", handler: onClickAddNode},
-    ]
-   });	 
-
 
 	//open layers
 
@@ -697,20 +701,19 @@ function main(){
 	modify = new OpenLayers.Control.ModifyFeature(Modify);
 	map.addControl(modify);
 	modify.mode = OpenLayers.Control.ModifyFeature.DRAG; 
-            if (console && console.log && false) {
-                function report(event) {
-                    console.log(event.type, event.feature ? event.feature.id : event.components);
-                }
-                Modify.events.on({
-                    "beforefeaturemodified": report,
-                    "featuremodified": report,
-                    "afterfeaturemodified": report,
-                    "vertexmodified": report,
-                    "sketchmodified": report,
-                    "sketchstarted": report,
-                    "sketchcomplete": report
-                });
-            }
-
 
  };
+
+OGIS.NodeMenu = [
+	{
+            xtype: 'textfield',
+            name: 'textfield1',
+            fieldLabel: 'Text field',
+            value: 'Text field value'
+        }, {
+            xtype: 'textfield',
+            name: 'password1',
+            inputType: 'password',
+            fieldLabel: 'Password field'
+        },
+];
