@@ -393,6 +393,8 @@ function onClickDone(){
                         point0.transform(new OpenLayers.Projection("EPSG:900913"), new OpenLayers.Projection("EPSG:4326"));
                         point0.id=key;
 			ShowMenuTree();
+			ShowAllLines(key);
+			ShowAllLines(key);
                         Ext.Ajax.request({
                                 url: '?r=node/setcoord',
                                 success: function(response, opts){
@@ -411,7 +413,6 @@ function onClickDone(){
         selectNodes.activate();
         modify.deactivate();	
 	modData = Array();
-	Ext.getCmp('done-bt').disable();
 	
 }; 
 
@@ -422,8 +423,6 @@ function EditUser(id){
 	Modify.addFeatures(modData[id]);
 	HidePopup(); 
 	selectNodes.deactivate();	
-	modify.activate();
-	Ext.getCmp('done-bt').enable();
 	update=1;
 };
 
@@ -435,14 +434,17 @@ function EditNode(id){
         HidePopup();
         selectNodes.deactivate();
         modify.activate();
-        Ext.getCmp('done-bt').enable();
+	ShowNodeProp(id);
         update=2;
 	ShowMenuObject();
 }; 
 
+function ShowNodeProp(id){
+	accordion.items.map['panelObj'].items.removeAll();
+};
+
 
 function onClickAddNode(){
-	//accordion.items.items[1].expand();
 	var cmp = accordion.getLayout().getLayoutItems();
 	console.log(cmp);
 };
@@ -503,7 +505,7 @@ function clickObj(record){
 		if(!record.data.checked){// check
                         ShowMarkerNode(arr[1]);
                 }else{ //uncheck
-			HideMarkerNode(id);
+			HideMarkerNode(arr[1]);
                 };
 	}else if(arr3 !=null){
 		if(!record.data.checked){
@@ -574,19 +576,20 @@ function main(){
 	});
 
 
-            var item2 = Ext.create('Ext.Panel', {
+	OGIS.panelObj = Ext.create('Ext.Panel', {
                 title: 'Object',
                 cls:'empty',
 		id: 'panelObj',
-		items   : [
-        	{
-            		xtype: 'button',
-            		text : 'Done',
-            		disabled: true,
-            		id: "done-bt",
-            		handler: onClickDone,
-        		},{ xtype: 'button', text: "Add Node", handler: onClickAddNode},
-    		]		
+		html: '<div id="pnObj">111111111</div>'
+//	items   : [
+  //      	{
+    //        		xtype: 'button',
+      //      		text : 'Done',
+        //    		disabled: true,
+          //  		id: "done-bt",
+            //		handler: onClickDone,
+        //		},{ xtype: 'button', text: "Add Node", handler: onClickAddNode},
+    	//	]		
             });
 
 
@@ -604,7 +607,7 @@ function main(){
 			    itemclick: { fn: clickListener },
 			    }
 			},
-			 item2
+			OGIS.panelObj
 		],
 		  
 		                                                                                                
