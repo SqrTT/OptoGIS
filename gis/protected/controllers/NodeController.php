@@ -71,7 +71,8 @@ class NodeController extends Controller
 				"room" => $node->room,
 				"comment" => $node->comment,
 				"id" => $node->pt_id,
-				"connected" => $con,			
+				"connected" => $con,	
+				"type" => $node->type_pnt_id,		
     			     ),	
 		));
 	}

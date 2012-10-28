@@ -393,8 +393,8 @@ function onClickDone(){
                         point0.transform(new OpenLayers.Projection("EPSG:900913"), new OpenLayers.Projection("EPSG:4326"));
                         point0.id=key;
 			ShowMenuTree();
-			ShowAllLines(key);
-			ShowAllLines(key);
+			//ShowAllLines(key);
+			//ShowAllLines(key);
                         Ext.Ajax.request({
                                 url: '?r=node/setcoord',
                                 success: function(response, opts){
@@ -416,6 +416,20 @@ function onClickDone(){
 	
 }; 
 
+
+function onClickCancel(){
+	selectNodes.activate();
+	modify.deactivate();
+	for(var key in modData){
+		Modify.removeFeatures(modData[key]);
+		markersNode.addFeatures(modData[key]);
+	};
+	modData = Array();
+	ShowMenuTree();
+	ShowTip("Update",'Canceled');
+};
+
+
 function EditUser(id){
 	modData[id]=Users[id].marker;
 	ShowTip("Edit user",id+"<br/>"+Users[id].properties.fio);
@@ -436,7 +450,7 @@ function EditNode(id){
         modify.activate();
 	ShowNodeProp(id);
         update=2;
-	ShowMenuObject();
+	ShowMenuObject(id);
 }; 
 
 function ShowNodeProp(id){
@@ -449,8 +463,56 @@ function onClickAddNode(){
 	console.log(cmp);
 };
 
-function ShowMenuObject(){
-	accordion.items.map['panelObj'].expand();	
+function ShowMenuObject(id){
+	var obj = accordion.items.map['panelObj'];
+	obj.expand();
+	obj.removeAll();
+	obj.update('');	
+
+ OGIS.simple = Ext.Container({
+	xtype: 'form',
+	fieldDefaults: {
+            msgTarget: 'side',
+            labelWidth: 60
+        },
+        defaultType: 'textfield',
+        items: [{ xtype: 'button', text: "Save coord", handler: onClickDone },
+		{ xtype: 'button', text: "Cancel", handler: onClickCancel},
+		{ xtype: 'tbspacer'},
+		{ fieldLabel: 'id', name: 'id', value: Nodes[id].properties.id, disabled: true},
+	{
+            	fieldLabel: 'City',
+            	name: 'city',
+            	allowBlank:false,
+	    	value: Nodes[id].properties.city	
+        },{
+            	fieldLabel: 'Street',
+            	name: 'street',
+	    	value: Nodes[id].properties.street	
+        },{
+            	fieldLabel: 'Build',
+            	name: 'house',
+		value: Nodes[id].properties.house 
+        }, {
+            	fieldLabel: 'Flat',
+            	name: 'room',
+		value: Nodes[id].properties.room
+        }, {
+            	fieldLabel: 'Comment',
+            	name: 'comment',
+		xtype: 'textareafield',
+		value: Nodes[id].properties.comment
+      },{ xtype: 'combobox', fieldLabel: 'Type'
+	},
+	{ xtype: 'button', text: "Save all" },
+        { xtype: 'button', text: "Cancel", handler: onClickCancel} 
+        ],
+
+    });
+	console.log(OGIS.simple);	
+	obj.add(OGIS.simple);
+
+
 };
 
 function ShowMenuTree(){
