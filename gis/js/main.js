@@ -73,7 +73,6 @@ function init_styles(){
                       	for(a in obj){
 			  styles[obj[a].id]=obj[a];	
 			};	
-			//console.log(obj);
                 },
                 failure: function(response, opts) {
                         console.log('server-side failure with status code ' + response.status);
@@ -83,6 +82,25 @@ function init_styles(){
 };
 init_styles();
 
+
+function init_typelines(){
+      Ext.Ajax.request({
+                url: '?r=node/gettypes',
+                success: function(response, opts) {
+                        var obj = Ext.decode(response.responseText);
+                //        console.log(obj);
+                        OGIS.linetypes=Ext.create('Ext.data.Store', {
+                                fields: ['id', 'text'],
+                                data : obj,
+                        });
+                },
+                failure: function(response, opts) {
+                        console.log('server-side failure with status code ' + response.status);
+                }
+        });
+        console.log("Init type nodes");
+};
+init_typelines();
 
 function ShowMarkerNode(id){
 	if(Nodes[id]!=null)return;
@@ -453,6 +471,31 @@ function EditNode(id){
 	ShowMenuObject(id);
 }; 
 
+function onClickSaveNode(){
+	var data = {};
+	var tmp = {};
+	var items = OGIS.panelObj.items.items[0].items.items;
+	for(var it in items){
+		if(typeof items[it].name!= 'undefined'){
+			data[items[it].name]=items[it].value;
+		};
+	};
+	tmp['properties']=data;
+	Ext.Ajax.request({
+                                url: '?r=node/setnode',
+                                success: function(response, opts){
+                                        ShowTip("Update node",response.responseText);
+                                },
+                                failure: function(response, opts){
+                                        ShowTip("Update node","FAIL!!! "+response.status);
+                                },
+                                params: JSON.stringify( tmp )
+
+                        });
+	
+
+}
+
 function ShowNodeProp(id){
 	accordion.items.map['panelObj'].items.removeAll();
 };
@@ -480,6 +523,9 @@ function ShowMenuObject(id){
 		{ xtype: 'button', text: "Cancel", handler: onClickCancel},
 		{ xtype: 'tbspacer'},
 		{ fieldLabel: 'id', name: 'id', value: Nodes[id].properties.id, disabled: true},
+		{ xtype: 'combobox', name:'type',fieldLabel: 'Type',store: OGIS.linetypes, 
+			displayField: 'text', valueField:'id',queryMode: 'local',editable: false, value: Nodes[id].properties.type },
+
 	{
             	fieldLabel: 'City',
             	name: 'city',
@@ -502,9 +548,8 @@ function ShowMenuObject(id){
             	name: 'comment',
 		xtype: 'textareafield',
 		value: Nodes[id].properties.comment
-      },{ xtype: 'combobox', fieldLabel: 'Type'
-	},
-	{ xtype: 'button', text: "Save all" },
+      },	
+	{ xtype: 'button', text: "Save all", handler: onClickSaveNode },
         { xtype: 'button', text: "Cancel", handler: onClickCancel} 
         ],
 

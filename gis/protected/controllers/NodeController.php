@@ -37,7 +37,7 @@ class NodeController extends Controller
 		$lin = array();
 		$lines=TypePoints::model()->findAll();
 		foreach($lines as $line){
-			$lin[] = array("text" => $line->name);
+			$lin[] = array("text" => $line->name, "id" => $line->id);
 		};		
 
 		echo CJSON::encode($lin);
