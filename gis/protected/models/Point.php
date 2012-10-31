@@ -45,7 +45,7 @@ class Point extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('city, street, house, room, type_pnt_id, coord_n, coord_e, comment, added_time, who_add, des', 'required'),
+			array('', 'required'),
 			array('type_pnt_id, who_add', 'numerical', 'integerOnly'=>true),
 			array('house, room', 'length', 'max'=>10),
 			array('coord_n, coord_e', 'length', 'max'=>20),

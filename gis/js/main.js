@@ -416,10 +416,10 @@ function onClickDone(){
                         Ext.Ajax.request({
                                 url: '?r=node/setcoord',
                                 success: function(response, opts){
-                                        ShowTip("Update user",response.responseText);
+                                        ShowTip("Update node",response.responseText);
                                 },
                                 failure: function(response, opts){
-                                        ShowTip("Update user","FAIL!!! "+response.status);
+                                        ShowTip("Update node","FAIL!!! "+response.status);
                                 },
                                 params: JSON.stringify( point0 )
 
@@ -431,6 +431,7 @@ function onClickDone(){
         selectNodes.activate();
         modify.deactivate();	
 	modData = Array();
+	OGIS.ShowDefMenu();
 	
 }; 
 
@@ -484,10 +485,12 @@ function onClickSaveNode(){
 	Ext.Ajax.request({
                                 url: '?r=node/setnode',
                                 success: function(response, opts){
-                                        ShowTip("Update node",response.responseText);
-                                },
+                                        //ShowTip("Update node",response.responseText);
+                               		update=2;	
+					onClickDone();
+				 },
                                 failure: function(response, opts){
-                                        ShowTip("Update node","FAIL!!! "+response.status);
+                                        ShowTip("Update node","FAIL! Code"+response.status);
                                 },
                                 params: JSON.stringify( tmp )
 
@@ -504,6 +507,25 @@ function ShowNodeProp(id){
 function onClickAddNode(){
 	var cmp = accordion.getLayout().getLayoutItems();
 	console.log(cmp);
+};
+
+OGIS.ShowDefMenu = function(){
+         var obj = accordion.items.map['panelObj'];
+        obj.expand();
+        obj.removeAll();
+        obj.update('');
+
+	obj.add( Ext.Container({
+        	xtype: 'form',
+        	fieldDefaults: {
+            	msgTarget: 'side',
+            	labelWidth: 60
+        	},
+		items:[{ xtype: 'button', text: 'Add Node'}]
+		}));
+	
+
+
 };
 
 function ShowMenuObject(id){
@@ -523,7 +545,7 @@ function ShowMenuObject(id){
 		{ xtype: 'button', text: "Cancel", handler: onClickCancel},
 		{ xtype: 'tbspacer'},
 		{ fieldLabel: 'id', name: 'id', value: Nodes[id].properties.id, disabled: true},
-		{ xtype: 'combobox', name:'type',fieldLabel: 'Type',store: OGIS.linetypes, 
+		{ xtype: 'combobox', name:'type_pnt_id',fieldLabel: 'Type',store: OGIS.linetypes, 
 			displayField: 'text', valueField:'id',queryMode: 'local',editable: false, value: Nodes[id].properties.type },
 
 	{
@@ -687,16 +709,7 @@ function main(){
                 title: 'Object',
                 cls:'empty',
 		id: 'panelObj',
-		html: '<div id="pnObj">111111111</div>'
-//	items   : [
-  //      	{
-    //        		xtype: 'button',
-      //      		text : 'Done',
-        //    		disabled: true,
-          //  		id: "done-bt",
-            //		handler: onClickDone,
-        //		},{ xtype: 'button', text: "Add Node", handler: onClickAddNode},
-    	//	]		
+		items: [{ xtype: 'button', text: "Add Node", handler: onClickAddNode},]		
             });
 
 
@@ -736,7 +749,6 @@ function main(){
                     }],
 		}],
 	     });
-
 	//open layers
 
     map = new OpenLayers.Map("main-map");//инициализация карты
@@ -814,16 +826,3 @@ function main(){
 
  };
 
-OGIS.NodeMenu = [
-	{
-            xtype: 'textfield',
-            name: 'textfield1',
-            fieldLabel: 'Text field',
-            value: 'Text field value'
-        }, {
-            xtype: 'textfield',
-            name: 'password1',
-            inputType: 'password',
-            fieldLabel: 'Password field'
-        },
-];

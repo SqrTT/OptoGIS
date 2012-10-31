@@ -42,7 +42,29 @@ class NodeController extends Controller
 
 		echo CJSON::encode($lin);
 	}
+	
+	public function actionSetnode(){
+		$post = file_get_contents("php://input");
+		$data = CJSON::decode($post, true);
+		
+		if($data['properties']['id']==0){
+			//$t = Point::model()->findByPk();	
+		}else{
+			
+			$t = Point::model()->find('pt_id=:pt_id', array(':pt_id'=>($data['properties']['id'])));
+			//unset($data['properties']['id']);
+			$t->attributes = $data['properties'];
+			$t->city = $data['properties']['city'];	
+			$t->street = $data['properties']['street'];
+			if($t->save()){
+				echo("Ok");
+			}else{
+				echo(CJSON::encode($t->errors,true));
+			};//	echo(var_dump($t));
+		};
 
+//		echo(var_dump($data));
+	}
 
 	public function actionGetnode($id){
 		$node = Point::model()->find('pt_id=:postID', array(':postID'=>$id));
