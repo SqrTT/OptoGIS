@@ -8,6 +8,7 @@ var marker_icon = null;
 var markersLine = null; 
 var accordion = null;
 var OGIS = new Array();
+OGIS.Node = new Array();
             var myStyles = new OpenLayers.StyleMap({
                 "default": new OpenLayers.Style({
                     pointRadius: "3", // sized according to type attribute
@@ -102,7 +103,7 @@ function init_typelines(){
 };
 init_typelines();
 
-function ShowMarkerNode(id){
+function ShowMarkerNode(id,lambda=null){
 	if(Nodes[id]!=null)return;
 	Ext.Ajax.request({
     		url: '?r=node/getnode&id='+id,
@@ -118,6 +119,7 @@ function ShowMarkerNode(id){
 		
 			obj.marker=marker;
 			markersNode.addFeatures(marker);
+			if(lambda!=null){lambda()};
     		},
     		failure: function(response, opts) {
         		console.log('server-side failure with status code ' + response.status);
@@ -137,6 +139,11 @@ function SwitchMarkerNode(id){
 	}else{
 		ShowMarkerNode(id);
 	};
+};
+
+OGIS.Node.Update = function(id){
+	HideMarkerNode(id);
+	ShowMarkerNode(id);
 };
 
 function GetMarkerUser(id){
@@ -314,7 +321,7 @@ function ShowPopup(HTMLcontent,point){
 };
 
 function HidePopup(){
-	map.removePopup(popup);
+	if(popup!=null){map.removePopup(popup);};
 };
 
 
@@ -358,7 +365,7 @@ function NodeOnClick(e)
 		return;
 	};
 	point = new OpenLayers.LonLat(e.feature.geometry.getCentroid().x, e.feature.geometry.getCentroid().y);
-	var t="<a href=\"#\" onclick='HidePopup();'>(X)</a> <a href=# onclick='EditNode("+nt+")'>[E]</a>  #"+nt+" "+Nodes[nt].properties.street + ", "+Nodes[nt].properties.house +" <hr>";
+	var t="<a href=\"#\" onclick='HidePopup();'>(X)</a> <a href=# onclick='OGIS.Node.Edit("+nt+")'>[E]</a>  #"+nt+" "+Nodes[nt].properties.street + ", "+Nodes[nt].properties.house +" <hr>";
 	var sum=0;
 	for(var c in Nodes[nt].properties.connected){
 		sum++;
@@ -411,8 +418,7 @@ function onClickDone(){
                         point0.transform(new OpenLayers.Projection("EPSG:900913"), new OpenLayers.Projection("EPSG:4326"));
                         point0.id=key;
 			ShowMenuTree();
-			//ShowAllLines(key);
-			//ShowAllLines(key);
+			OGIS.Node.Update(key);
                         Ext.Ajax.request({
                                 url: '?r=node/setcoord',
                                 success: function(response, opts){
@@ -446,6 +452,7 @@ function onClickCancel(){
 	modData = Array();
 	ShowMenuTree();
 	ShowTip("Update",'Canceled');
+	 OGIS.ShowDefMenu();
 };
 
 
@@ -459,7 +466,7 @@ function EditUser(id){
 	update=1;
 };
 
-function EditNode(id){
+OGIS.Node.Edit = function(id){
         modData[id]=Nodes[id].marker;
         ShowTip("Edit node",id);
         markersNode.removeFeatures(Nodes[id].marker);
@@ -486,8 +493,17 @@ function onClickSaveNode(){
                                 url: '?r=node/setnode',
                                 success: function(response, opts){
                                         //ShowTip("Update node",response.responseText);
-                               		update=2;	
-					onClickDone();
+                               		var obj = Ext.decode(response.responseText);
+					if(obj.status=="Ok"){
+						if(data.id==0){
+							modData[obj.id]=modData[0];
+							delete modData[0];
+						};
+						update=2;
+                                                onClickDone();
+					}else{
+						ShowTip("Update node",response.responseText);	
+					}
 				 },
                                 failure: function(response, opts){
                                         ShowTip("Update node","FAIL! Code"+response.status);
@@ -497,6 +513,24 @@ function onClickSaveNode(){
                         });
 	
 
+}
+
+OGIS.Node.Add = function(){
+   var point0 = new OpenLayers.Geometry.Point(map.center.lon,map.center.lat);
+
+
+   point0.transform(new OpenLayers.Projection("EPSG:900913"), new OpenLayers.Projection("EPSG:4326"));
+   
+   Nodes[0] = {properties: {id: '0', city: '', street: '',house: '', room: '', comment: '', type_pt_id: '0'},
+		geometry: {Type: "Point", coordinates: [point0.y,point0.x]}};
+   
+   point0.transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
+   var marker =    new OpenLayers.Feature.Vector(point0)
+
+   Nodes[0].marker=marker;
+   markersNode.addFeatures(marker);
+
+   OGIS.Node.Edit(0);
 }
 
 function ShowNodeProp(id){
@@ -521,7 +555,7 @@ OGIS.ShowDefMenu = function(){
             	msgTarget: 'side',
             	labelWidth: 60
         	},
-		items:[{ xtype: 'button', text: 'Add Node'}]
+		items:[{ xtype: 'button', text: 'Add Node', handler: OGIS.Node.Add}]
 		}));
 	
 
@@ -709,7 +743,7 @@ function main(){
                 title: 'Object',
                 cls:'empty',
 		id: 'panelObj',
-		items: [{ xtype: 'button', text: "Add Node", handler: onClickAddNode},]		
+		items: [{ xtype: 'button', text: "Add Node", handler: OGIS.Node.Add},]		
             });
 
 

@@ -46,22 +46,22 @@ class NodeController extends Controller
 	public function actionSetnode(){
 		$post = file_get_contents("php://input");
 		$data = CJSON::decode($post, true);
-		
+		$t = null;	
 		if($data['properties']['id']==0){
-			//$t = Point::model()->findByPk();	
+			$t = new Point;	
 		}else{
-			
 			$t = Point::model()->find('pt_id=:pt_id', array(':pt_id'=>($data['properties']['id'])));
+		};
 			//unset($data['properties']['id']);
 			$t->attributes = $data['properties'];
 			$t->city = $data['properties']['city'];	
 			$t->street = $data['properties']['street'];
 			if($t->save()){
-				echo("Ok");
+				echo(CJSON::encode( array("status"=>"Ok", "id"=>$t->pt_id)));
 			}else{
 				echo(CJSON::encode($t->errors,true));
 			};//	echo(var_dump($t));
-		};
+	
 
 //		echo(var_dump($data));
 	}
