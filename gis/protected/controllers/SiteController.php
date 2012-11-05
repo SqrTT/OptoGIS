@@ -92,7 +92,7 @@ class SiteController extends Controller
 	}else if(preg_match("/pnt-(\d+)/i",$id,$matches)){
 		$lines=Point::model()->findAll("type_pnt_id=$matches[1]");
                 foreach($lines as $line){
-                        $menu[] = array("text" => $line->pt_id." ($line->street, $line->house)", "leaf" => true,"id" => "point-".$line->pt_id, 
+                        $menu[] = array("text" => sprintf("%04d",$line->pt_id)." ($line->street, $line->house)", "leaf" => true,"id" => "point-".$line->pt_id, 
                         "checked" => false, "gis_pt_id"=> $line->pt_id );
                 };
 
@@ -105,7 +105,8 @@ class SiteController extends Controller
 	
                 $lines=Line::model()->findAll("type_line_id=$matches[1]");
                 foreach($lines as $line){
-                        $menu[] = array("gis_ln_id"=>$line->line_id,"text" => $line->line_id."(".$pnt["$line[frm_pt_id]"]."-".$pnt["$line[to_pt_id]"]." +$line->lenght m)", "leaf" => true,"id" => "line-".$line->line_id, "checked" => false);
+                        $menu[] = array("gis_ln_id"=>$line->line_id,"text" => sprintf("%04d",$line->line_id)."(".$pnt["$line[frm_pt_id]"]."-"
+				.$pnt["$line[to_pt_id]"]." +$line->lenght m)", "leaf" => true,"id" => "line-".$line->line_id, "checked" => false);
                 };
 
         }else if(preg_match("/usr-(\d+)/i",$id,$matches)){

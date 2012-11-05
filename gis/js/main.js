@@ -7,8 +7,9 @@ var popup = null;
 var marker_icon = null;
 var markersLine = null; 
 var accordion = null;
-var OGIS = new Array();
-OGIS.Node = new Array();
+var OGIS = {};
+OGIS.Node = {};
+OGIS.Line = {};
             var myStyles = new OpenLayers.StyleMap({
                 "default": new OpenLayers.Style({
                     pointRadius: "3", // sized according to type attribute
@@ -74,6 +75,10 @@ function init_styles(){
                       	for(a in obj){
 			  styles[obj[a].id]=obj[a];	
 			};	
+			OGIS.linetypes=Ext.create('Ext.data.Store', {
+                                fields: ['id', 'text'],
+                                data : obj,
+                        });
                 },
                 failure: function(response, opts) {
                         console.log('server-side failure with status code ' + response.status);
@@ -83,14 +88,32 @@ function init_styles(){
 };
 init_styles();
 
+function init_nodestore(){
+                        OGIS.nodesstore=Ext.create('Ext.data.Store', {
+                                fields: ['id', 'text'],
+                                autoLoad: true,
+				sorters: [{
+            				property: 'text',
+            				direction: 'DESC'
+        			}],
 
-function init_typelines(){
+				proxy: {
+					type: "ajax",
+					url:  "?r=node/getnodes",
+				},
+                        });
+
+};
+init_nodestore();
+
+
+function init_typenodes(){
       Ext.Ajax.request({
                 url: '?r=node/gettypes',
                 success: function(response, opts) {
                         var obj = Ext.decode(response.responseText);
                 //        console.log(obj);
-                        OGIS.linetypes=Ext.create('Ext.data.Store', {
+                        OGIS.nodetypes=Ext.create('Ext.data.Store', {
                                 fields: ['id', 'text'],
                                 data : obj,
                         });
@@ -101,7 +124,7 @@ function init_typelines(){
         });
         console.log("Init type nodes");
 };
-init_typelines();
+init_typenodes();
 
 function ShowMarkerNode(id,lambda=null){
 	if(Nodes[id]!=null)return;
@@ -144,6 +167,11 @@ function SwitchMarkerNode(id){
 OGIS.Node.Update = function(id){
 	HideMarkerNode(id);
 	ShowMarkerNode(id);
+};
+
+OGIS.Line.Update = function(id){
+	HideMarkerLine(id);
+	ShowMarkerLine(id);	
 };
 
 function GetMarkerUser(id){
@@ -196,7 +224,7 @@ function ShowMarkerLine(id){
 
 			obj.line=lineFeature;
 
-			console.log(obj);
+			//console.log(obj);
     		},
     		failure: function(response, opts) {
         		console.log('server-side failure with status code ' + response.status);
@@ -345,7 +373,7 @@ function LineOnClick(e){
                 return;
         };
 
-       	text =  "<a href=\"#\" onclick='HidePopup();'>(X)</a>  #"+nt+" "+styles[Lines[nt].properties.TypeLine].text+" - "+Lines[nt].properties.lenght+"m<hr/>";
+       	text =  "<a href=\"#\" onclick='HidePopup();'>(X)</a>  <a href=# onclick='OGIS.Line.Edit("+nt+")'> [E]</a> #"+nt+" "+styles[Lines[nt].properties.TypeLine].text+" - "+Lines[nt].properties.lenght+"m<hr/>";
 	text += "<a href=\"#\" onclick='SwitchMarkerNode("+Lines[nt].properties.Nodes[0].id+");'>"+Lines[nt].properties.Nodes[0].name+"</a><br/>";
 	text += "<a href=\"#\" onclick='SwitchMarkerNode("+Lines[nt].properties.Nodes[1].id+");'>"+Lines[nt].properties.Nodes[1].name+"</a><br/>";
 
@@ -412,7 +440,7 @@ function onClickDone(){
         if(update==2){
                 for(var key in modData){
                         Modify.removeFeatures(modData[key]);
-                        markersNode.addFeatures(modData[key]);
+                        if(!key){markersNode.addFeatures(modData[key]);};
                         var point0 = new OpenLayers.Geometry.Point(parseFloat(modData[key].geometry.x),
                                                                          parseFloat( modData[key].geometry.y));
                         point0.transform(new OpenLayers.Projection("EPSG:900913"), new OpenLayers.Projection("EPSG:4326"));
@@ -468,6 +496,7 @@ function EditUser(id){
 
 OGIS.Node.Edit = function(id){
         modData[id]=Nodes[id].marker;
+	//delete Nodes[id];
         ShowTip("Edit node",id);
         markersNode.removeFeatures(Nodes[id].marker);
         Modify.addFeatures(modData[id]);
@@ -479,7 +508,54 @@ OGIS.Node.Edit = function(id){
 	ShowMenuObject(id);
 }; 
 
-function onClickSaveNode(){
+OGIS.Line.Edit = function(id){
+	ShowTip("Edit line",id);
+	HidePopup();
+	ShowLineProp(id);
+	//ShowMenuLine(id);
+};
+
+OGIS.Line.onClickSave = function(){
+       var data = {};
+        var tmp = {};
+        var items = OGIS.panelObj.items.items[0].items.items;
+        for(var it in items){
+                if(typeof items[it].name!= 'undefined'){
+                        data[items[it].name]=items[it].value;
+                };
+        };
+
+        tmp['properties']=data;
+        Ext.Ajax.request({
+                                url: '?r=line/set',
+                                success: function(response, opts){
+                                        //ShowTip("Update node",response.responseText);
+                                        var obj = Ext.decode(response.responseText);
+                                        if(obj.status=="Ok"){
+                                                if(data.id==0){
+                                                        Lines[obj.id]=Lines[0];
+							delete Lines[0];
+							
+                                                };
+                                                ShowMenuTree();
+                        			OGIS.Line.Update(obj.id);
+                                                OGIS.ShowDefMenu();
+						selectNodes.activate();
+        					modify.deactivate();//onClickDone();
+                                        }else{
+                                                ShowTip("Update node",response.responseText);
+                                        }
+                                 },
+                                failure: function(response, opts){
+                                        ShowTip("Update node","FAIL! Code"+response.status);
+                                },
+                                params: JSON.stringify( tmp )
+                        });
+
+
+};
+
+OGIS.Node.onClickSave=function(){
 	var data = {};
 	var tmp = {};
 	var items = OGIS.panelObj.items.items[0].items.items;
@@ -488,6 +564,7 @@ function onClickSaveNode(){
 			data[items[it].name]=items[it].value;
 		};
 	};
+
 	tmp['properties']=data;
 	Ext.Ajax.request({
                                 url: '?r=node/setnode',
@@ -498,6 +575,7 @@ function onClickSaveNode(){
 						if(data.id==0){
 							modData[obj.id]=modData[0];
 							delete modData[0];
+												
 						};
 						update=2;
                                                 onClickDone();
@@ -509,10 +587,7 @@ function onClickSaveNode(){
                                         ShowTip("Update node","FAIL! Code"+response.status);
                                 },
                                 params: JSON.stringify( tmp )
-
                         });
-	
-
 }
 
 OGIS.Node.Add = function(){
@@ -533,6 +608,12 @@ OGIS.Node.Add = function(){
    OGIS.Node.Edit(0);
 }
 
+OGIS.Line.Add = function(){
+	Lines[0] = {properties:{id: '0', length: '', TypeLine:'0',Nodes: [{id: 0},{id: 0}],}};
+	OGIS.Line.Edit(0);	
+
+};
+
 function ShowNodeProp(id){
 	accordion.items.map['panelObj'].items.removeAll();
 };
@@ -540,7 +621,7 @@ function ShowNodeProp(id){
 
 function onClickAddNode(){
 	var cmp = accordion.getLayout().getLayoutItems();
-	console.log(cmp);
+	//console.log(cmp);
 };
 
 OGIS.ShowDefMenu = function(){
@@ -579,7 +660,7 @@ function ShowMenuObject(id){
 		{ xtype: 'button', text: "Cancel", handler: onClickCancel},
 		{ xtype: 'tbspacer'},
 		{ fieldLabel: 'id', name: 'id', value: Nodes[id].properties.id, disabled: true},
-		{ xtype: 'combobox', name:'type_pnt_id',fieldLabel: 'Type',store: OGIS.linetypes, 
+		{ xtype: 'combobox', name:'type_pnt_id',fieldLabel: 'Type',store: OGIS.nodetypes, 
 			displayField: 'text', valueField:'id',queryMode: 'local',editable: false, value: Nodes[id].properties.type },
 
 	{
@@ -605,16 +686,52 @@ function ShowMenuObject(id){
 		xtype: 'textareafield',
 		value: Nodes[id].properties.comment
       },	
-	{ xtype: 'button', text: "Save all", handler: onClickSaveNode },
+	{ xtype: 'button', text: "Save all", handler: OGIS.Node.onClickSave },
         { xtype: 'button', text: "Cancel", handler: onClickCancel} 
         ],
 
     });
-	console.log(OGIS.simple);	
+	//console.log(OGIS.simple);	
 	obj.add(OGIS.simple);
-
-
 };
+
+function ShowLineProp(id){
+        var obj = accordion.items.map['panelObj'];
+        obj.expand();
+        obj.removeAll();
+        obj.update('');
+	OGIS.nodesstore.reload();
+ OGIS.simple = Ext.Container({
+        xtype: 'form',
+        fieldDefaults: {
+            //msgTarget: 'side',
+            labelWidth: 50,
+        },
+        defaultType: 'textfield',
+        items:[
+                { fieldLabel: 'id', name: 'id', value: Lines[id].properties.id, disabled: true},
+                { xtype: 'combobox', name:'type_line_id',fieldLabel: 'Type',store: OGIS.linetypes,
+                        displayField: 'text', valueField:'id',queryMode: 'local',editable: false, value: Lines[id].properties.TypeLine },
+		{xtype: 'combobox',width: 240, name:'frm_pt_id',fieldLabel: 'From node',store: OGIS.nodesstore,
+                        displayField: 'text', valueField:'id',queryMode: 'local',editable: false, value: Lines[id].properties.Nodes[0].id },
+		{xtype: 'combobox', width: 240, name:'to_pt_id',fieldLabel: 'To node',store: OGIS.nodesstore,
+                        displayField: 'text', valueField:'id',queryMode: 'local',editable: false, value: Lines[id].properties.Nodes[1].id },
+
+        {
+                fieldLabel: 'Lenght',
+                name: 'lenght',
+                allowBlank:false,
+                value: Lines[id].properties.lenght
+        },
+        { xtype: 'button', text: "Save ", handler: OGIS.Line.onClickSave },
+        { xtype: 'button', text: "Cancel", handler: onClickCancel}
+        ],
+
+    });
+        //console.log(OGIS.simple);     
+        obj.add(OGIS.simple);
+}
+
 
 function ShowMenuTree(){
 	accordion.items.map['panelTree'].expand();
@@ -687,7 +804,7 @@ function clickObj(record){
 
 function clickListener(view,record){
   //  console.log(view);
-    console.log(record);
+   // console.log(record);
 	
        
    
@@ -733,7 +850,7 @@ function main(){
             direction: 'ASC'
         }, {
             property: 'text',
-            direction: 'ASC'
+            direction: 'DESC'
         }],
 
 	});
@@ -743,7 +860,9 @@ function main(){
                 title: 'Object',
                 cls:'empty',
 		id: 'panelObj',
-		items: [{ xtype: 'button', text: "Add Node", handler: OGIS.Node.Add},]		
+		items: [{ xtype: 'button', text: "Add Node", handler: OGIS.Node.Add},
+			{ xtype: 'button', text: "Add Line", handler: OGIS.Line.Add}
+		]		
             });
 
 
@@ -814,7 +933,6 @@ function main(){
     var ghyb = new OpenLayers.Layer.Google(
         "Google Hybrid",
             {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
-                // used to be {type: G_HYBRID_MAP, numZoomLevels: 20}
                 );
     map.addLayer(ghyb);
     

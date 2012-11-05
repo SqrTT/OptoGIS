@@ -62,8 +62,6 @@ class NodeController extends Controller
 				echo(CJSON::encode($t->errors,true));
 			};//	echo(var_dump($t));
 	
-
-//		echo(var_dump($data));
 	}
 
 	public function actionGetnode($id){
@@ -99,4 +97,13 @@ class NodeController extends Controller
 		));
 	}
 
+	public function actionGetnodes(){
+		$points = Point::model()->findAll();
+		$tmp ;
+		
+		foreach($points as $point){
+			$tmp[] = array("id"=> $point->pt_id, "text"=>sprintf("%04d",$point->pt_id)." ($point->street, $point->house)");
+		};
+		echo CJSON::encode($tmp);	
+	}
 }

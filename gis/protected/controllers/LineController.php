@@ -17,7 +17,24 @@ class LineController extends Controller
 	{
 	}
 
+	public function actionSet(){
+                $post = file_get_contents("php://input");
+                $data = CJSON::decode($post, true);
+                $t = null;
+                if($data['properties']['id']==0){
+                        $t = new Line;
+                }else{
+                        $t = Line::model()->find('line_id=:line_id', array(':line_id'=>($data['properties']['id'])));
+                };
+                        $t->attributes = $data['properties'];
+                        if($t->save()){
+                                echo(CJSON::encode( array("status"=>"Ok", "id"=>$t->line_id)));
+                        }else{
+                                echo(CJSON::encode($t->errors,true));
 
+			};
+	}
+	
 	public function actionGettypes(){
 		
 		$lin = array();
