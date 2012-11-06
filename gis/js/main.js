@@ -126,7 +126,7 @@ function init_typenodes(){
 };
 init_typenodes();
 
-function ShowMarkerNode(id,lambda=null){
+function ShowMarkerNode(id,lambda){
 	if(Nodes[id]!=null)return;
 	Ext.Ajax.request({
     		url: '?r=node/getnode&id='+id,
