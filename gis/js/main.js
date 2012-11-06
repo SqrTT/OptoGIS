@@ -510,6 +510,13 @@ OGIS.Node.Edit = function(id){
 
 OGIS.Line.Edit = function(id){
 	ShowTip("Edit line",id);
+	modData[id]=Lines[id].line;
+        markersNode.removeFeatures(Lines[id].line);
+	selectNodes.deactivate();
+        modify.activate();
+        Modify.addFeatures(modData[id]);
+	modify.createVertices = true;
+	modify.mode = OpenLayers.Control.ModifyFeature.RESHAPE;//OpenLayers.Control.ModifyFeature.DRAG
 	HidePopup();
 	ShowLineProp(id);
 	//ShowMenuLine(id);
@@ -524,7 +531,15 @@ OGIS.Line.onClickSave = function(){
                         data[items[it].name]=items[it].value;
                 };
         };
-
+	tmp['geometry']={Type: 'LineString', coordinates: []};
+	for(i=1;i<(modData[data.id].geometry.components.length-1);i++){
+		modData[data.id].geometry.components[i].transform(new OpenLayers.Projection("EPSG:900913"),
+								  new OpenLayers.Projection("EPSG:4326"));	
+		tmp.geometry.coordinates.push( [ modData[data.id].geometry.components[i].y,
+						modData[data.id].geometry.components[i].x]);
+		modData[data.id].geometry.components[i].transform(new OpenLayers.Projection("EPSG:4326"),
+                                                                  new OpenLayers.Projection("EPSG:900913"));
+	};
         tmp['properties']=data;
         Ext.Ajax.request({
                                 url: '?r=line/set',
@@ -542,6 +557,7 @@ OGIS.Line.onClickSave = function(){
                                                 OGIS.ShowDefMenu();
 						selectNodes.activate();
         					modify.deactivate();//onClickDone();
+						Modify.removeFeatures(modData[obj.id]);
                                         }else{
                                                 ShowTip("Update node",response.responseText);
                                         }
@@ -636,7 +652,9 @@ OGIS.ShowDefMenu = function(){
             	msgTarget: 'side',
             	labelWidth: 60
         	},
-		items:[{ xtype: 'button', text: 'Add Node', handler: OGIS.Node.Add}]
+		items:[{ xtype: 'button', text: 'Add Node', handler: OGIS.Node.Add},
+			{ xtype: 'button', text: 'Add Line', handler: OGIS.Line.Add}
+		]
 		}));
 	
 

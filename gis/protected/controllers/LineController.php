@@ -33,6 +33,18 @@ class LineController extends Controller
                                 echo(CJSON::encode($t->errors,true));
 
 			};
+
+		$pts = LineStrings::model()->deleteAll('line_id=:line_id', array(':line_id'=>($data['properties']['id'])));
+		$ord=0;
+		foreach($data['geometry']['coordinates'] as $coord ){
+		 	$ord++;
+			$c = new LineStrings;
+			$c->ord=$ord;
+			$c->x=$coord[0];
+			$c->y=$coord[1];
+			$c->line_id=$t->line_id;
+			$c->save();
+		};
 	}
 	
 	public function actionGettypes(){
@@ -59,12 +71,20 @@ class LineController extends Controller
 		$node1 = Point::model()->find('pt_id=:id', array(':id'=>$line->frm_pt_id));
 		$node2 = Point::model()->find('pt_id=:id', array(':id'=>$line->to_pt_id));
 	
+		$coords = LineStrings::model()->findAll('line_id=:postID', array(':postID'=>$id));
+		
+		$coors[] = array($node1->coord_n,$node1->coord_e);
+		if($coords!=null){
+			foreach($coords as $ct){
+				//var_dump($ct);
+				$coors[] = array($ct->x,$ct->y);	
+			};
+		};
+		$coors[] = array($node2->coord_n,$node2->coord_e);
+
 		echo CJSON::encode( array ( "geometry" => array(
 				"Type" => "LineString",
-				"coordinates" => array(
-					array($node1->coord_n,$node1->coord_e),
-					array($node2->coord_n,$node2->coord_e),
-				),
+				"coordinates" => $coors,
 			    ),
 			    "properties" => array(
 			    	"id"=> $line->line_id,
