@@ -502,6 +502,7 @@ OGIS.Node.Edit = function(id){
         Modify.addFeatures(modData[id]);
         HidePopup();
         selectNodes.deactivate();
+	modify.mode = OpenLayers.Control.ModifyFeature.DRAG;
         modify.activate();
 	ShowNodeProp(id);
         update=2;
@@ -511,7 +512,7 @@ OGIS.Node.Edit = function(id){
 OGIS.Line.Edit = function(id){
 	ShowTip("Edit line",id);
 	modData[id]=Lines[id].line;
-        markersNode.removeFeatures(Lines[id].line);
+        markersLine.removeFeatures(Lines[id].line);
 	selectNodes.deactivate();
         modify.activate();
         Modify.addFeatures(modData[id]);
@@ -522,7 +523,12 @@ OGIS.Line.Edit = function(id){
 	//ShowMenuLine(id);
 };
 
-OGIS.Line.onClickSave = function(){
+
+OGIS.Line.onClickSaveWithout = function(){
+	OGIS.Line.onClickSave(1);
+};
+
+OGIS.Line.onClickSave = function(novertex){
        var data = {};
         var tmp = {};
         var items = OGIS.panelObj.items.items[0].items.items;
@@ -532,13 +538,15 @@ OGIS.Line.onClickSave = function(){
                 };
         };
 	tmp['geometry']={Type: 'LineString', coordinates: []};
-	for(i=1;i<(modData[data.id].geometry.components.length-1);i++){
-		modData[data.id].geometry.components[i].transform(new OpenLayers.Projection("EPSG:900913"),
+	if(novertex!=1){
+		for(i=1;i<(modData[data.id].geometry.components.length-1);i++){
+			modData[data.id].geometry.components[i].transform(new OpenLayers.Projection("EPSG:900913"),
 								  new OpenLayers.Projection("EPSG:4326"));	
-		tmp.geometry.coordinates.push( [ modData[data.id].geometry.components[i].y,
+			tmp.geometry.coordinates.push( [ modData[data.id].geometry.components[i].y,
 						modData[data.id].geometry.components[i].x]);
-		modData[data.id].geometry.components[i].transform(new OpenLayers.Projection("EPSG:4326"),
+			modData[data.id].geometry.components[i].transform(new OpenLayers.Projection("EPSG:4326"),
                                                                   new OpenLayers.Projection("EPSG:900913"));
+		};
 	};
         tmp['properties']=data;
         Ext.Ajax.request({
@@ -553,11 +561,13 @@ OGIS.Line.onClickSave = function(){
 							
                                                 };
                                                 ShowMenuTree();
-                        			OGIS.Line.Update(obj.id);
                                                 OGIS.ShowDefMenu();
+						Modify.removeFeatures(modData[obj.id]);
+						OGIS.Line.Update(obj.id);
+						modData = {};
 						selectNodes.activate();
         					modify.deactivate();//onClickDone();
-						Modify.removeFeatures(modData[obj.id]);
+
                                         }else{
                                                 ShowTip("Update node",response.responseText);
                                         }
@@ -568,6 +578,18 @@ OGIS.Line.onClickSave = function(){
                                 params: JSON.stringify( tmp )
                         });
 
+
+};
+
+OGIS.Line.onCancel = function(){
+	var id = OGIS.panelObj.items.items[0].items.items.map['id'];
+                                                ShowMenuTree();
+                                                OGIS.ShowDefMenu();
+                                                Modify.removeFeatures(modData[id]);
+                                                OGIS.Line.Update(id);
+                                                modData = {};
+                                                selectNodes.activate();
+                                                modify.deactivate();//onClickDone();
 
 };
 
@@ -719,33 +741,29 @@ function ShowLineProp(id){
         obj.removeAll();
         obj.update('');
 	OGIS.nodesstore.reload();
- OGIS.simple = Ext.Container({
-        xtype: 'form',
-        fieldDefaults: {
-            //msgTarget: 'side',
-            labelWidth: 50,
-        },
-        defaultType: 'textfield',
-        items:[
-                { fieldLabel: 'id', name: 'id', value: Lines[id].properties.id, disabled: true},
-                { xtype: 'combobox', name:'type_line_id',fieldLabel: 'Type',store: OGIS.linetypes,
-                        displayField: 'text', valueField:'id',queryMode: 'local',editable: false, value: Lines[id].properties.TypeLine },
-		{xtype: 'combobox',width: 240, name:'frm_pt_id',fieldLabel: 'From node',store: OGIS.nodesstore,
-                        displayField: 'text', valueField:'id',queryMode: 'local',editable: false, value: Lines[id].properties.Nodes[0].id },
-		{xtype: 'combobox', width: 240, name:'to_pt_id',fieldLabel: 'To node',store: OGIS.nodesstore,
-                        displayField: 'text', valueField:'id',queryMode: 'local',editable: false, value: Lines[id].properties.Nodes[1].id },
+ 	OGIS.simple = Ext.Container({
+        	xtype: 'form',
+        	fieldDefaults: {
+            		//msgTarget: 'side',
+            		labelWidth: 50,
+        	},
+        	defaultType: 'textfield',
+        	items:[
+                	{ fieldLabel: 'id', name: 'id', value: Lines[id].properties.id, disabled: true},
+                	{ xtype: 'combobox', name:'type_line_id',fieldLabel: 'Type',store: OGIS.linetypes,
+                        	displayField: 'text', valueField:'id',queryMode: 'local',editable: false, value: Lines[id].properties.TypeLine },
+			{xtype: 'combobox',width: 240, name:'frm_pt_id',fieldLabel: 'From node',store: OGIS.nodesstore,
+                        	displayField: 'text', valueField:'id',queryMode: 'local',editable: false, value: Lines[id].properties.Nodes[0].id },
+			{xtype: 'combobox', width: 240, name:'to_pt_id',fieldLabel: 'To node',store: OGIS.nodesstore,
+                        	displayField: 'text', valueField:'id',queryMode: 'local',editable: false, value: Lines[id].properties.Nodes[1].id },
 
-        {
-                fieldLabel: 'Lenght',
-                name: 'lenght',
-                allowBlank:false,
-                value: Lines[id].properties.lenght
-        },
-        { xtype: 'button', text: "Save ", handler: OGIS.Line.onClickSave },
-        { xtype: 'button', text: "Cancel", handler: onClickCancel}
-        ],
+        		{fieldLabel: 'Lenght', name: 'lenght', allowBlank:false, value: Lines[id].properties.lenght },
+        		{ xtype: 'button', text: "Save ", handler: OGIS.Line.onClickSave },
+			{xtype: 'button', text: "Save without vertex", handler: OGIS.Line.onClickSaveWithout},
+        		{ xtype: 'button', text: "Cancel", handler: onClickCancel}
+        	],
 
-    });
+    	});
         //console.log(OGIS.simple);     
         obj.add(OGIS.simple);
 }
@@ -787,6 +805,7 @@ function UserOnClick(e)
 
 
 function clickObj(record){
+	if(record.data.checked!=null)record.data.checked=!record.data.checked;
 	var rpoint=/point-(\d+)/;
 	var lpoint=/line-(\d+)/;
 	var upoint=/us-(\d+)/;
@@ -794,19 +813,20 @@ function clickObj(record){
 	var arr3=upoint.exec(record.data.id)	
 	var arr2=lpoint.exec(record.data.id)	
 	if( arr2 != null ){
-		if(!record.data.checked){// check
-			ShowMarkerLine(arr2[1]); 
+		if(record.data.checked){// check
+			ShowMarkerLine(arr2[1]);
 		}else{ //uncheck
 			HideMarkerLine(arr2[1]);
 		};
 	}else if (arr != null){
-		if(!record.data.checked){// check
+		if(record.data.checked){// check
                         ShowMarkerNode(arr[1]);
+			
                 }else{ //uncheck
 			HideMarkerNode(arr[1]);
                 };
 	}else if(arr3 !=null){
-		if(!record.data.checked){
+		if(record.data.checked){
 			GetMarkerUser(arr3[1]);
 		}else{
 			markersUser.removeFeatures(Users[arr3[1]].marker)
@@ -821,21 +841,17 @@ function clickObj(record){
 
 
 function clickListener(view,record){
-  //  console.log(view);
-   // console.log(record);
-	
-       
    
         if(record.isLeaf()){
 		clickObj(record);			
 	}else{
-	 if(record.data.checked!=null)record.data.checked=!record.data.checked;
+//	 if(record.data.checked!=null)record.data.checked=!record.data.checked;
 	};
 
     for(a in record.childNodes){
 	if(record.data.checked == true || record.data.checked == false){
-		record.childNodes[a].data.checked= !record.data.checked;
 		clickObj(record.childNodes[a]);
+		record.childNodes[a].data.checked= !record.data.checked;
 	}
     };
 	view.refresh();    

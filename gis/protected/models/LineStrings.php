@@ -94,4 +94,11 @@ class LineStrings extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function defaultScope()
+    	{
+        	return array(
+            		'order'=>"ord ASC",
+        	);
+    	}
 }
