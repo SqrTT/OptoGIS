@@ -8,7 +8,17 @@ var marker_icon = null;
 var markersLine = null; 
 var accordion = null;
 var OGIS = {};
-OGIS.Node = {};
+OGIS.Node = {
+	Invent: function(Nodeid){
+		var tab = OGIS.tabs.add({
+			title: "#"+Nodeid+" Node",
+			html: "=)",
+			closable: true,
+		});
+		OGIS.tabs.setActiveTab(tab);
+	}
+
+};
 OGIS.Line = {};
             var myStyles = new OpenLayers.StyleMap({
                 "default": new OpenLayers.Style({
@@ -373,7 +383,8 @@ function LineOnClick(e){
                 return;
         };
 
-       	text =  "<a href=\"#\" onclick='HidePopup();'>(X)</a>  <a href=# onclick='OGIS.Line.Edit("+nt+")'> [E]</a> #"+nt+" "+styles[Lines[nt].properties.TypeLine].text+" - "+Lines[nt].properties.lenght+"m<hr/>";
+       	text =  "<a href=\"#\" onclick='HidePopup();'>(X)</a>  <a href=# onclick='OGIS.Line.Edit("+nt+")'> [Edit]</a><br/> #"+nt
+		+" "+styles[Lines[nt].properties.TypeLine].text+" - "+Lines[nt].properties.lenght+"m<hr/>";
 	text += "<a href=\"#\" onclick='SwitchMarkerNode("+Lines[nt].properties.Nodes[0].id+");'>"+Lines[nt].properties.Nodes[0].name+"</a><br/>";
 	text += "<a href=\"#\" onclick='SwitchMarkerNode("+Lines[nt].properties.Nodes[1].id+");'>"+Lines[nt].properties.Nodes[1].name+"</a><br/>";
 
@@ -393,7 +404,9 @@ function NodeOnClick(e)
 		return;
 	};
 	point = new OpenLayers.LonLat(e.feature.geometry.getCentroid().x, e.feature.geometry.getCentroid().y);
-	var t="<a href=\"#\" onclick='HidePopup();'>(X)</a> <a href=# onclick='OGIS.Node.Edit("+nt+")'>[E]</a>  #"+nt+" "+Nodes[nt].properties.street + ", "+Nodes[nt].properties.house +" <hr>";
+	var t="<a href=\"#\" onclick='HidePopup();'>(X)</a>  <a href=# onclick='OGIS.Node.Edit("+nt+")'>[Edit]</a>"+
+			"  <a href=# onclick='OGIS.Node.Invent("+nt+")'>[Invent]</a>  #"
+			+nt+" "+Nodes[nt].properties.street + ", "+Nodes[nt].properties.house +" <hr>";
 	var sum=0;
 	for(var c in Nodes[nt].properties.connected){
 		sum++;
@@ -920,21 +933,17 @@ function main(){
 		                                                                                                
             });
 
+	OGIS.tabs = Ext.create('Ext.tab.Panel', {
+	region: 'center',
+	items: [{
+                        title: 'map',
+                        html: '<div id="btn-menu"></div><div id="main-map"</div>'
+                    }]
+	});
 
             var viewport = Ext.create('Ext.Viewport', {
                 layout:'border',
-                items:[accordion,{
-                    region: 'center',
-                    xtype: 'tabpanel',
-                    items: [{
-                        title: 'map',
-                        html: '<div id="btn-menu"></div><div id="main-map"</div>'
-                    }
-		    , {
-                        title: 'Another Tab',
-                        html: 'Hello world 2'
-                    }],
-		}],
+                items:[accordion,OGIS.tabs],
 	     });
 	//open layers
 

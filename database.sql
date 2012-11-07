@@ -1,17 +1,50 @@
-nes`
+
+--
+-- Структура таблиці `invent`
+--
+
+CREATE TABLE IF NOT EXISTS `invent` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `node_id` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
+  `parent` int(11) NOT NULL,
+  `SN` varchar(50) COLLATE utf8_bin NOT NULL,
+  `des` varchar(150) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `node_id` (`node_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `invent_type`
+--
+
+CREATE TABLE IF NOT EXISTS `invent_type` (
+  `invent_type` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`invent_type`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `lines`
 --
 
 CREATE TABLE IF NOT EXISTS `lines` (
   `line_id` int(11) NOT NULL AUTO_INCREMENT,
   `frm_pt_id` int(11) NOT NULL,
   `to_pt_id` int(11) NOT NULL,
+  `frm_inv` int(11) NOT NULL,
+  `to_inv` int(11) NOT NULL,
   `type_line_id` int(11) NOT NULL,
   `lenght` int(11) NOT NULL,
   `clients` tinyint(1) NOT NULL DEFAULT '0',
   `who` int(11) NOT NULL,
   `when` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`line_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='Відображає лінії' AUTO_INCREMENT=290 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='Відображає лінії';
 
 -- --------------------------------------------------------
 
@@ -26,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `LineStrings` (
   `x` varchar(20) COLLATE utf8_bin NOT NULL,
   `y` varchar(20) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -49,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `point` (
   `des` varchar(400) NOT NULL DEFAULT ' ',
   PRIMARY KEY (`pt_id`),
   UNIQUE KEY `pt_id` (`pt_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=300 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -64,8 +97,10 @@ CREATE TABLE IF NOT EXISTS `type_lines` (
   `color` varchar(10) NOT NULL DEFAULT '#000000',
   `width` int(11) NOT NULL DEFAULT '2',
   `opacity` float NOT NULL DEFAULT '0.5',
+  `modules` tinyint(4) NOT NULL,
+  `fibers` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -79,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `type_points` (
   `comm` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -94,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` varchar(30) NOT NULL,
   `rights` varchar(100) NOT NULL,
   PRIMARY KEY (`usr_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -109,4 +144,5 @@ CREATE TABLE IF NOT EXISTS `usr_coord` (
   `y` double NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uid` (`uid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=516 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
