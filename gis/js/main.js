@@ -10,10 +10,97 @@ var accordion = null;
 var OGIS = {};
 OGIS.Node = {
 	Invent: function(Nodeid){
+		Ext.define('invent', {
+        		extend: 'Ext.data.Model',
+        		fields: ['text', 'type','id']
+		});
+
+		var storei = Ext.create('Ext.data.Store', {
+                	model: invent,
+			groupField: 'type',
+		        fields: ['id', 'text', 'type'],
+                        autoLoad: true,
+                        sorters: [{
+                	        property: 'type',
+                                direction: 'DESC'
+                         }],
+
+                         proxy: {
+                                type: "ajax",
+                                url:  "?r=node/getinvent&id="+Nodeid,
+                         },
+                });
+
+  	    	var groupingFeature = Ext.create('Ext.grid.feature.Grouping',{
+        		groupHeaderTpl: 'Type: {name} ({rows.length} Item{[values.rows.length > 1 ? "s" : ""]})',
+        		hideGroupedHeader: true
+    		});		
+		
 		var tab = OGIS.tabs.add({
-			title: "#"+Nodeid+" Node",
-			html: "=)",
+			title: Nodeid+" Node",
+			//html: "=)",
+			layout:'border',
+			defaults: {
+    			collapsible: true,
+    			split: true,
+    			bodyStyle: 'padding:15px'
+			},
+			items: [{
+    				title: 'Footer',
+    				region: 'south',
+    				height: 150,
+    				minSize: 75,
+    				maxSize: 250,
+    				cmargins: '5 0 0 0'
+			},{
+    				title: 'Navigation',
+    				region:'west',
+    				margins: '5 0 0 0',
+    				cmargins: '5 5 0 0',
+    				width: 340,
+    				minSize: 100,
+    				maxSize: 450,
+			//	items: {
+				xtype: 'gridpanel',
+		                        collapsible: true,
+                		        iconCls: 'icon-grid',
+                       			frame: true,
+                        		store: storei,
+                        		features: [groupingFeature],	
+                                                listeners:{
+                                                   click: function(t,d){console.log(t);alert('select')},
+                                                },
+
+
+                        		columns: [{
+                                        	text: 'Name',
+                                        	flex: 1,
+                                        	dataIndex: 'text',
+                                	},{
+                                        	text: 'Type',
+                                        //	flex: 1,
+                                        	dataIndex: 'type'
+                                	},{
+						text: "id",
+						dataIndex: 'id',
+					}],
+                        	fbar  : [ { text: 'Add item',},
+					{text: 'Del item'}, {
+                                	text:'Clear Grouping',
+                                	iconCls: 'icon-clear-group',
+                                	handler : function(){
+                                		groupingFeature.disable();
+                                	}
+                        	}]
+                	     // },
+			},{
+    				title: 'Main Content',
+    				collapsible: false,
+    				region:'center',
+    				margins: '5 0 0 0'
+			}],
 			closable: true,
+			itemId: "Nd"+Nodeid,
 		});
 		OGIS.tabs.setActiveTab(tab);
 	}
