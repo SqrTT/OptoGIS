@@ -43,16 +43,6 @@ class NodeController extends Controller
 		echo CJSON::encode($lin);
 	}
 	
-	public function actionGetinvent($id){
-		$inv = array();
-		$data = Invent::model()->findAll('node_id=:id', array(':id'=>$id));
-		foreach($data as $in){
-			$type = InventType::model()->find('invent_type=:id',array(':id'=>$in->type));
-			if($type!=null){$inv[] = array('text'=>$in->des, 'id'=>$in->id, 'type'=>$type->name);};
-		};
-		echo CJSON::encode($inv);
-	}
-	
 	public function actionSetnode(){
 		$post = file_get_contents("php://input");
 		$data = CJSON::decode($post, true);

@@ -8,14 +8,17 @@ var marker_icon = null;
 var markersLine = null; 
 var accordion = null;
 var OGIS = {};
-OGIS.Node = {
-	Invent: function(Nodeid){
+OGIS = {
+	Invent: 
+		{
+		
+		Show: function(Nodeid){
 		Ext.define('invent', {
         		extend: 'Ext.data.Model',
         		fields: ['text', 'type','id']
 		});
 
-		var storei = Ext.create('Ext.data.Store', {
+		OGIS.Invent.storei = Ext.create('Ext.data.Store', {
                 	model: invent,
 			groupField: 'type',
 		        fields: ['id', 'text', 'type'],
@@ -27,7 +30,7 @@ OGIS.Node = {
 
                          proxy: {
                                 type: "ajax",
-                                url:  "?r=node/getinvent&id="+Nodeid,
+                                url:  "?r=invent/getinvent&id="+Nodeid,
                          },
                 });
 
@@ -65,7 +68,8 @@ OGIS.Node = {
 		                        collapsible: true,
                 		        iconCls: 'icon-grid',
                        			frame: true,
-                        		store: storei,
+					id: 'navimenu'+Nodeid,
+                        		store: OGIS.Invent.storei,
                         		features: [groupingFeature],	
                                                 listeners:{
                                                    click: function(t,d){console.log(t);alert('select')},
@@ -84,7 +88,7 @@ OGIS.Node = {
 						text: "id",
 						dataIndex: 'id',
 					}],
-                        	fbar  : [ { text: 'Add item',},
+                        	fbar  : [ { text: 'Add item',handler: function(){OGIS.Invent.Add(Nodeid)}},
 					{text: 'Del item'}, {
                                 	text:'Clear Grouping',
                                 	iconCls: 'icon-clear-group',
@@ -103,9 +107,80 @@ OGIS.Node = {
 			itemId: "Nd"+Nodeid,
 		});
 		OGIS.tabs.setActiveTab(tab);
-	}
+		},//end show
+		Add: function(Nodeid){
 
+			 OGIS.Invent.store=Ext.create('Ext.data.Store', {
+                                fields: ['id', 'text'],
+                                autoLoad: true,
+                                sorters: [{
+                                        property: 'text',
+                                        direction: 'DESC'
+                                }],
+
+                                proxy: {
+                                        type: "ajax",
+                                        url:  "?r=invent/gettypes",
+                                },
+                        });
+			OGIS.Invent.addwindow = Ext.create('Ext.window.Window', {
+    			title: 'Add item',
+    			layout: 'fit',
+    			items: { 
+        			xtype: 'form',
+        			border: false,
+    				items: [{ xtype: 'combobox', name:'type',fieldLabel: 'Type',store: OGIS.Invent.store,
+                        		displayField: 'text', valueField:'id',queryMode: 'local',editable: false,  },
+
+        			{
+                			fieldLabel: 'SN',
+                			name: 'SN',
+                			value: '',
+					xtype: 'textfield',
+        			},{
+                			fieldLabel: 'Desc',
+                			name: 'des',
+                			value: '',
+					xtype: 'textfield', 
+        			},{fieldLabel: 'NodeId',name: 'node_id',value: Nodeid,xtype: 'textfield',disabled: true}],
+			},
+			buttons: [{ text: 'Save', handler: OGIS.Invent.onSave},{
+      			  	text: 'Close',
+        			handler: function(){
+            				OGIS.Invent.addwindow.close(); 
+        			}
+    			}]
+			}).show();
+		},
+		onSave: function(){
+		       	var data = {};
+        		var tmp = {};
+        		var items = OGIS.Invent.addwindow.items.items[0].items.items
+        		for(var it in items){
+                		if(typeof items[it].name!= 'undefined'){
+                        		data[items[it].name]=items[it].value;
+                		};
+        		};
+		        Ext.Ajax.request({
+                                url: '?r=invent/add',
+                                success: function(response, opts){
+					OGIS.Invent.addwindow.close();	
+					var nav = Ext.getCmp('navimenu'+data.node_id);
+					console.log(nav);
+					OGIS.Invent.storei.reload();
+					nav.reconfigure(OGIS.Invent.storei);
+				},
+				 failure: function(response, opts){
+                                        ShowTip("Add inventar","FAIL! Code"+response.status);
+                                },
+                                params: JSON.stringify(data )
+			})
+							
+		},
+	},
 };
+
+OGIS.Node = {};
 OGIS.Line = {};
             var myStyles = new OpenLayers.StyleMap({
                 "default": new OpenLayers.Style({
@@ -492,7 +567,7 @@ function NodeOnClick(e)
 	};
 	point = new OpenLayers.LonLat(e.feature.geometry.getCentroid().x, e.feature.geometry.getCentroid().y);
 	var t="<a href=\"#\" onclick='HidePopup();'>(X)</a>  <a href=# onclick='OGIS.Node.Edit("+nt+")'>[Edit]</a>"+
-			"  <a href=# onclick='OGIS.Node.Invent("+nt+")'>[Invent]</a>  #"
+			"  <a href=# onclick='OGIS.Invent.Show("+nt+")'>[Invent]</a>  #"
 			+nt+" "+Nodes[nt].properties.street + ", "+Nodes[nt].properties.house +" <hr>";
 	var sum=0;
 	for(var c in Nodes[nt].properties.connected){
