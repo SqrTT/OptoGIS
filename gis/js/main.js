@@ -11,14 +11,15 @@ var OGIS = {};
 OGIS = {
 	Invent: 
 		{
-		
+		storei: [],
+		store_inv: [],
 		Show: function(Nodeid){
 		Ext.define('invent', {
         		extend: 'Ext.data.Model',
         		fields: ['text', 'type','id']
 		});
-
-		OGIS.Invent.storei = Ext.create('Ext.data.Store', {
+		
+		OGIS.Invent.storei[Nodeid] = Ext.create('Ext.data.Store', {
                 	model: invent,
 			groupField: 'type',
 		        fields: ['id', 'text', 'type'],
@@ -37,11 +38,41 @@ OGIS = {
   	    	var groupingFeature = Ext.create('Ext.grid.feature.Grouping',{
         		groupHeaderTpl: 'Type: {name} ({rows.length} Item{[values.rows.length > 1 ? "s" : ""]})',
         		hideGroupedHeader: true
-    		});		
+    		});	
+
+		////////////////////////////////////////////
+		/// Editing  lines items
+		Ext.define('LineItm',{
+			extend: 'Ext.data.Model',
+			fields: ['line','line_id','inv_id']
+		});	
+		
+		OGIS.Invent.store_inv[Nodeid] = Ext.create('Ext.data.Store', {
+                        model: LineItm,
+                        fields: ['line_id', 'line', 'inv_id'],
+                        autoLoad: true,
+                        sorters: [{
+                                property: 'line_id',
+                                direction: 'DESC'
+                         }],
+
+                         proxy: {
+                                type: "ajax",
+                                url:  "?r=invent/getinvline&id="+Nodeid,
+                         },
+                });
+
+
+		
+    		var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
+        		clicksToEdit: 1
+    		});
+		
+		
+		////////////////////////////////////////////	
 		
 		var tab = OGIS.tabs.add({
 			title: Nodeid+" Node",
-			//html: "=)",
 			layout:'border',
 			defaults: {
     			collapsible: true,
@@ -49,12 +80,34 @@ OGIS = {
     			bodyStyle: 'padding:15px'
 			},
 			items: [{
-    				title: 'Footer',
+                        	store:  OGIS.Invent.store_inv[Nodeid],
+				columns: [{text: '#Line', dataIndex: 'line_id'},{
+                                                text: 'Connected to node',
+//                                                flex: 1,
+						width: '240',
+                                                dataIndex: 'line',
+						fixed: false,
+                                        },{
+                                                text: 'Connected to Inv',
+						                                        //      flex: 1,
+                                                dataIndex: 'inv_id',
+                                        	editor: new Ext.form.field.ComboBox({
+							typeAhead: true,
+                					triggerAction: 'all',
+                					selectOnTab: true,
+                					store: OGIS.Invent.storei[Nodeid],
+                					lazyRender: true,
+                					listClass: 'x-combo-list-small'
+            					})
+					}],
+				xtype: 'gridpanel',
+    				title: 'Connected Lines',
     				region: 'south',
-    				height: 150,
+				id: 'editgrid'+Nodeid,
     				minSize: 75,
     				maxSize: 250,
-    				cmargins: '5 0 0 0'
+    				cmargins: '5 0 0 0',
+				plugins: [cellEditing],
 			},{
     				title: 'Navigation',
     				region:'west',
@@ -63,38 +116,24 @@ OGIS = {
     				width: 340,
     				minSize: 100,
     				maxSize: 450,
-			//	items: {
 				xtype: 'gridpanel',
 		                        collapsible: true,
                 		        iconCls: 'icon-grid',
                        			frame: true,
 					id: 'navimenu'+Nodeid,
-                        		store: OGIS.Invent.storei,
+                        		store: OGIS.Invent.storei[Nodeid],
                         		features: [groupingFeature],	
-                                                listeners:{
-                                                   click: function(t,d){console.log(t);alert('select')},
-                                                },
-
-
                         		columns: [{
                                         	text: 'Name',
                                         	flex: 1,
                                         	dataIndex: 'text',
                                 	},{
                                         	text: 'Type',
-                                        //	flex: 1,
                                         	dataIndex: 'type'
-                                	},{
-						text: "id",
-						dataIndex: 'id',
-					}],
-                        	fbar  : [ { text: 'Add item',handler: function(){OGIS.Invent.Add(Nodeid)}},
-					{text: 'Del item'}, {
-                                	text:'Clear Grouping',
-                                	iconCls: 'icon-clear-group',
-                                	handler : function(){
-                                		groupingFeature.disable();
-                                	}
+                                	}],
+                        	fbar  : [ {text: 'Add item',handler: function(){OGIS.Invent.Add(Nodeid)}},
+					  {text: 'Del item',handler: function(){OGIS.Invent.Delete(Nodeid)}},
+					  {text:'Clear Grouping',handler : function(){groupingFeature.disable();}
                         	}]
                 	     // },
 			},{
@@ -105,6 +144,20 @@ OGIS = {
 			}],
 			closable: true,
 			itemId: "Nd"+Nodeid,
+		});
+		var gr = Ext.getCmp('editgrid'+Nodeid);
+		gr.addListener('edit',function(e,r){
+			console.log(r);
+			 Ext.Ajax.request({
+                                url: '?r=invent/editline',
+                                success: function(response, opts){
+					ShowTip('inventar edit',"Done");
+                                },
+                                 failure: function(response, opts){
+                                        ShowTip("inventar","FAIL! Code"+response.status);
+                                },
+                                params: JSON.stringify({nodeid: Nodeid,line_id: r.record.data.line_id, value: r.value} )
+                        })	
 		});
 		OGIS.tabs.setActiveTab(tab);
 		},//end show
@@ -166,9 +219,8 @@ OGIS = {
                                 success: function(response, opts){
 					OGIS.Invent.addwindow.close();	
 					var nav = Ext.getCmp('navimenu'+data.node_id);
-					console.log(nav);
-					OGIS.Invent.storei.reload();
-					nav.reconfigure(OGIS.Invent.storei);
+					OGIS.Invent.storei[data.node_id].reload();
+					nav.reconfigure(OGIS.Invent.storei[data.node_id]);
 				},
 				 failure: function(response, opts){
                                         ShowTip("Add inventar","FAIL! Code"+response.status);
@@ -177,7 +229,25 @@ OGIS = {
 			})
 							
 		},
-	},
+		Delete: function(Nodeid){
+			var nav = Ext.getCmp('navimenu'+Nodeid);
+			var sel = nav.getSelectionModel().getSelection();
+			console.log(sel);
+			for(var t in sel){
+				Ext.Ajax.request({
+					url: '?r=invent/del',
+					success: function(r,opt){
+					      	OGIS.Invent.storei[Nodeid].reload();
+                                        	nav.reconfigure(OGIS.Invent.storei[Nodeid]);
+					},
+					failure: function(r, opt){
+						ShowTip("Add inventar","FAIL! Code"+r.status);
+					},
+					params: JSON.stringify({id: sel[t].data.id})
+				})			
+			};
+		},
+	}
 };
 
 OGIS.Node = {};

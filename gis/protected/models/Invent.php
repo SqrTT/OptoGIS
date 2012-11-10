@@ -39,7 +39,7 @@ class Invent extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('node_id, type, parent, SN, des', 'required'),
+			array('node_id, type, parent, ', 'required'),
 			array('node_id, type, parent', 'numerical', 'integerOnly'=>true),
 			array('SN', 'length', 'max'=>50),
 			array('des', 'length', 'max'=>150),
