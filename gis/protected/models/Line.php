@@ -43,7 +43,7 @@ class Line extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('frm_pt_id, to_pt_id, frm_inv, to_inv, type_line_id, lenght', 'required'),
+			array('frm_pt_id, to_pt_id,  type_line_id, lenght', 'required'),
 			array('frm_pt_id, to_pt_id, frm_inv, to_inv, type_line_id, lenght, clients, who', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

@@ -1,9 +1,9 @@
 <html>
 <head>
     <title>GIS 0.1</title>
-	<script src="/gis/js/open/OpenLayers.js" type="text/javascript"></script>   
-	<script src="raphael.js"></script>
-	<script src="libopt.js"></script>
+	<script src="./js/open/OpenLayers.js" type="text/javascript"></script>   
+	<script src="./js/raphael.js"></script>
+	<script src="./js/libopt.js"></script>
  <!-- Ext -->
     <link rel="stylesheet" type="text/css" href="/gis/css/ext-all.css" />
         <style>

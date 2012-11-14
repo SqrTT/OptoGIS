@@ -61,8 +61,7 @@ OGIS = {
                                 url:  "?r=invent/getinvline&id="+Nodeid,
                          },
                 });
-
-
+		
 		
     		var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
         		clicksToEdit: 1
@@ -122,12 +121,15 @@ OGIS = {
                        			frame: true,
 					id: 'navimenu'+Nodeid,
                         		store: OGIS.Invent.storei[Nodeid],
-                        		features: [groupingFeature],	
+                        		listeners: {
+							itemclick: function(t,r,i){ OGIS.Invent.onItem(r,Nodeid)},
+					},
+					features: [groupingFeature],	
                         		columns: [{
                                         	text: 'Name',
                                         	flex: 1,
                                         	dataIndex: 'text',
-                                	},{
+					                                	},{
                                         	text: 'Type',
                                         	dataIndex: 'type'
                                 	}],
@@ -140,7 +142,8 @@ OGIS = {
     				title: 'Main Content',
     				collapsible: false,
     				region:'center',
-    				margins: '5 0 0 0'
+    				margins: '5 0 0 0',
+				html: '<div id=dvnd'+Nodeid+'>Please select item</div>',
 			}],
 			closable: true,
 			itemId: "Nd"+Nodeid,
@@ -204,6 +207,12 @@ OGIS = {
         			}
     			}]
 			}).show();
+		},
+		onItem: function(rec, node){
+			console.log(rec,node);
+			lib = createLibopt('dvnd'+node,640,1980);
+			lib.addCable({text: 'Sec',modules: '1',fibers: '9', id: "else"});
+			lib.addCable({text: 'thrd',modules: '6',fibers: '12', id: "ele"})
 		},
 		onSave: function(){
 		       	var data = {};
@@ -757,10 +766,12 @@ OGIS.Node.Edit = function(id){
 OGIS.Line.Edit = function(id){
 	ShowTip("Edit line",id);
 	modData[id]=Lines[id].line;
-        markersLine.removeFeatures(Lines[id].line);
+	if(id!=0){
+        	markersLine.removeFeatures(Lines[id].line);
+		Modify.addFeatures(modData[id]);
+	};
 	selectNodes.deactivate();
         modify.activate();
-        Modify.addFeatures(modData[id]);
 	modify.createVertices = true;
 	modify.mode = OpenLayers.Control.ModifyFeature.RESHAPE;//OpenLayers.Control.ModifyFeature.DRAG
 	HidePopup();
@@ -783,7 +794,9 @@ OGIS.Line.onClickSave = function(novertex){
                 };
         };
 	tmp['geometry']={Type: 'LineString', coordinates: []};
-	if(novertex!=1){
+	console.log(data);
+	if(data['id']!=0){
+	    if((novertex!=1) ){
 		for(i=1;i<(modData[data.id].geometry.components.length-1);i++){
 			modData[data.id].geometry.components[i].transform(new OpenLayers.Projection("EPSG:900913"),
 								  new OpenLayers.Projection("EPSG:4326"));	
@@ -792,6 +805,7 @@ OGIS.Line.onClickSave = function(novertex){
 			modData[data.id].geometry.components[i].transform(new OpenLayers.Projection("EPSG:4326"),
                                                                   new OpenLayers.Projection("EPSG:900913"));
 		};
+  	    }
 	};
         tmp['properties']=data;
         Ext.Ajax.request({
