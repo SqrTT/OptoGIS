@@ -3,7 +3,7 @@
 
 function createLibopt(canv,x,y){
 	var lib = [];
-	lib.fiber_height = 23;
+	lib.fiber_height = 15;
 	lib.freel=120;
 	lib.freer=480;
 	lib.coord = [];
@@ -41,14 +41,14 @@ function createLibopt(canv,x,y){
 	lib.addJoin = function(join){
 		
 		this.lines.push(join);
-	//	this.redraw();
+		this.redraw();
 	};
 
 	lib.cables = [];
 	lib.addCable = function(cable){
 		cable.coord = [];
 		this.cables.push(cable);	
-	//	this.redraw();
+		this.redraw();
 	};
 	lib.drawRcable= function(pos_x,pos_y,cable){
 			var height = this.getCableHeight(this.cables[c].modules,this.cables[c].fibers);
@@ -100,11 +100,11 @@ function createLibopt(canv,x,y){
 
 						var fib2 = this.p.rect(pos_x+32,fx,20,fcx,3);
 						fib2.attr({fill: 'white'});
-						text=   this.p.text(pos_x+32+10,fx+10,i+1);
+						text=   this.p.text(pos_x+32+10,fx+7,i+1);
 				       };
    					var fib3 = this.p.rect(pos_x+32+21,fx,20,fcx,3);
                                         fib3.attr({fill: 'white'});
-                                        text=   this.p.text(pos_x+32+10+21,fx+10,count_fib);
+                                        text=   this.p.text(pos_x+32+10+21,fx+7,count_fib);
 				};
 			};
 
@@ -160,11 +160,11 @@ function createLibopt(canv,x,y){
 					
                                         	var fib3 = this.p.rect(pos_x+32+21,fx,20,fcx,3);
                                         	fib3.attr({fill: 'white'});
-                                        	text=   this.p.text(pos_x+32+10+21,fx+10,i+1);
+                                        	text=   this.p.text(pos_x+32+10+21,fx+7,i+1);
 					}	
-						var fib2 = this.p.rect(pos_x+32,fx,20,fcx,3);
-                                        	fib2.attr({fill: 'white'});
-                                        	text=   this.p.text(pos_x+32+10,fx+10,count_fib);
+					var fib2 = this.p.rect(pos_x+32,fx,20,fcx,3);
+                                       	fib2.attr({fill: 'white'});
+                                       	text=   this.p.text(pos_x+32+10,fx+7,count_fib);
 					
                                	} 
 
@@ -226,6 +226,7 @@ function createLibopt(canv,x,y){
 		var line = this.p.path(ptline);
 		line.lines=this.lines;		
 		line.attr('stroke-width',4);
+		 line.attr('stroke-linejoin','round');
                 line.mouseover(function(){if(this.attr['stroke']!='green')
                                         {this.attr('stroke', 'blue')}});
                 line.mouseout(function(){if(this.attr['stroke']!='green')
