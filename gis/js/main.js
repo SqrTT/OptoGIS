@@ -143,7 +143,7 @@ OGIS = {
     				collapsible: false,
     				region:'center',
     				margins: '5 0 0 0',
-				html: '<div id=dvnd'+Nodeid+'>Please select item</div>',
+				html: '<div id=dvnd'+Nodeid+' style="height:100%;overflow:scroll;">Please select item</div>',
 			}],
 			closable: true,
 			itemId: "Nd"+Nodeid,

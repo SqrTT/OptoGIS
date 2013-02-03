@@ -1,4 +1,4 @@
-///// libopt lib for  drawind optic connection 
+///// libopt lib for  drawing optics connection 
 
 
 function createLibopt(canv,x,y){
@@ -41,7 +41,7 @@ function createLibopt(canv,x,y){
 	lib.addJoin = function(join){
 		
 		this.lines.push(join);
-		this.redraw();
+		this.drawline(join);
 	};
 
 	lib.cables = [];
@@ -75,7 +75,7 @@ function createLibopt(canv,x,y){
 					con.mouseout(function(){this.attr({fill: 'blue'})});
 					con.fiber = count_fib;
 					con.lib= this;
-                                        con.click(function(){
+                              con.click(function(){
                                                 if(window.edit==null){
                                                         window.edit = {cabel: cable, fiber: this.fiber}
                                                         this.attr('stroke','white');
@@ -137,7 +137,7 @@ function createLibopt(canv,x,y){
                                         con.lib= this;
 
 					con.click(function(){
-                                                if(window.edit==null){
+                                            if(window.edit==null){
                                                         window.edit = {cabel: cable, fiber: this.fiber}
                                                         this.attr('stroke','white');
                                                 }else{
@@ -193,7 +193,7 @@ function createLibopt(canv,x,y){
 			this.drawline(this.lines[l],l);
 		};
 	};
-	lib.drawline = function(join,ln){
+	lib.drawline = function(join){
 		var from = -1;
 		var to = -1;
 		for(t in this.cables){
@@ -222,21 +222,19 @@ function createLibopt(canv,x,y){
                                 this.freer-=8;
 			};
 		ptline = 'M'+fx+' '+fy+patch+'L'+tx+' '+ty;
-		console.log(ptline);
 		var line = this.p.path(ptline);
-		line.lines=this.lines;		
-		line.attr('stroke-width',4);
-		 line.attr('stroke-linejoin','round');
-                line.mouseover(function(){if(this.attr['stroke']!='green')
-                                        {this.attr('stroke', 'blue')}});
-                line.mouseout(function(){if(this.attr['stroke']!='green')
-					{this.attr('stroke', 'black')}});
-		line.dblclick(function(){if(confirm('Delete line?')){
+		line.lines=this.lines;	
+        line.attr('stroke-width',4);
+		line.attr('stroke-linejoin','round');
+        line.mouseover(function(){if(this.attr('stroke')=='green')return;this.attr('stroke', 'blue')});
+        line.mouseout(function(){if(this.attr('stroke')=='green')return;this.attr('stroke', 'black')});
+		
+        line.dblclick(function(){if(confirm('Delete line?')){
 			delete this.lines[ln];
 			this.remove();
 		}});
 		line.click(function(){
-			if(this.attr['stroke']=='green'){
+            if(this.attr('stroke')=='green'){
 				this.attr('stroke', 'black');
 			}else{
 				this.attr('stroke', 'green')
