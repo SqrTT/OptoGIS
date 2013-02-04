@@ -68,7 +68,20 @@ class InventController extends Controller
 		};
 		echo CJSON::encode($t);
 	}
-	
+    
+    public function actiongetitem(){
+          $t = array();          
+          $post = file_get_contents("php://input");
+          $data = CJSON::decode($post, true);
+	      $lines = Line::model()->findAll('frm_inv=:ID or to_inv=:ID', array(':ID'=>$data['item']));
+	        foreach($lines as $i){
+                $type = TypeLines::model()->find('id=:ID',array(':ID'=>$i->type_line_id));
+		    	$t[] = array("text"=>$i->line_id, "modules"=>$type->modules, "fibers"=>$type->fibers, "id"=>$i->line_id);
+		    };
+            echo CJSON::encode($t);
+
+    }
+
 	public function actionAdd(){
                 $post = file_get_contents("php://input");
                 $data = CJSON::decode($post, true);

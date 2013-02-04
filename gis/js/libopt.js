@@ -193,24 +193,28 @@ function createLibopt(canv,x,y){
 			this.drawline(this.lines[l],l);
 		};
 	};
+
+
+
+
 	lib.drawline = function(join){
-		var from = -1;
-		var to = -1;
+		this.from = -1;
+		this.to = -1;
 		for(t in this.cables){
-			if(this.cables[t].id==join.from)from=t;
+			if(this.cables[t].id==join.from)this.from=t;
 		}
 		for(t in this.cables){
-			if(this.cables[t].id==join.to)to=t;
+			if(this.cables[t].id==join.to)this.to=t;
 		};	
-		if(from==-1 || to ==-1){
+		if(this.from==-1 || this.to ==-1){
 			console.log('Cant find cable');
 		};
 		
-		fy=this.cables[from].coord[join.from_fib].y;
-		fx=+this.cables[from].coord[join.from_fib].x;
+		fy=this.cables[this.from].coord[join.from_fib].y;
+		fx=+this.cables[this.from].coord[join.from_fib].x;
 
-		ty=this.cables[to].coord[join.to_fib].y;
-		tx=this.cables[to].coord[join.to_fib].x;	
+		ty=this.cables[this.to].coord[join.to_fib].y;
+		tx=this.cables[this.to].coord[join.to_fib].x;	
 		patch='';	
 			if(tx<250){
 				patch+='L'+this.freel+' '+fy;
@@ -221,8 +225,7 @@ function createLibopt(canv,x,y){
                                 patch+='L'+this.freer+' '+ty;
                                 this.freer-=8;
 			};
-		ptline = 'M'+fx+' '+fy+patch+'L'+tx+' '+ty;
-		var line = this.p.path(ptline);
+		var line = this.p.path('M'+fx+' '+fy+patch+'L'+tx+' '+ty);
 		line.lines=this.lines;	
         line.attr('stroke-width',4);
 		line.attr('stroke-linejoin','round');
@@ -230,7 +233,7 @@ function createLibopt(canv,x,y){
         line.mouseout(function(){if(this.attr('stroke')=='green')return;this.attr('stroke', 'black')});
 		
         line.dblclick(function(){if(confirm('Delete line?')){
-			delete this.lines[ln];
+			delete line;
 			this.remove();
 		}});
 		line.click(function(){

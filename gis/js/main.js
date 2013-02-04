@@ -82,13 +82,13 @@ OGIS = {
                         	store:  OGIS.Invent.store_inv[Nodeid],
 				columns: [{text: '#Line', dataIndex: 'line_id'},{
                                                 text: 'Connected to node',
-//                                                flex: 1,
-						width: '240',
+//                                              flex: 1,
+						                        width: '240',
                                                 dataIndex: 'line',
-						fixed: false,
+						                        fixed: false,
                                         },{
                                                 text: 'Connected to Inv',
-						                                        //      flex: 1,
+						                        //      flex: 1,
                                                 dataIndex: 'inv_id',
                                         	editor: new Ext.form.field.ComboBox({
 							typeAhead: true,
@@ -129,7 +129,7 @@ OGIS = {
                                         	text: 'Name',
                                         	flex: 1,
                                         	dataIndex: 'text',
-					                                	},{
+				                       	},{
                                         	text: 'Type',
                                         	dataIndex: 'type'
                                 	}],
@@ -143,7 +143,7 @@ OGIS = {
     				collapsible: false,
     				region:'center',
     				margins: '5 0 0 0',
-				html: '<div id=dvnd'+Nodeid+' style="height:100%;overflow:scroll;">Please select item</div>',
+				    html: '<div id=dvnd'+Nodeid+' style="height:100%;overflow:scroll;">Please select item</div>',
 			}],
 			closable: true,
 			itemId: "Nd"+Nodeid,
@@ -154,7 +154,7 @@ OGIS = {
 			 Ext.Ajax.request({
                                 url: '?r=invent/editline',
                                 success: function(response, opts){
-					ShowTip('inventar edit',"Done");
+				            	        ShowTip('inventar edit',"Done");
                                 },
                                  failure: function(response, opts){
                                         ShowTip("inventar","FAIL! Code"+response.status);
@@ -211,9 +211,25 @@ OGIS = {
 		onItem: function(rec, node){
 			console.log(rec,node);
 			lib = createLibopt('dvnd'+node,640,1980);
-			lib.addCable({text: 'Sec',modules: '1',fibers: '9', id: "else"});
-			lib.addCable({text: 'thrd',modules: '6',fibers: '12', id: "ele"})
-		},
+			//lib.addCable({text: 'Sec',modules: '1',fibers: '9', id: "else"});
+            var data = {"node": node, "item": rec.data.id };
+		    Ext.Ajax.request({
+                    url: '?r=invent/getitem',
+                    success: function(response, opts){
+                                    var obj = Ext.decode(response.responseText);
+                                    for(var i in obj ){
+                                        lib.addCable(obj[i]);
+
+                                    };
+				                },
+				    failure: function(response, opts){
+                                    ShowTip("GetItem","FAIL! Code"+response.status);
+                                },
+                    params: JSON.stringify(data )
+			    })
+
+                
+        },
 		onSave: function(){
 		       	var data = {};
         		var tmp = {};
@@ -224,18 +240,18 @@ OGIS = {
                 		};
         		};
 		        Ext.Ajax.request({
-                                url: '?r=invent/add',
-                                success: function(response, opts){
-					OGIS.Invent.addwindow.close();	
-					var nav = Ext.getCmp('navimenu'+data.node_id);
-					OGIS.Invent.storei[data.node_id].reload();
-					nav.reconfigure(OGIS.Invent.storei[data.node_id]);
-				},
-				 failure: function(response, opts){
+                    url: '?r=invent/add',
+                    success: function(response, opts){
+					                OGIS.Invent.addwindow.close();	
+					                var nav = Ext.getCmp('navimenu'+data.node_id);
+					                OGIS.Invent.storei[data.node_id].reload();
+					                nav.reconfigure(OGIS.Invent.storei[data.node_id]);
+				                },
+				    failure: function(response, opts){
                                         ShowTip("Add inventar","FAIL! Code"+response.status);
                                 },
-                                params: JSON.stringify(data )
-			})
+                    params: JSON.stringify(data )
+			    })
 							
 		},
 		Delete: function(Nodeid){
@@ -247,7 +263,7 @@ OGIS = {
 					url: '?r=invent/del',
 					success: function(r,opt){
 					      	OGIS.Invent.storei[Nodeid].reload();
-                                        	nav.reconfigure(OGIS.Invent.storei[Nodeid]);
+                            nav.reconfigure(OGIS.Invent.storei[Nodeid]);
 					},
 					failure: function(r, opt){
 						ShowTip("Add inventar","FAIL! Code"+r.status);
