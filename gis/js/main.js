@@ -143,7 +143,7 @@ OGIS = {
     				collapsible: false,
     				region:'center',
     				margins: '5 0 0 0',
-				    html: '<div id=dvnd'+Nodeid+' style="height:100%;overflow:scroll;">Please select item</div>',
+				    html: '<div id=bt'+Nodeid+'></div><div id=dvnd'+Nodeid+' style="height:100%;overflow:scroll;">Please select item</div>',
 			}],
 			closable: true,
 			itemId: "Nd"+Nodeid,
@@ -210,7 +210,7 @@ OGIS = {
 		},
 		onItem: function(rec, node){
 			console.log(rec,node);
-			lib = createLibopt('dvnd'+node,640,1980);
+			rec.data.lib = new createLibopt('dvnd'+node,640,1980);
 			//lib.addCable({text: 'Sec',modules: '1',fibers: '9', id: "else"});
             var data = {"node": node, "item": rec.data.id };
 		    Ext.Ajax.request({
@@ -218,7 +218,7 @@ OGIS = {
                     success: function(response, opts){
                                     var obj = Ext.decode(response.responseText);
                                     for(var i in obj ){
-                                        lib.addCable(obj[i]);
+                                        rec.data.lib.addCable(obj[i]);
 
                                     };
 				                },
