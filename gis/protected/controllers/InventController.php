@@ -46,17 +46,19 @@ class InventController extends Controller
 		
 		foreach($line_frm as $line){
 			$node2 = Point::model()->find('pt_id=:id', array(':id'=>$line->to_pt_id));
-
+            $type = TypeLines::model()->find('id=:ID',array(':ID'=>$line->type_line_id));
 			$ret[] = array("line"=>$node2->city.", ".$node2->street.", ".$node2->house."/".$node2->room,
-					"line_id"=>$line->line_id,"inv_id"=>$line->frm_inv);
+					"line_id"=>$line->line_id,"inv_id"=>$line->frm_inv,"length"=>$line->lenght,
+                    "type"=>$type->name);
 		};
 			
-                foreach($line_to as $line){
-			$node2 = Point::model()->find('pt_id=:id', array(':id'=>$line->frm_pt_id));
-
-                        $ret[] = array("line"=>$node2->city.", ".$node2->street.", ".$node2->house."/".$node2->room,
-					"line_id"=>$line->line_id,"line_id"=>$line->line_id,"inv_id"=>$line->to_inv);
-                };
+         foreach($line_to as $line){
+		        $node2 = Point::model()->find('pt_id=:id', array(':id'=>$line->frm_pt_id));
+                $type = TypeLines::model()->find('id=:ID',array(':ID'=>$line->type_line_id));
+                $ret[] = array("line"=>$node2->city.", ".$node2->street.", ".$node2->house."/".$node2->room,
+				    "line_id"=>$line->line_id,"line_id"=>$line->line_id,"length"=>$line->lenght,"inv_id"=>$line->to_inv,
+                    "type"=>$type->name);
+         };
 	
 		echo CJSON::encode($ret);
 	}	

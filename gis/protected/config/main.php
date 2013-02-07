@@ -57,7 +57,7 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=optogis',
 			'emulatePrepare' => true,
-			'username' => 'opto',
+			'username' => 'root',
 			'password' => 'newpwd',
 			'charset' => 'utf8',
 		),
@@ -89,7 +89,7 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 		'abills'=>array(
-                    'on' => true,
+                    'on' => false,
                     'connectionString' => 'mysql:host=localhost;dbname=abills',                                                                         
                     'username' => 'tolik',
                     'password' => 'some_pass',

@@ -44,12 +44,12 @@ OGIS = {
 		/// Editing  lines items
 		Ext.define('LineItm',{
 			extend: 'Ext.data.Model',
-			fields: ['line','line_id','inv_id']
+			fields: ['line','length','type','line_id','inv_id']
 		});	
 		
 		OGIS.Invent.store_inv[Nodeid] = Ext.create('Ext.data.Store', {
                         model: LineItm,
-                        fields: ['line_id', 'line', 'inv_id'],
+                        fields: ['line_id', 'line', 'type','length','inv_id'],
                         autoLoad: true,
                         sorters: [{
                                 property: 'line_id',
@@ -80,23 +80,26 @@ OGIS = {
 			},
 			items: [{
                         	store:  OGIS.Invent.store_inv[Nodeid],
-				columns: [{text: '#Line', dataIndex: 'line_id'},{
+				columns: [{text: '#Line', dataIndex: 'line_id'},
+                          {text: 'Length', dataIndex: 'length'},
+                          {text: 'Type', dataIndex: 'type'},
+                          {
                                                 text: 'Connected to node',
 //                                              flex: 1,
 						                        width: '240',
                                                 dataIndex: 'line',
 						                        fixed: false,
                                         },{
-                                                text: 'Connected to Inv',
+                                                text: 'Connected to',
 						                        //      flex: 1,
                                                 dataIndex: 'inv_id',
-                                        	editor: new Ext.form.field.ComboBox({
-							typeAhead: true,
-                					triggerAction: 'all',
-                					selectOnTab: true,
-                					store: OGIS.Invent.storei[Nodeid],
-                					lazyRender: true,
-                					listClass: 'x-combo-list-small'
+                                        	    editor: new Ext.form.field.ComboBox({
+							                    typeAhead: true,
+                					            triggerAction: 'all',
+                					            selectOnTab: true,
+                				            	store: OGIS.Invent.storei[Nodeid],
+                					            lazyRender: true,
+                					            listClass: 'x-combo-list-small'
             					})
 					}],
 				xtype: 'gridpanel',
@@ -143,12 +146,18 @@ OGIS = {
     				collapsible: false,
     				region:'center',
     				margins: '5 0 0 0',
-				    html: '<div id=bt'+Nodeid+'></div><div id=dvnd'+Nodeid+' style="height:100%;overflow:scroll;">Please select item</div>',
+				    html: '<div id=dvnd'+Nodeid+' style="height:100%;overflow:scroll;">Please select item</div>',
+                    buttons: [{ text: 'Save', handler: function(){} },
+                              {text: 'Reload', handler: function(){} },
+                              {text: 'Print', handler: function(){alert('Not already')}},
+                    ],
+
 			}],
 			closable: true,
-			itemId: "Nd"+Nodeid,
+            			itemId: "Nd"+Nodeid,
 		});
-		var gr = Ext.getCmp('editgrid'+Nodeid);
+		
+        var gr = Ext.getCmp('editgrid'+Nodeid);
 		gr.addListener('edit',function(e,r){
 			console.log(r);
 			 Ext.Ajax.request({
@@ -167,7 +176,7 @@ OGIS = {
 		Add: function(Nodeid){
 
 			 OGIS.Invent.store=Ext.create('Ext.data.Store', {
-                                fields: ['id', 'text'],
+                                fields: ['id', 'text', 'length', 'type'],
                                 autoLoad: true,
                                 sorters: [{
                                         property: 'text',
