@@ -18,6 +18,13 @@ CREATE TABLE IF NOT EXISTS `invent_type` (
   PRIMARY KEY (`invent_type`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+
+INSERT INTO `invent_type` (`invent_type`, `name`) VALUES
+(1, 'Splice'),
+(2, 'Patch-panel'),
+(3, 'Box');
+
+
 CREATE TABLE IF NOT EXISTS `lines` (
   `line_id` int(11) NOT NULL AUTO_INCREMENT,
   `frm_pt_id` int(11) NOT NULL,
@@ -96,3 +103,12 @@ CREATE TABLE IF NOT EXISTS `usr_coord` (
   UNIQUE KEY `uid` (`uid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+
+CREATE TABLE IF NOT EXISTS `joins` (
+          `invent_id` int(11) NOT NULL,
+          `id_fib_from` varchar(20) COLLATE utf8_bin NOT NULL,
+          `fib_num_from` int(11) NOT NULL,
+          `id_fib_to` varchar(20) COLLATE utf8_bin NOT NULL,
+          `fib_num_to` int(11) NOT NULL,
+           KEY `invent_id` (`invent_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin

@@ -7,6 +7,7 @@ var popup = null;
 var marker_icon = null;
 var markersLine = null; 
 var accordion = null;
+var last_item = [];
 var OGIS = {};
 OGIS = {
 	Invent: 
@@ -79,7 +80,7 @@ OGIS = {
     			bodyStyle: 'padding:15px'
 			},
 			items: [{
-                        	store:  OGIS.Invent.store_inv[Nodeid],
+                store:  OGIS.Invent.store_inv[Nodeid],
 				columns: [{text: '#Line', dataIndex: 'line_id'},
                           {text: 'Length', dataIndex: 'length'},
                           {text: 'Type', dataIndex: 'type'},
@@ -125,7 +126,7 @@ OGIS = {
 					id: 'navimenu'+Nodeid,
                         		store: OGIS.Invent.storei[Nodeid],
                         		listeners: {
-							itemclick: function(t,r,i){ OGIS.Invent.onItem(r,Nodeid)},
+						    	itemclick: function(t,r,i){ OGIS.Invent.onItem(r,Nodeid,t,i)},
 					},
 					features: [groupingFeature],	
                         		columns: [{
@@ -136,10 +137,10 @@ OGIS = {
                                         	text: 'Type',
                                         	dataIndex: 'type'
                                 	}],
-                        	fbar  : [ {text: 'Add item',handler: function(){OGIS.Invent.Add(Nodeid)}},
-					  {text: 'Del item',handler: function(){OGIS.Invent.Delete(Nodeid)}},
-					  {text:'Clear Grouping',handler : function(){groupingFeature.disable();}
-                        	}]
+                        	    fbar  : [   {text: 'Add item',handler: function(){OGIS.Invent.Add(Nodeid)}},
+					                    {text: 'Del item',handler: function(){OGIS.Invent.Delete(Nodeid)}},
+					                    {text:'Clear Grouping',handler : function(){groupingFeature.disable();}
+                        	    }]
                 	     // },
 			},{
     				title: 'Main Content',
@@ -147,9 +148,13 @@ OGIS = {
     				region:'center',
     				margins: '5 0 0 0',
 				    html: '<div id=dvnd'+Nodeid+' style="height:100%;overflow:scroll;">Please select item</div>',
-                    buttons: [{ text: 'Save', handler: function(){} },
+                    buttons: [{ text: 'Save', handler: function(){OGIS.Invent.SaveJoins(last_item[Nodeid])} },
                               {text: 'Reload', handler: function(){} },
-                              {text: 'Print', handler: function(){alert('Not already')}},
+                              {text: 'Print', handler: function(){
+		                                                            alert('item - '+last_item[Nodeid]); 
+
+
+                                                                 }},
                     ],
 
 			}],
@@ -188,7 +193,7 @@ OGIS = {
                                         url:  "?r=invent/gettypes",
                                 },
                         });
-			OGIS.Invent.addwindow = Ext.create('Ext.window.Window', {
+			var win = OGIS.Invent.addwindow = Ext.create('Ext.window.Window', {
     			title: 'Add item',
     			layout: 'fit',
     			items: { 
@@ -201,26 +206,27 @@ OGIS = {
                 			fieldLabel: 'SN',
                 			name: 'SN',
                 			value: '',
-					xtype: 'textfield',
+					        xtype: 'textfield',
         			},{
                 			fieldLabel: 'Desc',
                 			name: 'des',
                 			value: '',
-					xtype: 'textfield', 
+					        xtype: 'textfield', 
         			},{fieldLabel: 'NodeId',name: 'node_id',value: Nodeid,xtype: 'textfield',disabled: true}],
-			},
-			buttons: [{ text: 'Save', handler: OGIS.Invent.onSave},{
+			    },
+			    buttons: [{ text: 'Save', handler: OGIS.Invent.onSave},{
       			  	text: 'Close',
         			handler: function(){
             				OGIS.Invent.addwindow.close(); 
         			}
     			}]
 			}).show();
+            
 		},
-		onItem: function(rec, node){
+		onItem: function(rec, node,i,t){
 			console.log(rec,node);
+            last_item[node] = rec.data;
 			rec.data.lib = new createLibopt('dvnd'+node,640,1980);
-			//lib.addCable({text: 'Sec',modules: '1',fibers: '9', id: "else"});
             var data = {"node": node, "item": rec.data.id };
 		    Ext.Ajax.request({
                     url: '?r=invent/getitem',
@@ -228,16 +234,41 @@ OGIS = {
                                     var obj = Ext.decode(response.responseText);
                                     for(var i in obj ){
                                         rec.data.lib.addCable(obj[i]);
-
                                     };
+                                    Ext.Ajax.request({
+                                        url: '?r=invent/getjoins&item='+rec.data.id,
+                                        success: function(resp){
+                                            var obj2 = Ext.decode(resp.responseText);
+                                            for(var qi in obj2 ){
+                                                rec.data.lib.addJoin(obj2[qi]);
+                                            };
+                                        },
+                                        failure: function(res){
+                                            ShowTip("GetJoins","FAIL! Code "+res.status);            
+                                        }
+                                    })
 				                },
 				    failure: function(response, opts){
                                     ShowTip("GetItem","FAIL! Code"+response.status);
                                 },
                     params: JSON.stringify(data )
-			    })
-
-                
+			    });
+        },
+        SaveJoins: function(lib){
+            console.log(lib);
+            for(var i in lib.lib.lines){
+                lib.lib.lines[i].item = lib.id;
+            };
+            Ext.Ajax.request({
+                url: '?r=invent/savejoins',
+                success: function(){
+                    ShowTip("SaveItem","Saved");
+                },
+                failure: function(response){
+                    ShowTip("SaveItem","FAIL! Code"+response.status);
+                },
+                params: JSON.stringify(lib.lib.lines),
+             });
         },
 		onSave: function(){
 		       	var data = {};
@@ -841,7 +872,7 @@ OGIS.Line.onClickSave = function(novertex){
                                         if(obj.status=="Ok"){
                                                 if(data.id==0){
                                                         Lines[obj.id]=Lines[0];
-							delete Lines[0];
+							                            delete Lines[0];
 							
                                                 };
                                                 ShowMenuTree();

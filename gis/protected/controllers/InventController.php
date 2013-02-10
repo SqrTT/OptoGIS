@@ -17,8 +17,8 @@ class InventController extends Controller
         }
 
 	public function actionEditline(){
-                $post = file_get_contents("php://input");
-                $data = CJSON::decode($post, true);
+        $post = file_get_contents("php://input");
+        $data = CJSON::decode($post, true);
 		$inv = 0;	
 		if(preg_match("/^(\d+).+/", $data['value'], $matches)){
 			$inv= $matches[1];
@@ -39,6 +39,32 @@ class InventController extends Controller
                 };
 
 	}
+    public function actionsavejoins(){
+        $post = file_get_contents("php://input");
+        $data = CJSON::decode($post, true);
+       
+         Joins::model()->deleteAll('invent_id=:ID', array(':ID'=>($data['0']['item'])));
+
+        foreach( $data as $join){
+            $dbjoin = new Joins;
+            $dbjoin->invent_id = $join['item'];
+            $dbjoin->id_fib_from = $join['from'];
+            $dbjoin->id_fib_to = $join['to'];
+            $dbjoin->fib_num_from = $join['from_fib'];
+            $dbjoin->fib_num_to = $join['to_fib'];
+
+            $dbjoin->save();
+        };
+    }
+    public function actiongetjoins($item){
+        $joins = Joins::model()->findAll('invent_id=:ID',array(':ID'=>$item));
+        $ret = array();
+        foreach($joins as $join){
+            $ret[]=array('from'=>$join->id_fib_from, 'to'=>$join->id_fib_to, 'from_fib'=>$join->fib_num_from,'to_fib'=>$join->fib_num_to);
+        }
+
+        echo CJSON::encode($ret);
+    }
 	public function actionGetinvline($id){
 		$ret = array();
 		$line_frm = Line::model()->findAll('frm_pt_id=:ID', array(':ID'=>$id));
@@ -61,7 +87,8 @@ class InventController extends Controller
          };
 	
 		echo CJSON::encode($ret);
-	}	
+	}
+
 	public function actionGetTypes(){
 		$t = array();
 		$tps = InventType::model()->findAll();
@@ -75,18 +102,22 @@ class InventController extends Controller
           $t = array();          
           $post = file_get_contents("php://input");
           $data = CJSON::decode($post, true);
-	      $lines = Line::model()->findAll('frm_inv=:ID or to_inv=:ID', array(':ID'=>$data['item']));
+          $item = Invent::model()->find('id=:ID',array(":ID"=>$data['item']));
+          if($item->type==2){
+            $t[]=array("text"=>"pnl".$data['item'], "modules"=>1, "fibers"=>24, "id"=>'pnl'.$data['item'],'panel'=>true);
+          }
+          $lines = Line::model()->findAll('frm_inv=:ID or to_inv=:ID', array(':ID'=>$data['item']));
 	        foreach($lines as $i){
                 $type = TypeLines::model()->find('id=:ID',array(':ID'=>$i->type_line_id));
 		    	$t[] = array("text"=>$i->line_id, "modules"=>$type->modules, "fibers"=>$type->fibers, "id"=>$i->line_id);
 		    };
-            echo CJSON::encode($t);
+          echo CJSON::encode($t);
 
     }
 
 	public function actionAdd(){
-                $post = file_get_contents("php://input");
-                $data = CJSON::decode($post, true);
+        $post = file_get_contents("php://input");
+        $data = CJSON::decode($post, true);
 	
 		$inv = new Invent;
 		$inv->attributes=$data;
@@ -99,7 +130,7 @@ class InventController extends Controller
 	
 	public function actionDel(){
 		$post = file_get_contents("php://input");
-                $data = CJSON::decode($post, true);
+        $data = CJSON::decode($post, true);
 		
 		$inv = Invent::model()->find('id=:id', array(':id'=>$data['id']));
 
