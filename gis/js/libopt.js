@@ -198,13 +198,18 @@ function createLibopt(canv,x,y){
 		this.from = -1;
 		this.to = -1;
 		for(t in this.cables){
-			if(this.cables[t].id==join.from)this.from=t;
+			if(this.cables[t].id==join.from){
+                this.from=t;
+            }
 		}
 		for(t in this.cables){
-			if(this.cables[t].id==join.to)this.to=t;
+			if(this.cables[t].id==join.to){
+                this.to=t;
+            };
 		};	
 		if(this.from==-1 || this.to ==-1){
 			console.log('Cant find cable');
+            return;
 		};
 		
 		fy=this.cables[this.from].coord[join.from_fib].y;
@@ -222,18 +227,27 @@ function createLibopt(canv,x,y){
                                 patch+='L'+this.freer+' '+ty;
                                 this.freer-=8;
 			};
-		var line = this.p.path('M'+fx+' '+fy+patch+'L'+tx+' '+ty);
-		line.lines=this.lines;	
-        line.attr('stroke-width',4);
-		line.attr('stroke-linejoin','round');
-        line.mouseover(function(){if(this.attr('stroke')=='green')return;this.attr('stroke', 'blue')});
-        line.mouseout(function(){if(this.attr('stroke')=='green')return;this.attr('stroke', 'black')});
+		this.line = this.p.path('M'+fx+' '+fy+patch+'L'+tx+' '+ty);
 		
-        line.dblclick(function(){if(confirm('Delete line?')){
-			delete line;
-			this.remove();
+        this.line.lines=this.lines;	
+        this.line.join=join;
+        this.line.attr('stroke-width',4);
+		this.line.attr('stroke-linejoin','round');
+        this.line.mouseover(function(){if(this.attr('stroke')=='green')return;this.attr('stroke', 'blue')});
+        this.line.mouseout(function(){if(this.attr('stroke')=='green')return;this.attr('stroke', 'black')});
+		
+        this.line.dblclick(function(){if(confirm('Delete line?')){
+			console.log('---',this);
+            for(var i in this.lines){
+                if(this.lines[i].to==this.join.to && this.lines[i].from==this.join.from &&
+                   this.lines[i].to_fib==this.join.to_fib && this.lines[i].from_fib==this.join.from_fib){
+                  //  delete this.lines[i];
+                    this.lines.splice(i,1);
+                };
+            };
+            this.remove();
 		}});
-		line.click(function(){
+		this.line.click(function(){
             if(this.attr('stroke')=='green'){
 				this.attr('stroke', 'black');
 			}else{

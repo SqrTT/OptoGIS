@@ -39,12 +39,10 @@ class InventController extends Controller
                 };
 
 	}
-    public function actionsavejoins(){
+    public function actionsavejoins($item){
         $post = file_get_contents("php://input");
         $data = CJSON::decode($post, true);
-       
-         Joins::model()->deleteAll('invent_id=:ID', array(':ID'=>($data['0']['item'])));
-
+            Joins::model()->deleteAll('invent_id=:ID', array(':ID'=>$item));
         foreach( $data as $join){
             $dbjoin = new Joins;
             $dbjoin->invent_id = $join['item'];

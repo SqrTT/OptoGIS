@@ -148,7 +148,7 @@ OGIS = {
     				region:'center',
     				margins: '5 0 0 0',
 				    html: '<div id=dvnd'+Nodeid+' style="height:100%;overflow:scroll;">Please select item</div>',
-                    buttons: [{ text: 'Save', handler: function(){OGIS.Invent.SaveJoins(last_item[Nodeid])} },
+                    buttons: [{ text: 'Save', handler: function(){OGIS.Invent.SaveJoins(last_item[Nodeid],last_item[Nodeid].id)} },
                               {text: 'Reload', handler: function(){} },
                               {text: 'Print', handler: function(){
 		                                                            alert('item - '+last_item[Nodeid]); 
@@ -254,13 +254,13 @@ OGIS = {
                     params: JSON.stringify(data )
 			    });
         },
-        SaveJoins: function(lib){
+        SaveJoins: function(lib,item){
             console.log(lib);
             for(var i in lib.lib.lines){
                 lib.lib.lines[i].item = lib.id;
             };
             Ext.Ajax.request({
-                url: '?r=invent/savejoins',
+                url: '?r=invent/savejoins&item='+item,
                 success: function(){
                     ShowTip("SaveItem","Saved");
                 },
