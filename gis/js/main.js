@@ -149,7 +149,6 @@ OGIS = {
     				margins: '5 0 0 0',
 				    html: '<div id=dvnd'+Nodeid+' style="height:100%;overflow:scroll;">Please select item</div>',
                     buttons: [{ text: 'Save', handler: function(){OGIS.Invent.SaveJoins(last_item[Nodeid],last_item[Nodeid].id)} },
-                              {text: 'Reload', handler: function(){} },
                               {text: 'Print', handler: function(){
 		                                                            alert('item - '+last_item[Nodeid]); 
 
@@ -211,7 +210,13 @@ OGIS = {
                 			fieldLabel: 'Desc',
                 			name: 'des',
                 			value: '',
-					        xtype: 'textfield', 
+					        xtype: 'textfield',
+                    },{
+                            fieldLabel: 'Options',
+                            name: 'options',
+                            value: '',
+                            xtype: 'textfield',
+
         			},{fieldLabel: 'NodeId',name: 'node_id',value: Nodeid,xtype: 'textfield',disabled: true}],
 			    },
 			    buttons: [{ text: 'Save', handler: OGIS.Invent.onSave},{
@@ -226,7 +231,7 @@ OGIS = {
 		onItem: function(rec, node,i,t){
 			console.log(rec,node);
             last_item[node] = rec.data;
-			rec.data.lib = new createLibopt('dvnd'+node,640,1980);
+			rec.data.lib = new createLibopt('dvnd'+node,740,1980);
             var data = {"node": node, "item": rec.data.id };
 		    Ext.Ajax.request({
                     url: '?r=invent/getitem',

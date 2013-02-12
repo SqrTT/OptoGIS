@@ -5,7 +5,7 @@ function createLibopt(canv,x,y){
 	var lib = [];
 	lib.fiber_height = 15;
 	lib.freel=120;
-	lib.freer=480;
+	lib.freer=580;
 	lib.coord = [];
 	lib.lines = [];
 	lib.getFibersHeight = function(count_fib){
@@ -175,7 +175,7 @@ function createLibopt(canv,x,y){
 		var lheight=10;	
 		for(c in this.cables){
 			if(rheight<lheight){
-				this.drawLcable(500,rheight+10,this.cables[c]);	
+				this.drawLcable(600,rheight+10,this.cables[c]);	
 				rheight+=this.getCableHeight(this.cables[c].modules,this.cables[c].fibers);
 			}else{
 				this.drawRcable(00,lheight+10,this.cables[c]);	
@@ -183,7 +183,7 @@ function createLibopt(canv,x,y){
 			}
 		}
 	        lib.freel=120;
-	        lib.freer=480;
+	        lib.freer=580;
 
 
 		for(l in this.lines){
@@ -231,7 +231,7 @@ function createLibopt(canv,x,y){
 		
         this.line.lines=this.lines;	
         this.line.join=join;
-        this.line.attr('stroke-width',4);
+        this.line.attr('stroke-width',3);
 		this.line.attr('stroke-linejoin','round');
         this.line.mouseover(function(){if(this.attr('stroke')=='green')return;this.attr('stroke', 'blue')});
         this.line.mouseout(function(){if(this.attr('stroke')=='green')return;this.attr('stroke', 'black')});

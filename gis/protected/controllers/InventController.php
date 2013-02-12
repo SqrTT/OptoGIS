@@ -101,8 +101,12 @@ class InventController extends Controller
           $post = file_get_contents("php://input");
           $data = CJSON::decode($post, true);
           $item = Invent::model()->find('id=:ID',array(":ID"=>$data['item']));
-          if($item->type==2){
-            $t[]=array("text"=>"pnl".$data['item'], "modules"=>1, "fibers"=>24, "id"=>'pnl'.$data['item'],'panel'=>true);
+          if($item->type==2){// catch patch panel
+                $ports = 24;
+                if(preg_match('/ports=(\d+)/', $item->options, $matches)){
+                    $ports = $matches[1];
+                };
+                $t[]=array("text"=>"pnl".$data['item'].'-'.$item->des, "modules"=>1, "fibers"=>$ports, "id"=>'pnl'.$data['item'],'panel'=>true);
           }
           $lines = Line::model()->findAll('frm_inv=:ID or to_inv=:ID', array(':ID'=>$data['item']));
 	        foreach($lines as $i){

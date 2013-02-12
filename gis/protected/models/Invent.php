@@ -43,6 +43,7 @@ class Invent extends CActiveRecord
 			array('node_id, type, parent', 'numerical', 'integerOnly'=>true),
 			array('SN', 'length', 'max'=>50),
 			array('des', 'length', 'max'=>150),
+            array('options','length','max'=>40),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, node_id, type, parent, SN, des', 'safe', 'on'=>'search'),
@@ -72,6 +73,7 @@ class Invent extends CActiveRecord
 			'parent' => 'Parent',
 			'SN' => 'Sn',
 			'des' => 'Des',
+            'options' => 'Options',
 		);
 	}
 
