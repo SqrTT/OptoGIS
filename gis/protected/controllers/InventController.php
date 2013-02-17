@@ -6,7 +6,7 @@ class InventController extends Controller
 	{
 		$this->render('index');
 	}
-        public function actionGetinvent($id){
+    public function actionGetinvent($id){
                 $inv = array();
                 $data = Invent::model()->findAll('node_id=:id', array(':id'=>$id));
                 foreach($data as $in){
@@ -14,7 +14,26 @@ class InventController extends Controller
                         if($type!=null){$inv[] = array('text'=>sprintf("%03d - ",$in->id).$in->des, 'id'=>$in->id, 'type'=>$type->name);};
                 };
                 echo CJSON::encode($inv);
-        }
+    }
+
+    public function GetChilds($nodeid,$id){
+            $childs = Invent::model()->findAll("node_id=:ID and parent=:PAR", array(":ID"=>$nodeid, ":PAR"=>$id));
+            if($childs==null){return null;};
+            $ret = array();
+            foreach($childs as $in){
+                 $type = InventType::model()->find('invent_type=:id',array(':id'=>$in->type));
+                 if($type!=null){
+                     $tmp = $this->GetChilds($nodeid,$in->id);
+                        $ret[] = array('text'=>sprintf("%03d - ",$in->id).$in->des." (".$type->name.")" , 'id'=>$in->id,
+                         'children'=>$tmp, 'leaf'=>$tmp==null?true:false );
+                  };
+            };
+            return $ret; 
+    }
+    
+    public function actionGetInventTree($nodeid){
+        echo CJSON::encode($this->GetChilds($nodeid,0));
+    }
 
 	public function actionEditline(){
         $post = file_get_contents("php://input");
@@ -71,7 +90,7 @@ class InventController extends Controller
 		foreach($line_frm as $line){
 			$node2 = Point::model()->find('pt_id=:id', array(':id'=>$line->to_pt_id));
             $type = TypeLines::model()->find('id=:ID',array(':ID'=>$line->type_line_id));
-			$ret[] = array("line"=>$node2->city.", ".$node2->street.", ".$node2->house."/".$node2->room,
+			$ret[] = array("line"=>$node2->city.", ".$node2->street.", ".$node2->house.($node2->room!=""?"/".$node2->room:""),
 					"line_id"=>$line->line_id,"inv_id"=>$line->frm_inv,"length"=>$line->lenght,
                     "type"=>$type->name);
 		};
@@ -79,7 +98,7 @@ class InventController extends Controller
          foreach($line_to as $line){
 		        $node2 = Point::model()->find('pt_id=:id', array(':id'=>$line->frm_pt_id));
                 $type = TypeLines::model()->find('id=:ID',array(':ID'=>$line->type_line_id));
-                $ret[] = array("line"=>$node2->city.", ".$node2->street.", ".$node2->house."/".$node2->room,
+                $ret[] = array("line"=>$node2->city.", ".$node2->street.", ".$node2->house.($node2->room!=""?"/".$node2->room:""),
 				    "line_id"=>$line->line_id,"line_id"=>$line->line_id,"length"=>$line->lenght,"inv_id"=>$line->to_inv,
                     "type"=>$type->name);
          };

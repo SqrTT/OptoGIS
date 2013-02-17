@@ -22,7 +22,6 @@ OGIS = {
 		
 		OGIS.Invent.storei[Nodeid] = Ext.create('Ext.data.Store', {
                 	model: invent,
-			groupField: 'type',
 		        fields: ['id', 'text', 'type'],
                         autoLoad: true,
                         sorters: [{
@@ -70,8 +69,24 @@ OGIS = {
 		
 		
 		////////////////////////////////////////////	
-		
-		var tab = OGIS.tabs.add({
+	        var menustore = Ext.create('Ext.data.TreeStore', {
+                   root: {
+                   expanded: true,
+                                                                                                                               
+                   },
+                   autoLoad: true,
+                   sorters: [{
+                            property: 'text',
+                            direction: 'DESC'
+                   }],
+
+                   proxy: {
+                         type: "ajax",
+                         url:  "?r=invent/getinventtree&nodeid="+Nodeid,
+                   },
+
+            });
+            var tab = OGIS.tabs.add({
 			title: Nodeid+" Node",
 			layout:'border',
 			defaults: {
@@ -112,36 +127,35 @@ OGIS = {
     				cmargins: '5 0 0 0',
 				plugins: [cellEditing],
 			},{
-    				title: 'Navigation',
+    				title: 'Items',
     				region:'west',
-    				margins: '5 0 0 0',
-    				cmargins: '5 5 0 0',
+    				//margins: '5 0 0 0',
+    				//cmargins: '5 5 0 0',
     				width: 340,
     				minSize: 100,
     				maxSize: 450,
-				xtype: 'gridpanel',
-		                        collapsible: true,
-                		        iconCls: 'icon-grid',
-                       			frame: true,
+				    xtype: 'treepanel',
+                    rootVisible: false,
+		           //             collapsible: true,
+                	//	        iconCls: 'icon-grid',
+                   //    			frame: true,
 					id: 'navimenu'+Nodeid,
-                        		store: OGIS.Invent.storei[Nodeid],
-                        		listeners: {
+                    store: menustore,//OGIS.Invent.storei[Nodeid],
+                    listeners: {
 						    	itemclick: function(t,r,i){ OGIS.Invent.onItem(r,Nodeid,t,i)},
 					},
-					features: [groupingFeature],	
-                        		columns: [{
-                                        	text: 'Name',
-                                        	flex: 1,
-                                        	dataIndex: 'text',
-				                       	},{
-                                        	text: 'Type',
-                                        	dataIndex: 'type'
-                                	}],
-                        	    fbar  : [   {text: 'Add item',handler: function(){OGIS.Invent.Add(Nodeid)}},
-					                    {text: 'Del item',handler: function(){OGIS.Invent.Delete(Nodeid)}},
-					                    {text:'Clear Grouping',handler : function(){groupingFeature.disable();}
-                        	    }]
-                	     // },
+                    //columns: [{
+                    //          text: 'Name',
+                     //         flex: 1,
+                     //         dataIndex: 'text',
+				      //        },{
+                      //        text: 'Type',
+                      //        dataIndex: 'type'
+                    //}],
+                    fbar  : [   {text: 'Add',handler: function(){OGIS.Invent.Add(Nodeid)}},
+					            {text: 'Delete',handler: function(){OGIS.Invent.Delete(Nodeid)}},
+                                {text: 'Edit', handler: function(){}},
+                    ]
 			},{
     				title: 'Main Content',
     				collapsible: false,
@@ -779,7 +793,7 @@ function NodeOnClick(e)
                         dataIndex:  'id',
                         width: 40,
                        },{
-                         text:      'Addres',
+                         text:      'Connected to Node',
                          //flex:      1,
                          sortable:  true,
                          dataIndex: 'addr',
