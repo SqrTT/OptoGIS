@@ -160,9 +160,11 @@ OGIS = {
 			closable: true,
             			itemId: "Nd"+Nodeid,
 		});
-		
+	
+        
         var gr = Ext.getCmp('editgrid'+Nodeid);
-		gr.addListener('edit',function(e,r){
+		
+        gr.addListener('edit',function(e,r){
 			console.log(r);
 			 Ext.Ajax.request({
                                 url: '?r=invent/editline',
@@ -231,6 +233,9 @@ OGIS = {
 		onItem: function(rec, node,i,t){
 			console.log(rec,node);
             last_item[node] = rec.data;
+            var q = document.getElementById('dvnd'+node);
+            q.innerHTML='';
+            console.log(q);
 			rec.data.lib = new createLibopt('dvnd'+node,740,1980);
             var data = {"node": node, "item": rec.data.id };
 		    Ext.Ajax.request({
@@ -648,12 +653,18 @@ Ext.define('Ext.ux.Notification', {
 
 
 function ShowPopup(HTMLcontent,point){
-          popup = new OpenLayers.Popup.AnchoredBubble("SDVegetationInfo",
-           point,
-           new OpenLayers.Size(100, 100),
-           HTMLcontent,
-           null,
-           false);
+         // popup = new OpenLayers.Popup.AnchoredBubble("SDVegetationInfo",
+         //  point,
+         //  new OpenLayers.Size(100, 100),
+         //  HTMLcontent,
+         //  null,
+         //  false);
+        popup = new OpenLayers.Popup("chicken",
+                    point,
+                    new OpenLayers.Size(200,200),
+                    HTMLcontent,
+                    false);
+       popup.minSize = new OpenLayers.Size(350,130); 
        popup.opacity = 0.9;
        popup.autoSize = true;
        popup.setBackgroundColor("#CBDDF3");
@@ -693,6 +704,17 @@ function LineOnClick(e){
 	ShowPopup(text,map.getLonLatFromPixel((map.getControlsByClass("OpenLayers.Control.MousePosition")[0]).lastXy));
 };
 
+
+Ext.define('NodeTable', {
+       extend: 'Ext.data.Model',
+       fields: [
+             {name: 'id'},
+             {name: 'addr'},
+             {name: 'length'},
+             {name: 'type'},
+        ],
+});
+
 function NodeOnClick(e)
 {    
 	var nt= null;
@@ -705,20 +727,80 @@ function NodeOnClick(e)
 		console.log("Cant find object");
 		return;
 	};
-	point = new OpenLayers.LonLat(e.feature.geometry.getCentroid().x, e.feature.geometry.getCentroid().y);
-	var t="<a href=\"#\" onclick='HidePopup();'>(X)</a>  <a href=# onclick='OGIS.Node.Edit("+nt+")'>[Edit]</a>"+
-			"  <a href=# onclick='OGIS.Invent.Show("+nt+")'>[Invent]</a>  #"
-			+nt+" "+Nodes[nt].properties.street + ", "+Nodes[nt].properties.house +" <hr>";
 	var sum=0;
+    var data = [];
 	for(var c in Nodes[nt].properties.connected){
 		sum++;
-		t +="<a href=# onclick='SwitchMarkerLine("+Nodes[nt].properties.connected[c].line+");'>"+
-		 Nodes[nt].properties.connected[c].node_name+" - "+Nodes[nt].properties.connected[c].lenght+"m "+
-			styles[Nodes[nt].properties.connected[c].TypeLine].text+"</a><br/>";
+        data.push([Nodes[nt].properties.connected[c].line,
+                  Nodes[nt].properties.connected[c].node_name,
+                  Nodes[nt].properties.connected[c].lenght,
+                  styles[Nodes[nt].properties.connected[c].TypeLine].text,
+        ]);
 	};	
-	t+="<a href=# onclick='ShowAllLines("+nt+");'>Show all("+sum+")</a><hr/>"+Nodes[nt].properties.comment;
-	ShowPopup(t,point);
+	data.push(['0','Show all('+sum+')', '','']);
+    // create the data store
+    var NodeStore = Ext.create('Ext.data.ArrayStore', {
+        model: 'NodeTable',
+        data: data 
+     });
+    console.log(data);
 
+     var m = Ext.create('Ext.Window', {
+          title: 'Node #'+nt+" "+Nodes[nt].properties.street + ", "+Nodes[nt].properties.house  ,
+          //headerPosition: 'bottom',
+          layout: 'fit',
+          items: {
+            xtype: 'gridpanel', 
+            store: NodeStore,
+             stateful: true,
+             collapsible: true,
+             multiSelect: true,
+             stateId: 'stateGrid'+nt,
+             header: false,
+             buttons: [{text: 'Show Items', handler: function(){m.close();OGIS.Invent.Show(nt)}},
+                       {text: 'Edit', handler: function(){m.close();OGIS.Node.Edit(nt)}},
+                       {text: 'Close', handler: function(){m.close()}}],
+             listeners: {
+                        itemclick: function(a,b,c){
+                                if(b.data.id==0){
+                                    ShowAllLines(nt);
+                                };
+                                if(b.data.id>0){
+                                    SwitchMarkerLine(b.data.id);
+                                };
+                                console.log(a);
+                        },
+             },
+             columns: [
+                       {
+                        text:       'Line #',
+                        //flex:       1,
+                        sortable:   true,
+                        dataIndex:  'id',
+                        width: 40,
+                       },{
+                         text:      'Addres',
+                         //flex:      1,
+                         sortable:  true,
+                         dataIndex: 'addr',
+                         width:     200,
+                       },{
+                        text:       'Length',
+                        sortable:   true,
+                        dataIndex:  'length',
+                       // flex:       1,
+                        width: 40
+                       },{
+                        text:       'Type',
+                        sortable:   true,
+                        dataIndex:  'type',
+                        //flex:       1
+                        width: 100
+                       }
+            ],
+    }
+    }).show();
+  // ShowPopup(t,point); 
 };
 
 

@@ -107,6 +107,16 @@ class InventController extends Controller
                     $ports = $matches[1];
                 };
                 $t[]=array("text"=>"pnl".$data['item'].'-'.$item->des, "modules"=>1, "fibers"=>$ports, "id"=>'pnl'.$data['item'],'panel'=>true);
+          }else if($item->type==3){
+                $items = Invent::model()->findall('type=2 and node_id=:ID', array(":ID"=>$data['node']));    
+                foreach($items as $tmp){
+                    $ports = 24;
+                    if(preg_match('/ports=(\d+)/', $tmp->options, $matches)){
+                         $ports = $matches[1];
+                    };
+                    $t[]=array("text"=>"pnl".$tmp->id.'-'.$tmp->des, "modules"=>1, "fibers"=>$ports, "id"=>'pnl'.$tmp->id,'panel'=>true);
+
+                }
           }
           $lines = Line::model()->findAll('frm_inv=:ID or to_inv=:ID', array(':ID'=>$data['item']));
 	        foreach($lines as $i){
