@@ -131,7 +131,7 @@ OGIS = {
     				region:'west',
     				//margins: '5 0 0 0',
     				//cmargins: '5 5 0 0',
-    				width: 340,
+    				width: 240,
     				minSize: 100,
     				maxSize: 450,
 				    xtype: 'treepanel',
