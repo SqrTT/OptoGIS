@@ -6,6 +6,15 @@ class InventController extends Controller
 	{
 		$this->render('index');
 	}
+
+    public function actionGetParents($type,$node){
+        $ret = array();
+        $ret[] = array('id'=>0,'text'=>'root');
+        // todo: 
+
+        echo CJSON::encode($ret);
+
+    }
     public function actionGetinvent($id){
                 $inv = array();
                 $data = Invent::model()->findAll('node_id=:id', array(':id'=>$id));

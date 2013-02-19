@@ -14,6 +14,7 @@ OGIS = {
 		{
 		storei: [],
 		store_inv: [],
+        menustore: [],
 		Show: function(Nodeid){
 		Ext.define('invent', {
         		extend: 'Ext.data.Model',
@@ -23,7 +24,7 @@ OGIS = {
 		OGIS.Invent.storei[Nodeid] = Ext.create('Ext.data.Store', {
                 	model: invent,
 		        fields: ['id', 'text', 'type'],
-                        autoLoad: true,
+                        autoLoad: true  ,
                         sorters: [{
                 	        property: 'type',
                                 direction: 'DESC'
@@ -69,7 +70,7 @@ OGIS = {
 		
 		
 		////////////////////////////////////////////	
-	        var menustore = Ext.create('Ext.data.TreeStore', {
+	        OGIS.Invent.menustore[Nodeid] = Ext.create('Ext.data.TreeStore', {
                    root: {
                    expanded: true,
                                                                                                                                
@@ -129,29 +130,16 @@ OGIS = {
 			},{
     				title: 'Items',
     				region:'west',
-    				//margins: '5 0 0 0',
-    				//cmargins: '5 5 0 0',
-    				width: 240,
+    				width: 260,
     				minSize: 100,
     				maxSize: 450,
 				    xtype: 'treepanel',
                     rootVisible: false,
-		           //             collapsible: true,
-                	//	        iconCls: 'icon-grid',
-                   //    			frame: true,
 					id: 'navimenu'+Nodeid,
-                    store: menustore,//OGIS.Invent.storei[Nodeid],
+                    store: OGIS.Invent.menustore[Nodeid],
                     listeners: {
 						    	itemclick: function(t,r,i){ OGIS.Invent.onItem(r,Nodeid,t,i)},
 					},
-                    //columns: [{
-                    //          text: 'Name',
-                     //         flex: 1,
-                     //         dataIndex: 'text',
-				      //        },{
-                      //        text: 'Type',
-                      //        dataIndex: 'type'
-                    //}],
                     fbar  : [   {text: 'Add',handler: function(){OGIS.Invent.Add(Nodeid)}},
 					            {text: 'Delete',handler: function(){OGIS.Invent.Delete(Nodeid)}},
                                 {text: 'Edit', handler: function(){}},
@@ -165,8 +153,6 @@ OGIS = {
                     buttons: [{ text: 'Save', handler: function(){OGIS.Invent.SaveJoins(last_item[Nodeid],last_item[Nodeid].id)} },
                               {text: 'Print', handler: function(){
 		                                                            alert('item - '+last_item[Nodeid]); 
-
-
                                                                  }},
                     ],
 
@@ -208,6 +194,20 @@ OGIS = {
                                         url:  "?r=invent/gettypes",
                                 },
                         });
+            var parent_field = Ext.create('Ext.data.Store', {
+                fields: ['id', 'text'],
+                autoLoad: false,
+                sorters: [{
+                    property: 'text',
+                    direction: 'DESC'
+                }],
+
+                proxy: {
+                    type: "ajax",
+                    url:  "?r=invent/getparents&type=0",
+                },
+            });
+
 			var win = OGIS.Invent.addwindow = Ext.create('Ext.window.Window', {
     			title: 'Add item',
     			layout: 'fit',
@@ -215,7 +215,18 @@ OGIS = {
         			xtype: 'form',
         			border: false,
     				items: [{ xtype: 'combobox', name:'type',fieldLabel: 'Type',store: OGIS.Invent.store,
-                        		displayField: 'text', valueField:'id',queryMode: 'local',editable: false,  },
+                                displayField: 'text', valueField:'id',queryMode: 'local',editable: false,  
+                                listeners: {
+                                    change: function(me, newValue, oldValue, eOpts){
+                                        parent_field.proxy.url = "?r=invent/getparents&type="+newValue+'&node='+Nodeid;
+                                        parent_field.reload();
+                                    },
+
+                                },
+                            },
+                            { xtype: 'combobox', name:'parent',fieldLabel: 'Parent',store: parent_field,
+                                displayField: 'text', valueField:'id',queryMode: 'local',editable: false,  },
+
 
         			{
                 			fieldLabel: 'SN',
@@ -235,7 +246,34 @@ OGIS = {
 
         			},{fieldLabel: 'NodeId',name: 'node_id',value: Nodeid,xtype: 'textfield',disabled: true}],
 			    },
-			    buttons: [{ text: 'Save', handler: OGIS.Invent.onSave},{
+			    buttons: [{ text: 'Save', handler: function(){
+                            var data = {};
+                            var tmp = {};
+                            var items = OGIS.Invent.addwindow.items.items[0].items.items
+                            for(var it in items){
+                                if(typeof items[it].name!= 'undefined'){
+                                    data[items[it].name]=items[it].value;
+                                };
+                            };
+                            Ext.Ajax.request({
+                                url: '?r=invent/add',
+                                success: function(response, opts){
+                                    OGIS.Invent.addwindow.close();	
+                                    var nav = Ext.getCmp('navimenu'+Nodeid);
+                                    console.log(nav);
+                                    OGIS.Invent.menustore[Nodeid].reload();
+                                    nav.getLoader().load(root);
+                                    nav.expandAll( );
+				                },
+				                failure: function(response, opts){
+                                        ShowTip("Add inventar","FAIL! Code"+response.status);
+                                },
+                            params: JSON.stringify(data )
+			                })
+							
+		                }        
+                         
+                         },{
       			  	text: 'Close',
         			handler: function(){
             				OGIS.Invent.addwindow.close(); 
@@ -294,30 +332,7 @@ OGIS = {
                 params: JSON.stringify(lib.lib.lines),
              });
         },
-		onSave: function(){
-		       	var data = {};
-        		var tmp = {};
-        		var items = OGIS.Invent.addwindow.items.items[0].items.items
-        		for(var it in items){
-                		if(typeof items[it].name!= 'undefined'){
-                        		data[items[it].name]=items[it].value;
-                		};
-        		};
-		        Ext.Ajax.request({
-                    url: '?r=invent/add',
-                    success: function(response, opts){
-					                OGIS.Invent.addwindow.close();	
-					                var nav = Ext.getCmp('navimenu'+data.node_id);
-					                OGIS.Invent.storei[data.node_id].reload();
-					                nav.reconfigure(OGIS.Invent.storei[data.node_id]);
-				                },
-				    failure: function(response, opts){
-                                        ShowTip("Add inventar","FAIL! Code"+response.status);
-                                },
-                    params: JSON.stringify(data )
-			    })
 							
-		},
 		Delete: function(Nodeid){
 			var nav = Ext.getCmp('navimenu'+Nodeid);
 			var sel = nav.getSelectionModel().getSelection();
@@ -326,8 +341,9 @@ OGIS = {
 				Ext.Ajax.request({
 					url: '?r=invent/del',
 					success: function(r,opt){
-					      	OGIS.Invent.storei[Nodeid].reload();
-                            nav.reconfigure(OGIS.Invent.storei[Nodeid]);
+					      	OGIS.Invent.menustore[Nodeid].reload();
+                            nav.getLoader().load(root);
+                            nav.expandAll( );
 					},
 					failure: function(r, opt){
 						ShowTip("Add inventar","FAIL! Code"+r.status);
