@@ -37,6 +37,7 @@ class InventType extends CActiveRecord
 		return array(
 			array('name', 'required'),
 			array('name', 'length', 'max'=>60),
+            array('connect','length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('invent_type, name', 'safe', 'on'=>'search'),
@@ -62,6 +63,7 @@ class InventType extends CActiveRecord
 		return array(
 			'invent_type' => 'Invent Type',
 			'name' => 'Name',
+            'connect' => "Connect"
 		);
 	}
 

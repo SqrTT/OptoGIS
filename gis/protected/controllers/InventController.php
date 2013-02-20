@@ -9,12 +9,26 @@ class InventController extends Controller
 
     public function actionGetParents($type,$node){
         $ret = array();
-        $ret[] = array('id'=>0,'text'=>'root');
-        // todo: 
+        $typedb = InventType::model()->find("invent_type=:ID", array(':ID'=>$type));
+
+        $types = explode(',',$typedb->connect);
+        $str = "type=-1 ";
+        foreach($types as $t){
+            if($t==0){
+                $ret[] = array('id'=>0,"text"=>"root");
+                continue;
+            };
+            $str.=" or type=$t";
+        };
+        $invent = Invent::model()->findAll("node_id=$node and ($str)");
+        foreach($invent as $i){
+            $ret[] = array('id'=>$i->id,'text'=>$i->id."-".$i->des);
+        };
 
         echo CJSON::encode($ret);
 
     }
+
     public function actionGetinvent($id){
                 $inv = array();
                 $data = Invent::model()->findAll('node_id=:id', array(':id'=>$id));
@@ -91,6 +105,7 @@ class InventController extends Controller
 
         echo CJSON::encode($ret);
     }
+        
 	public function actionGetinvline($id){
 		$ret = array();
 		$line_frm = Line::model()->findAll('frm_pt_id=:ID', array(':ID'=>$id));
@@ -136,7 +151,7 @@ class InventController extends Controller
                 };
                 $t[]=array("text"=>"pnl".$data['item'].'-'.$item->des, "modules"=>1, "fibers"=>$ports, "id"=>'pnl'.$data['item'],'panel'=>true);
           }else if($item->type==3){
-                $items = Invent::model()->findall('type=2 and node_id=:ID', array(":ID"=>$data['node']));    
+                $items = Invent::model()->findall('type=2 and parent=:ID', array(":ID"=>$data['item']));    
                 foreach($items as $tmp){
                     $ports = 24;
                     if(preg_match('/ports=(\d+)/', $tmp->options, $matches)){

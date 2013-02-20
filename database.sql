@@ -116,3 +116,6 @@ CREATE TABLE IF NOT EXISTS `joins` (
 ALTER TABLE `invent` ADD INDEX ( `node_id` );
 
 ALTER TABLE `invent` ADD `options` VARCHAR( 40 ) NOT NULL; 
+
+ALTER TABLE `invent_type` ADD `connect` VARCHAR( 50 ) NOT NULL DEFAULT '0';
+
