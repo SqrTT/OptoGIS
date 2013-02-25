@@ -1,7 +1,20 @@
-///// libopt lib for  drawing optics connection 
+///// libopt lib for  drawing optics connection
+function LibObjekt(){
+    this.drawL: function(){};
+    this.drawR: function(){};
+    this.GetHeight: function(){};
+
+    return this;
+};
 
 
-function createLibopt(canv,x,y){
+function Switch(ports,modules){// module = {single: true|false, port: 1, text: 'text', id: 'id'}
+    
+
+};
+
+
+function Libopt(canv,x,y){
 	var lib = [];
 	lib.fiber_height = 15;
 	lib.freel=120;
@@ -44,7 +57,7 @@ function createLibopt(canv,x,y){
 	};
 
 	lib.cables = [];
-	lib.addCable = function(cable){
+	lib.addCable = function(cable){// {"text":"pnl44-","modules":1,"fibers":24,"id":"pnl44","panel":true}
 		cable.coord = [];
 		this.cables.push(cable);	
 		this.redraw();
@@ -207,7 +220,7 @@ function createLibopt(canv,x,y){
             };
 		};	
 		if(this.from==-1 || this.to ==-1){
-			console.log('Cant find cable');
+			console.log('Cant find cable', join);
             return;
 		};
 		

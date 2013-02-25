@@ -288,7 +288,7 @@ OGIS = {
             var q = document.getElementById('dvnd'+node);
             q.innerHTML='';
             console.log(q);
-			rec.data.lib = new createLibopt('dvnd'+node,740,1980);
+			rec.data.lib = new Libopt('dvnd'+node,740,1980);
             var data = {"node": node, "item": rec.data.id };
 		    Ext.Ajax.request({
                     url: '?r=invent/getitem',
