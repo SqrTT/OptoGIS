@@ -1,8 +1,8 @@
 ///// libopt lib for  drawing optics connection
 function LibObjekt(){
-    this.drawL: function(){};
-    this.drawR: function(){};
-    this.GetHeight: function(){};
+    this.drawL= function(){};
+    this.drawRr= function(){};
+    this.GetHeight= function(){};
 
     return this;
 };
@@ -65,29 +65,28 @@ function Libopt(canv,x,y){
 	lib.drawRcable= function(pos_x,pos_y,cable){
 			var height = this.getCableHeight(this.cables[c].modules,this.cables[c].fibers);
 			//console.log(height);
-				this.p.rect(pos_x,pos_y,100,height,6);	
-	                        text=this.p.text(pos_x+10,pos_y+15,this.cables[c].text);
-                            text.attr({'text-anchor': 'start'});
-                            text.rotate(90,pos_x+10,pos_y+15);
-				var count_fib = 0; 
+			this.p.rect(pos_x,pos_y,100,height,6);	
+	                var text=this.p.text(pos_x+10,pos_y+15,this.cables[c].text);
+                        text.attr({'text-anchor': 'start'});
+                        text.rotate(90,pos_x+10,pos_y+15);
+			var count_fib = 0; 
 			for(j=0;j<this.cables[c].modules;j++){///adding modules
-				mod_y = j*this.getModulesHeight(1,this.cables[c].fibers);
-				mod_cy = this.getModulesHeight(1,this.cables[c].fibers); 
-		 		
-				mod =	this.p.rect(pos_x+20,pos_y+mod_y,70,mod_cy,5);
+				var mod_y = j*this.getModulesHeight(1,this.cables[c].fibers);
+				var mod_cy = this.getModulesHeight(1,this.cables[c].fibers); 
+				var mod = this.p.rect(pos_x+20,pos_y+mod_y,70,mod_cy,5);
 		 		mod.attr({fill: "#d1d2d4"});
 				
 				for(i=0;i<this.cables[c].fibers;i++){/// adding fibers
 					count_fib++;
 					var fx=pos_y+mod_y+i*this.fiber_height;
 					var fcx=this.fiber_height;
-                    var con = this.p.rect(pos_x+90,fx,10,fcx,3);
-                    con.attr('fill', 'blue');
+                    			var con = this.p.rect(pos_x+90,fx,10,fcx,3);
+                    			con.attr('fill', 'blue');
 					con.mousemove(function(){this.attr({fill: 'red'})});
 					con.mouseout(function(){this.attr({fill: 'blue'})});
 					con.fiber = count_fib;
 					con.lib= this;
-                              con.click(function(){
+                              		con.click(function(){
                                                 if(window.edit==null){
                                                         window.edit = {cabel: cable, fiber: this.fiber}
                                                         this.attr('stroke','white');
@@ -99,7 +98,7 @@ function Libopt(canv,x,y){
                                                                con.lib.addJoin({from: window.edit.cabel.id, from_fib: window.edit.fiber,
 									                            to: cable.id, to_fib: this.fiber
 								                                });
-								                                this.attr('stroke','black');
+						                this.attr('stroke','black');
                                                                 delete window.edit;
                                                         };
                                                 };
@@ -108,45 +107,43 @@ function Libopt(canv,x,y){
 
 					if(this.cables[c].panel!=true){
 						var fib = this.p.rect(pos_x+32,fx,60,fcx,3);
-                        fib.attr({fill: '#'+this.colors[i]});
+                        			fib.attr({fill: '#'+this.colors[i]});
 
 						var fib2 = this.p.rect(pos_x+32,fx,20,fcx,3);
 						fib2.attr({fill: 'white'});
 						text=   this.p.text(pos_x+32+10,fx+7,i+1);
-				    };
+				    	};
    					var fib3 = this.p.rect(pos_x+32+21,fx,20,fcx,3);
-                    fib3.attr({fill: 'white'});
-                    text = this.p.text(pos_x+32+10+21,fx+7,count_fib);
+                    			fib3.attr({fill: 'white'});
+                    			text = this.p.text(pos_x+32+10+21,fx+7,count_fib);
 				};
 			};
 
 	};
         lib.drawLcable= function(pos_x,pos_y,cable){
                         var height = this.getCableHeight(cable.modules,cable.fibers);
-                                this.p.rect(pos_x,pos_y,100,height,6);
-                                text=   this.p.text(pos_x+90,pos_y+15,cable.text);
-                                text.attr({'text-anchor': 'start'});
-                                text.rotate(90,pos_x+90,pos_y+15);
-                                var count_fib = 0;
-                        for(j=0;j<cable.modules;j++){///adding modules
-                                mod_y = j*this.getModulesHeight(1,cable.fibers);
-                                mod_cy = this.getModulesHeight(1,cable.fibers);
-                                mod =   this.p.rect(pos_x+10,pos_y+mod_y,70,mod_cy,5);
+                        this.p.rect(pos_x,pos_y,100,height,6);
+                        var text=   this.p.text(pos_x+90,pos_y+15,cable.text);
+                        text.attr({'text-anchor': 'start'});
+                        text.rotate(90,pos_x+90,pos_y+15);
+                        var count_fib = 0;
+                        for(var j=0;j<cable.modules;j++){///adding modules
+                                var mod_y = j*this.getModulesHeight(1,cable.fibers);
+                                var mod_cy = this.getModulesHeight(1,cable.fibers);
+                                var mod =   this.p.rect(pos_x+10,pos_y+mod_y,70,mod_cy,5);
                                 mod.attr({fill: "#d1d2d4"});
 
-                                for(i=0;i<cable.fibers;i++){/// adding fibers
+                                for(var i=0;i<cable.fibers;i++){/// adding fibers
                                         count_fib++;
                                         var fx=pos_y+mod_y+i*this.fiber_height;
                                         var fcx=this.fiber_height;
 					cable.coord[count_fib] = {x: pos_x,y: fx+this.fiber_height/2};
-
-					
 					var con = this.p.rect(pos_x,fx,10,fcx,3);
 					con.attr({fill: 'blue'});
-                    con.mousemove(function(){this.attr({fill: 'red'})});
-                    con.mouseout(function(){this.attr({fill: 'blue'})}); 
+                    			con.mousemove(function(){this.attr({fill: 'red'})});
+                    			con.mouseout(function(){this.attr({fill: 'blue'})}); 
 					con.fiber = count_fib;
-                    con.lib= this;
+                    			con.lib= this;
 					con.click(function(){
                                             if(window.edit==null){
                                                         window.edit = {cabel: cable, fiber: this.fiber}
@@ -165,11 +162,11 @@ function Libopt(canv,x,y){
                                                 };
                                         });
 					if(this.cables[c].panel!=true){
-					    var fib = this.p.rect(pos_x+10,fx,60,fcx,3);
-                        fib.attr({fill: '#'+this.colors[i]});
-                        var fib3 = this.p.rect(pos_x+53,fx,20,fcx,3);
-                        fib3.attr({fill: 'white'});
-                        text= this.p.text(pos_x+63,fx+7,i+1);
+						var fib = this.p.rect(pos_x+10,fx,60,fcx,3);
+                        			fib.attr({fill: '#'+this.colors[i]});
+                        			var fib3 = this.p.rect(pos_x+53,fx,20,fcx,3);
+                        			fib3.attr({fill: 'white'});
+                        			text= this.p.text(pos_x+63,fx+7,i+1);
 					}	
 					var fib2 = this.p.rect(pos_x+32,fx,20,fcx,3);
                                        	fib2.attr({fill: 'white'});
