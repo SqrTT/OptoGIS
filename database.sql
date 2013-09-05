@@ -113,6 +113,16 @@ CREATE TABLE IF NOT EXISTS `joins` (
            KEY `invent_id` (`invent_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE IF NOT EXISTS `joins` (
+  `invent_id` int(11) NOT NULL,
+  `id_fib_from` varchar(20) COLLATE utf8_bin NOT NULL,
+  `fib_num_from` int(11) NOT NULL,
+  `id_fib_to` varchar(20) COLLATE utf8_bin NOT NULL,
+  `fib_num_to` int(11) NOT NULL,
+  KEY `invent_id` (`invent_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
 ALTER TABLE `invent` ADD INDEX ( `node_id` );
 
 ALTER TABLE `invent` ADD `options` VARCHAR( 40 ) NOT NULL; 
